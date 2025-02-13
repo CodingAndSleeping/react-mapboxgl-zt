@@ -66,6 +66,7 @@
     "react-dom": "^18.0.0",
     "rollup": "^4.34.6",
     "rollup-plugin-ignore": "^1.0.10",
+    "sass": "^1.84.0",
     "stylelint": "^14.9.1"
   },
   "peerDependencies": {
@@ -75,5 +76,8 @@
   "publishConfig": {
     "access": "public"
   },
-  "authors": []
+  "authors": [],
+  "dependencies": {
+    "mapbox-gl": "^3.9.4"
+  }
 }

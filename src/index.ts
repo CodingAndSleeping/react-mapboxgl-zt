@@ -1,1 +1,1 @@
-export { default as Foo } from './Foo';
+export { Map } from './components/map';
