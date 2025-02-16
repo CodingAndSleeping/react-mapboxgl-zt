@@ -1,7 +1,9 @@
-import { Map } from '@react-mapbox';
-import React from 'react';
+import { MapFactory } from '@react-mapbox';
 export default function BaseMap() {
-  console.log('BaseMap');
+  const Map = MapFactory({
+    accessToken:
+      'pk.eyJ1IjoiMnBpYyIsImEiOiJjbTczaXFxbGwwMGNtMm9zYjhjcW1hd3ZkIn0.YCpsYVQawB15Cf5Zyljscg',
+  });
   return (
     <div>
       <Map></Map>

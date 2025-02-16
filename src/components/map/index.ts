@@ -1,1 +1,1 @@
-export { default as Map } from './baseMap/index';
+export { default as MapFactory } from './baseMap/index';
