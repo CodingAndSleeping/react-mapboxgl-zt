@@ -1,11 +1,30 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import mapboxgl, { Map } from 'mapbox-gl';
 import { PropsWithChildren, useEffect, useRef, useState } from 'react';
-import { listenEvents, updateEvents } from './event';
+
+import cn from 'classnames';
+
+import { isEqual } from 'lodash-es';
+import { MapContext } from '../../../context/index';
+
+import { listenEvents, updateEvents } from './events';
+import type { Events, MapFactoryParams, MapOptions } from './types';
+
 import './index.scss';
-import type { Events, MapFactoryParams, MapOptions } from './type';
-const DEFAULE_ZOOM = 10;
-const DEFAULE_CENTER: [number, number] = [113.94, 22.52];
+
+import 'mapbox-gl/dist/mapbox-gl.css';
+
+const DEFAULT_ZOOM = 10; // 默认缩放级别
+const DEFAULT_CENTER: [number, number] = [113.94, 22.52]; // 默认中心点
+const DEFAULT_PITCH = 0; // 默认俯仰角
+const DEFAULT_BEARING = 0; // 默认方位角
+const DEFAULT_MAX_PITCH = 85; // 最大俯仰角
+const DEFAULT_MIN_PITCH = 0; // 最小俯仰角
+const DEFAULT_MAX_ZOOM = 22; // 最大缩放级别
+const DEFAULT_MIN_ZOOM = 0; // 最小缩放级别
+const DEFAULT_MOVEMETHOD: 'flyTo' | 'easeTo' | 'jumpTo' = 'flyTo'; // 默认动画效果 'flyTo' | 'easeTo' | 'jumpTo'
+
+const DEFAULT_STYLE = 'mapbox://styles/mapbox/streets-v11'; // 默认样式
 
 const MapFactory = ({
   accessToken,
@@ -51,25 +70,33 @@ const MapFactory = ({
 }: MapFactoryParams) => {
   return (props: PropsWithChildren<MapOptions & Events>) => {
     const {
-      center = DEFAULE_CENTER,
-      zoom = DEFAULE_ZOOM,
-      bearing = 0,
-      pitch = 0,
+      center = DEFAULT_CENTER,
+      zoom = DEFAULT_ZOOM,
+      bearing = DEFAULT_BEARING,
+      pitch = DEFAULT_PITCH,
+
       bounds,
-      style = 'mapbox://styles/mapbox/standard',
       fitBoundsOptions,
       maxBounds,
-      maxPitch = 85,
-      minPitch = 0,
-      maxZoom = 22,
-      minZoom = 0,
+
+      maxPitch = DEFAULT_MAX_PITCH,
+      minPitch = DEFAULT_MIN_PITCH,
+      maxZoom = DEFAULT_MAX_ZOOM,
+      minZoom = DEFAULT_MIN_ZOOM,
+      style = DEFAULT_STYLE,
+
       className,
+
+      moveMethod = DEFAULT_MOVEMETHOD,
+      cameraOptions,
+      animationOptions = {},
+
       children,
 
       onMapLoad,
     } = props;
 
-    const [mapInstance, setMapInstance] = useState<Map>();
+    const [mapInstance, setMapInstance] = useState<Map | null>(null);
 
     const container = useRef<HTMLDivElement>(null);
 
@@ -150,28 +177,102 @@ const MapFactory = ({
       };
     }, []);
 
-    useEffect(() => {}, [
+    useEffect(() => {
+      if (!mapInstance) return;
+
+      const prevCenter = mapInstance.getCenter();
+      const prevZoom = mapInstance.getZoom();
+      const prevBearing = mapInstance.getBearing();
+      const prevPitch = mapInstance.getPitch();
+
+      const isCenterChanged =
+        prevCenter.lng !== center[0] || prevCenter.lat !== center[1];
+      const isZoomChanged = prevZoom !== zoom;
+      const isBearingChanged = prevBearing !== bearing;
+      const isPitchChanged = prevPitch !== pitch;
+
+      if (
+        isCenterChanged ||
+        isZoomChanged ||
+        isBearingChanged ||
+        isPitchChanged
+      ) {
+        mapInstance[moveMethod]({
+          ...cameraOptions,
+          ...animationOptions,
+          center,
+          zoom,
+          bearing,
+          pitch,
+        });
+      }
+
+      if (bounds) {
+        mapInstance.fitBounds(bounds, fitBoundsOptions);
+      }
+
+      if (maxBounds) {
+        mapInstance.setMaxBounds(maxBounds);
+      }
+
+      if (maxPitch !== mapInstance.getMaxPitch()) {
+        mapInstance.setMaxPitch(maxPitch);
+      }
+
+      if (minPitch !== mapInstance.getMinPitch()) {
+        mapInstance.setMinPitch(minPitch);
+      }
+
+      if (maxZoom !== mapInstance.getMaxZoom()) {
+        mapInstance.setMaxZoom(maxZoom);
+      }
+
+      if (minZoom !== mapInstance.getMinZoom()) {
+        mapInstance.setMinZoom(minZoom);
+      }
+    }, [
       JSON.stringify(center),
-      JSON.stringify(bounds),
-      JSON.stringify(style),
-      JSON.stringify(fitBoundsOptions),
-      JSON.stringify(maxBounds),
       zoom,
       pitch,
       bearing,
+
+      JSON.stringify(bounds),
+      JSON.stringify(maxBounds),
+      JSON.stringify(fitBoundsOptions),
+
       maxPitch,
       minPitch,
       maxZoom,
       minZoom,
-      className,
     ]);
 
-    if (mapInstance) updateEvents(props, mapInstance);
+    useEffect(() => {
+      if (!mapInstance) return;
+
+      if (typeof style === 'string') {
+        mapInstance.setStyle(style);
+        return;
+      }
+
+      if (
+        typeof style === 'object' &&
+        !isEqual(style, mapInstance.getStyle())
+      ) {
+        mapInstance.setStyle(style);
+      }
+    }, [style]);
+
+    // 每次组件渲染都会去重新更新事件
+    if (mapInstance) {
+      updateEvents(props, mapInstance);
+    }
 
     return (
-      <div className={`map-container ${className || ''}`} ref={container}>
-        {children}
-      </div>
+      <MapContext.Provider value={mapInstance}>
+        <div className={cn('map-container', className)} ref={container}>
+          {children}
+        </div>
+      </MapContext.Provider>
     );
   };
 };

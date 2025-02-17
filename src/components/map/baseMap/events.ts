@@ -1,5 +1,5 @@
 import { Map } from 'mapbox-gl';
-import { Events, MapEvent } from './type';
+import { Events, MapEvent } from './types';
 
 export const eventMap: { [T in keyof Events]: string } = {
   onResize: 'resize',
@@ -64,14 +64,17 @@ const listeners: Listener = {};
 // 事件绑定
 export const listenEvents = (props: Events, map: Map) => {
   Object.keys(eventMap).forEach((key) => {
+    const event = eventMap[key as keyof Events];
     const handleFunc = props[key as keyof Events];
 
-    if (typeof handleFunc === 'function') {
-      map.on(eventMap[key as keyof Events]!, () => {
+    if (event && typeof handleFunc === 'function') {
+      const listener = () => {
         handleFunc(map);
-      });
+      };
 
-      listeners[key as keyof Events] = handleFunc;
+      map.on(event, listener);
+
+      listeners[key as keyof Events] = listener;
     }
   });
 };
@@ -110,14 +113,16 @@ export const updateEvents = (props: Events, map: Map) => {
 
   // 增加绑定的事件
   listenersOn.forEach((key) => {
+    const event = eventMap[key as keyof Events];
     const handleFunc = props[key as keyof Events];
 
-    if (typeof handleFunc === 'function') {
-      map.on(eventMap[key as keyof Events]!, () => {
+    if (event && typeof handleFunc === 'function') {
+      const listener = () => {
         handleFunc(map);
-      });
+      };
+      map.on(event, listener);
 
-      listeners[key as keyof Events] = handleFunc;
+      listeners[key as keyof Events] = listener;
     }
   });
 
@@ -125,14 +130,17 @@ export const updateEvents = (props: Events, map: Map) => {
   listenersUpdate.forEach((key) => {
     map.off(eventMap[key as keyof Events]!, listeners[key as keyof Events]!);
 
+    const event = eventMap[key as keyof Events];
     const handleFunc = props[key as keyof Events];
 
-    if (typeof handleFunc === 'function') {
-      map.on(eventMap[key as keyof Events]!, () => {
+    if (event && typeof handleFunc === 'function') {
+      const listener = () => {
         handleFunc(map);
-      });
+      };
 
-      listeners[key as keyof Events] = handleFunc;
+      map.on(event, listener);
+
+      listeners[key as keyof Events] = listener;
     }
   });
 };

@@ -1,24 +1,13 @@
 import {
+  AnimationOptions,
+  CameraOptions,
   ConfigSpecification,
   LngLatBoundsLike,
-  LngLatLike,
   Map,
-  PaddingOptions,
-  PointLike,
   ProjectionSpecification,
   RequestTransformFunction,
   StyleSpecification,
 } from 'mapbox-gl';
-
-export interface FitBoundsOptions {
-  bearing?: number;
-  easing?: (time: number) => number;
-  linear?: boolean;
-  maxZoom?: number;
-  offset?: PointLike;
-  padding?: number | PaddingOptions;
-  pitch?: number;
-}
 
 export interface MapFactoryParams {
   accessToken: string;
@@ -64,19 +53,23 @@ export interface MapFactoryParams {
 }
 
 export interface MapOptions {
-  center?: LngLatLike;
+  center?: [number, number];
   zoom?: number;
   pitch?: number;
   bearing?: number;
-  bounds?: LngLatBoundsLike;
+  bounds?: [[number, number], [number, number]];
   style?: string | StyleSpecification;
-  fitBoundsOptions?: FitBoundsOptions;
+  fitBoundsOptions?: CameraOptions & AnimationOptions;
   maxBounds?: LngLatBoundsLike;
   maxPitch?: number;
   minPitch?: number;
   maxZoom?: number;
   minZoom?: number;
   className?: string;
+
+  moveMethod?: 'flyTo' | 'easeTo' | 'jumpTo';
+  cameraOptions?: CameraOptions;
+  animationOptions?: AnimationOptions;
 }
 
 export type MapEvent = (map: Map) => void;
