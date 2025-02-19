@@ -1,1 +1,1 @@
-export { MapFactory } from './components/map';
+export { MapFactory } from './components/base';

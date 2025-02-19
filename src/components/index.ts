@@ -1,0 +1,1 @@
+export { MapFactory } from './base';

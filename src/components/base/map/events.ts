@@ -55,11 +55,9 @@ export const eventMap: { [T in keyof Events]: string } = {
   onStyleImportLoad: 'style.import.load',
 };
 
-export type Listener = {
+const listeners: {
   [T in keyof Events]: MapEvent;
-};
-
-const listeners: Listener = {};
+} = {};
 
 // 事件绑定
 export const listenEvents = (props: Events, map: Map) => {

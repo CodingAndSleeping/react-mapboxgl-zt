@@ -100,6 +100,8 @@ const MapFactory = ({
 
     const container = useRef<HTMLDivElement>(null);
 
+    const [ready, setReady] = useState(false);
+
     useEffect(() => {
       mapboxgl.accessToken = accessToken;
 
@@ -170,6 +172,7 @@ const MapFactory = ({
         if (onMapLoad) onMapLoad(map);
 
         listenEvents(props, map);
+        setReady(true);
       });
 
       return () => {
@@ -270,7 +273,7 @@ const MapFactory = ({
     return (
       <MapContext.Provider value={mapInstance}>
         <div className={cn('map-container', className)} ref={container}>
-          {children}
+          {ready && children}
         </div>
       </MapContext.Provider>
     );

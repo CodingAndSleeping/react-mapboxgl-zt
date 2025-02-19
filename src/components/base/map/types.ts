@@ -8,7 +8,6 @@ import {
   RequestTransformFunction,
   StyleSpecification,
 } from 'mapbox-gl';
-
 export interface MapFactoryParams {
   accessToken: string;
   apiUrl?: string;
