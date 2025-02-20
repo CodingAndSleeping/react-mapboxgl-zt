@@ -17,8 +17,6 @@ const BackgroundLayer: FC<BackgroundLayerProps> = (props) => {
     imgUrl,
     visibility,
     beforeId,
-
-    onLayerLoad,
   } = props;
 
   const map = useContext(MapContext);
@@ -78,14 +76,10 @@ const BackgroundLayer: FC<BackgroundLayerProps> = (props) => {
       loadImage(imgUrl).then((res) => {
         layerOptions.paint!['background-pattern'] = res;
         map.addLayer(layerOptions, beforeId);
-        if (onLayerLoad)
-          onLayerLoad(map.getLayer<BackgroundLayerSpecification>(id)!);
       });
     } else {
       if (map.getLayer(id)) map.removeLayer(id);
       map.addLayer(layerOptions);
-      if (onLayerLoad)
-        onLayerLoad(map.getLayer<BackgroundLayerSpecification>(id)!);
     }
   };
 
