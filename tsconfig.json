@@ -4,6 +4,7 @@
     "declaration": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
+    "lib": ["ESNext", "DOM"],
     "jsx": "react-jsx",
     "baseUrl": "./",
     "outDir": "dist",

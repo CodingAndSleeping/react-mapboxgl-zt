@@ -1,1 +1,2 @@
-export { MapFactory } from './base';
+export * from './base';
+export * from './layer/index';

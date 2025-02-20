@@ -7,7 +7,7 @@ import cn from 'classnames';
 import { isEqual } from 'lodash-es';
 import { MapContext } from '../../../context/index';
 
-import { listenEvents, updateEvents } from './events';
+import { updateEvents } from './events';
 import type { Events, MapFactoryParams, MapOptions } from './types';
 
 import './index.scss';
@@ -22,7 +22,7 @@ const DEFAULT_MAX_PITCH = 85; // 最大俯仰角
 const DEFAULT_MIN_PITCH = 0; // 最小俯仰角
 const DEFAULT_MAX_ZOOM = 22; // 最大缩放级别
 const DEFAULT_MIN_ZOOM = 0; // 最小缩放级别
-const DEFAULT_MOVEMETHOD: 'flyTo' | 'easeTo' | 'jumpTo' = 'flyTo'; // 默认动画效果 'flyTo' | 'easeTo' | 'jumpTo'
+const DEFAULT_MOVEMETHOD = 'flyTo'; // 默认动画效果 'flyTo' | 'easeTo' | 'jumpTo'
 
 const DEFAULT_STYLE = 'mapbox://styles/mapbox/streets-v11'; // 默认样式
 
@@ -171,7 +171,6 @@ const MapFactory = ({
       map.on('load', () => {
         if (onMapLoad) onMapLoad(map);
 
-        listenEvents(props, map);
         setReady(true);
       });
 

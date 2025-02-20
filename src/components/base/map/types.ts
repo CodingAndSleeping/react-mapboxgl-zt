@@ -69,13 +69,13 @@ export interface MapOptions {
   moveMethod?: 'flyTo' | 'easeTo' | 'jumpTo';
   cameraOptions?: CameraOptions;
   animationOptions?: AnimationOptions;
+
+  onMapLoad?: MapEvent;
 }
 
 export type MapEvent = (map: Map) => void;
 
 export interface Events {
-  onMapLoad?: MapEvent;
-
   onResize?: MapEvent;
   onIdle?: MapEvent;
   onRemove?: MapEvent;
