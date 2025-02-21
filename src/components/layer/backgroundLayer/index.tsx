@@ -1,6 +1,6 @@
 import { isEqual } from 'lodash-es';
 import { BackgroundLayerSpecification } from 'mapbox-gl';
-import { FC, useContext, useEffect } from 'react';
+import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context/index';
 import { BackgroundLayerProps } from './types';
 
@@ -11,53 +11,18 @@ const BackgroundLayer: FC<BackgroundLayerProps> = (props) => {
     maxzoom = 24,
     minzoom = 0,
     slot,
-    color,
-    emissiveStrength,
-    opacity,
+    color = '#000000',
+    emissiveStrength = 0,
+    opacity = 1,
     imgUrl,
-    visibility,
+    pitchAlignment = 'map',
+    visibility = 'visible',
     beforeId,
   } = props;
 
   const map = useContext(MapContext);
 
-  const layerOptions: BackgroundLayerSpecification = {
-    id,
-    type: 'background',
-  };
-  const paint: BackgroundLayerSpecification['paint'] = {};
-  const layout: BackgroundLayerSpecification['layout'] = {};
-
-  if (filter) {
-    layerOptions.filter = filter as never;
-  }
-  if (maxzoom) {
-    layerOptions.maxzoom = maxzoom;
-  }
-  if (minzoom) {
-    layerOptions.minzoom = minzoom;
-  }
-
-  if (slot) {
-    layerOptions.slot = slot;
-  }
-
-  if (color) {
-    paint['background-color'] = color;
-  }
-  if (emissiveStrength) {
-    paint['background-emissive-strength'] = emissiveStrength;
-  }
-  if (opacity) {
-    paint['background-opacity'] = opacity;
-  }
-
-  if (visibility) {
-    layout['visibility'] = visibility;
-  }
-
-  layerOptions.paint = paint;
-  layerOptions.layout = layout;
+  const prevProps = useRef<BackgroundLayerProps>();
 
   const loadImage = (imgUrl: string): Promise<string> => {
     return new Promise((reslove) => {
@@ -70,21 +35,50 @@ const BackgroundLayer: FC<BackgroundLayerProps> = (props) => {
     });
   };
 
-  const addLayer = async () => {
+  useEffect(() => {
+    const layerOptions: BackgroundLayerSpecification = {
+      id,
+      type: 'background',
+    };
+    const paint: BackgroundLayerSpecification['paint'] = {};
+    const layout: BackgroundLayerSpecification['layout'] = {};
+
+    if (filter) {
+      layerOptions.filter = filter as never;
+    }
+    if (slot) {
+      layerOptions.slot = slot;
+    }
+
+    layerOptions.maxzoom = maxzoom;
+
+    layerOptions.minzoom = minzoom;
+
+    paint['background-color'] = color;
+
+    paint['background-emissive-strength'] = emissiveStrength;
+
+    paint['background-opacity'] = opacity;
+
+    paint['background-pitch-alignment'] = pitchAlignment;
+
+    layout['visibility'] = visibility;
+
+    layerOptions.paint = paint;
+    layerOptions.layout = layout;
+
     if (!map) return;
     if (imgUrl) {
       loadImage(imgUrl).then((res) => {
         layerOptions.paint!['background-pattern'] = res;
+        if (map.getLayer(id)) map.removeLayer(id);
         map.addLayer(layerOptions, beforeId);
       });
     } else {
       if (map.getLayer(id)) map.removeLayer(id);
       map.addLayer(layerOptions);
     }
-  };
 
-  useEffect(() => {
-    addLayer();
     return () => {
       if (map?.getLayer(id)) map.removeLayer(id);
     };
@@ -92,33 +86,34 @@ const BackgroundLayer: FC<BackgroundLayerProps> = (props) => {
 
   useEffect(() => {
     if (!map) return;
-    const layer = map.getLayer<BackgroundLayerSpecification>(id);
-    if (!layer) return;
 
-    if (filter && isEqual(filter, layer.filter)) {
+    if (!prevProps.current) {
+      prevProps.current = props; // 初始化
+      return;
+    }
+
+    if (!isEqual(filter, prevProps.current.filter)) {
       map.setFilter(id, filter);
     }
 
     if (
       maxzoom &&
       minzoom &&
-      (maxzoom !== layer.maxzoom || minzoom !== layer.minzoom)
+      (maxzoom !== prevProps.current.maxzoom ||
+        minzoom !== prevProps.current.minzoom)
     ) {
       map.setLayerZoomRange(id, minzoom, maxzoom);
     }
 
-    if (slot && slot !== layer.slot) {
+    if (slot !== prevProps.current.slot) {
       map.setSlot(id, slot);
     }
 
-    if (color && color !== layer.paint?.['background-color']) {
+    if (color !== prevProps.current.color) {
       map.setPaintProperty(id, 'background-color', color);
     }
 
-    if (
-      emissiveStrength &&
-      emissiveStrength !== layer.paint?.['background-emissive-strength']
-    ) {
+    if (emissiveStrength !== prevProps.current.emissiveStrength) {
       map.setPaintProperty(
         id,
         'background-emissive-strength',
@@ -126,16 +121,18 @@ const BackgroundLayer: FC<BackgroundLayerProps> = (props) => {
       );
     }
 
-    if (opacity && opacity !== layer.paint?.['background-opacity']) {
+    if (opacity !== prevProps.current.opacity) {
       map.setPaintProperty(id, 'background-opacity', opacity);
     }
-    if (visibility && visibility !== layer.layout?.visibility) {
+    if (visibility !== prevProps.current.visibility) {
       map.setLayoutProperty(id, 'visibility', visibility);
     }
 
-    if (beforeId) {
+    if (beforeId !== prevProps.current.beforeId) {
       map.moveLayer(id, beforeId);
     }
+
+    prevProps.current = props;
   }, [
     JSON.stringify(filter),
     maxzoom,
