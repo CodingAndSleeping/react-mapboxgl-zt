@@ -3,11 +3,11 @@ import {
   VectorSourceSpecification,
 } from 'mapbox-gl';
 
-export interface geojsonSource {
+export interface GeojsonSource {
   source: GeoJSONSourceSpecification;
   sourceLayer?: string;
 }
-export interface vectorSource {
+export interface VectorSource {
   source: VectorSourceSpecification;
   sourceLayer: string;
 }

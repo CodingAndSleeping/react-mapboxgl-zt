@@ -4,10 +4,10 @@ import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context/index';
 import { updateEvents } from '../events';
 import { Events } from '../events/types';
-import { CircleLayerProps, geojsonSource, vectorSource } from './types';
+import { CircleLayerProps, GeojsonSource, VectorSource } from './types';
 
 const CircleLayer: FC<
-  CircleLayerProps & (geojsonSource | vectorSource) & Events
+  CircleLayerProps & (GeojsonSource | VectorSource) & Events
 > = (props) => {
   const {
     id,
@@ -37,7 +37,7 @@ const CircleLayer: FC<
 
   const map = useContext(MapContext);
 
-  const prevProps = useRef<CircleLayerProps & (geojsonSource | vectorSource)>();
+  const prevProps = useRef<CircleLayerProps & (GeojsonSource | VectorSource)>();
 
   useEffect(() => {
     if (!map) return;
