@@ -12,8 +12,7 @@ interface VectorSource {
   source: VectorSourceSpecification;
   sourceLayer: string;
 }
-
-interface CircleLayerBaseProps {
+interface FillLayerBaseProps {
   id: string;
   filter?: ExpressionSpecification;
   maxzoom?: number;
@@ -23,20 +22,17 @@ interface CircleLayerBaseProps {
   beforeId?: string;
   visibility?: 'visible' | 'none';
 
-  blur?: number | ExpressionSpecification;
+  antialias?: boolean;
   color?: string | ExpressionSpecification;
   emissiveStrength?: number;
   opacity?: number | ExpressionSpecification;
-  pitchAlignment?: 'map' | 'viewport';
-  pitchScale?: 'map' | 'viewport';
-  radius?: number | ExpressionSpecification;
+  outlineColor?: string | ExpressionSpecification;
+  imgUrl?: string;
   sortKey?: number;
-  strokeColor?: string | ExpressionSpecification;
-  strokeOpacity?: number | ExpressionSpecification;
-  strokeWidth?: number | ExpressionSpecification;
   translate?: [number, number] | ExpressionSpecification;
   translateAnchor?: 'map' | 'viewport';
+  zOffset?: number | ExpressionSpecification;
 }
 
-export type CircleLayerProps = CircleLayerBaseProps &
+export type FillLayerProps = FillLayerBaseProps &
   (GeojsonSource | VectorSource);

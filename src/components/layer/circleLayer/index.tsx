@@ -4,11 +4,9 @@ import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context/index';
 import { updateEvents } from '../events';
 import { Events } from '../events/types';
-import { CircleLayerProps, GeojsonSource, VectorSource } from './types';
+import { CircleLayerProps } from './types';
 
-const CircleLayer: FC<
-  CircleLayerProps & (GeojsonSource | VectorSource) & Events
-> = (props) => {
+const CircleLayer: FC<CircleLayerProps & Events> = (props) => {
   const {
     id,
     source,
@@ -37,7 +35,7 @@ const CircleLayer: FC<
 
   const map = useContext(MapContext);
 
-  const prevProps = useRef<CircleLayerProps & (GeojsonSource | VectorSource)>();
+  const prevProps = useRef<CircleLayerProps>();
 
   useEffect(() => {
     if (!map) return;
@@ -57,18 +55,17 @@ const CircleLayer: FC<
     if (filter) {
       layerOptions.filter = filter;
     }
-    if (maxzoom) {
-      layerOptions.maxzoom = maxzoom;
-    }
-    if (minzoom) {
-      layerOptions.minzoom = minzoom;
-    }
+
     if (slot) {
       layerOptions.slot = slot;
     }
     if (sortKey) {
       layout['circle-sort-key'] = sortKey;
     }
+
+    layerOptions.maxzoom = maxzoom;
+
+    layerOptions.minzoom = minzoom;
 
     paint['circle-blur'] = blur;
     paint['circle-color'] = color;
@@ -144,11 +141,11 @@ const CircleLayer: FC<
       map.setLayoutProperty(id, 'visibility', visibility);
     }
 
-    if (blur !== prevProps.current.blur) {
+    if (!isEqual(blur, prevProps.current.blur)) {
       map.setPaintProperty(id, 'circle-blur', blur);
     }
 
-    if (color !== prevProps.current.color) {
+    if (!isEqual(color, prevProps.current.color)) {
       map.setPaintProperty(id, 'circle-color', color);
     }
 
@@ -156,7 +153,7 @@ const CircleLayer: FC<
       map.setPaintProperty(id, 'circle-emissive-strength', emissiveStrength);
     }
 
-    if (opacity !== prevProps.current.opacity) {
+    if (!isEqual(opacity, prevProps.current.opacity)) {
       map.setPaintProperty(id, 'circle-opacity', opacity);
     }
     if (pitchAlignment !== prevProps.current.pitchAlignment) {
@@ -167,21 +164,21 @@ const CircleLayer: FC<
       map.setPaintProperty(id, 'circle-pitch-scale', pitchScale);
     }
 
-    if (radius !== prevProps.current.radius) {
+    if (!isEqual(radius, prevProps.current.radius)) {
       map.setPaintProperty(id, 'circle-radius', radius);
     }
     if (sortKey !== prevProps.current.sortKey) {
       map.setLayoutProperty(id, 'circle-sort-key', sortKey);
     }
 
-    if (strokeColor !== prevProps.current.strokeColor) {
+    if (!isEqual(strokeColor, prevProps.current.strokeColor)) {
       map.setPaintProperty(id, 'circle-stroke-color', strokeColor);
     }
-    if (strokeOpacity !== prevProps.current.strokeOpacity) {
+    if (!isEqual(strokeOpacity, prevProps.current.strokeOpacity)) {
       map.setPaintProperty(id, 'circle-stroke-opacity', strokeOpacity);
     }
 
-    if (strokeWidth !== prevProps.current.strokeWidth) {
+    if (!isEqual(strokeWidth, prevProps.current.strokeWidth)) {
       map.setPaintProperty(id, 'circle-stroke-width', strokeWidth);
     }
     if (!isEqual(translate, prevProps.current.translate)) {
@@ -199,21 +196,22 @@ const CircleLayer: FC<
   }, [
     source,
     sourceLayer,
+    JSON.stringify(filter),
     maxzoom,
     minzoom,
     slot,
     visibility,
-    blur,
-    color,
+    JSON.stringify(blur),
+    JSON.stringify(color),
     emissiveStrength,
-    opacity,
+    JSON.stringify(opacity),
     pitchAlignment,
     pitchScale,
-    radius,
+    JSON.stringify(radius),
     sortKey,
-    strokeColor,
-    strokeOpacity,
-    strokeWidth,
+    JSON.stringify(strokeColor),
+    JSON.stringify(strokeOpacity),
+    JSON.stringify(strokeWidth),
     JSON.stringify(translate),
     translateAnchor,
     beforeId,

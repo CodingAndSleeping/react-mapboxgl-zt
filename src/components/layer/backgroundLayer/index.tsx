@@ -36,6 +36,8 @@ const BackgroundLayer: FC<BackgroundLayerProps> = (props) => {
   };
 
   useEffect(() => {
+    if (!map) return;
+
     const layerOptions: BackgroundLayerSpecification = {
       id,
       type: 'background',
@@ -67,7 +69,6 @@ const BackgroundLayer: FC<BackgroundLayerProps> = (props) => {
     layerOptions.paint = paint;
     layerOptions.layout = layout;
 
-    if (!map) return;
     if (imgUrl) {
       loadImage(imgUrl).then((res) => {
         layerOptions.paint!['background-pattern'] = res;
@@ -82,7 +83,7 @@ const BackgroundLayer: FC<BackgroundLayerProps> = (props) => {
     return () => {
       if (map?.getLayer(id)) map.removeLayer(id);
     };
-  }, [map, id, imgUrl]);
+  }, [map, id]);
 
   useEffect(() => {
     if (!map) return;
@@ -132,6 +133,10 @@ const BackgroundLayer: FC<BackgroundLayerProps> = (props) => {
       map.moveLayer(id, beforeId);
     }
 
+    if (imgUrl && imgUrl !== prevProps.current.imgUrl) {
+      loadImage(imgUrl);
+    }
+
     prevProps.current = props;
   }, [
     JSON.stringify(filter),
@@ -143,6 +148,7 @@ const BackgroundLayer: FC<BackgroundLayerProps> = (props) => {
     opacity,
     visibility,
     beforeId,
+    imgUrl,
   ]);
 
   return null;
