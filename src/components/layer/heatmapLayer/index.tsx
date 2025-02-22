@@ -2,8 +2,7 @@ import { isEqual } from 'lodash-es';
 import { HeatmapLayerSpecification } from 'mapbox-gl';
 import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context';
-import { Events } from '../events/types';
-import { HeatmapLayerProps } from './types';
+import { Events, HeatmapLayerProps } from '../types';
 
 const FIllLayer: FC<HeatmapLayerProps & Events> = (props) => {
   const {

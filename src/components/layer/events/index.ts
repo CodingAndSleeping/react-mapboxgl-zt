@@ -1,5 +1,5 @@
 import { Map, MapMouseEvent, MapTouchEvent } from 'mapbox-gl';
-import type { Event, Events } from './types';
+import type { Event, Events } from '../types';
 
 export const eventMap: { [T in keyof Events]: string } = {
   onMouseDown: 'mousedown',

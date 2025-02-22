@@ -2,7 +2,7 @@ import { isEqual } from 'lodash-es';
 import { BackgroundLayerSpecification } from 'mapbox-gl';
 import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context/index';
-import { BackgroundLayerProps } from './types';
+import { BackgroundLayerProps } from '../types';
 
 const BackgroundLayer: FC<BackgroundLayerProps> = (props) => {
   const {

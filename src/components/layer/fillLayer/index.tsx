@@ -3,8 +3,7 @@ import { FillLayerSpecification } from 'mapbox-gl';
 import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context';
 import { updateEvents } from '../events';
-import { Events } from '../events/types';
-import { FillLayerProps } from './types';
+import { Events, FillLayerProps } from '../types';
 
 const FIllLayer: FC<FillLayerProps & Events> = (props) => {
   const {

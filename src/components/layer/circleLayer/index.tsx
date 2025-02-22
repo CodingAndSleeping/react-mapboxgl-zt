@@ -3,8 +3,7 @@ import { CircleLayerSpecification } from 'mapbox-gl';
 import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context/index';
 import { updateEvents } from '../events';
-import { Events } from '../events/types';
-import { CircleLayerProps } from './types';
+import { CircleLayerProps, Events } from '../types';
 
 const CircleLayer: FC<CircleLayerProps & Events> = (props) => {
   const {

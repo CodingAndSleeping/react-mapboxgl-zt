@@ -3,8 +3,7 @@ import { LineLayerSpecification } from 'mapbox-gl';
 import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context';
 import { updateEvents } from '../events';
-import { Events } from '../events/types';
-import { LineLayerProps } from './types';
+import { Events, LineLayerProps } from '../types';
 
 const FIllLayer: FC<LineLayerProps & Events> = (props) => {
   const {
