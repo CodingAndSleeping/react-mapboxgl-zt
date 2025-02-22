@@ -40,6 +40,10 @@ const ScaleControl: ForwardRefRenderFunction<
     });
 
     map.addControl(scaleControl.current, position);
+
+    return () => {
+      if (scaleControl.current) map.removeControl(scaleControl.current);
+    };
   }, [map, position, maxWidth, unit]);
 
   return null;

@@ -19,6 +19,11 @@ const FullscreenControl: FC<FullscreenControlProps> = (props) => {
     });
 
     map.addControl(fullscreenControl.current, position);
+
+    return () => {
+      if (fullscreenControl.current)
+        map.removeControl(fullscreenControl.current);
+    };
   }, [map, position, container]);
 
   return null;

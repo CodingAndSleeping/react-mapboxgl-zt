@@ -1,4 +1,12 @@
-import { ControlPosition } from 'mapbox-gl';
+import { ControlPosition, IControl } from 'mapbox-gl';
+
+export interface CustomControlProps<T extends IControl> {
+  controlClass: { new (...args: any[]): T };
+  // options?: Record<string, any>;
+  position?: ControlPosition;
+
+  [key: string]: any;
+}
 
 export type Unit = 'imperial' | 'metric' | 'nautical';
 export interface ScaleControlProps {

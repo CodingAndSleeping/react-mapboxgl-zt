@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect } from 'react';
+import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context';
 import { MousePositionControlProps } from '../types';
 import './index.scss';
@@ -7,14 +7,21 @@ const MousePositionControl: FC<MousePositionControlProps> = (props) => {
   const { position = 'bottom', decimals = 6 } = props;
   const map = useContext(MapContext);
 
+  const mousePositionControl = useRef<MousePositionControlClass>();
+
   useEffect(() => {
     if (!map) return;
 
-    const mousePositionControl = new MousePositionControlClass({
+    mousePositionControl.current = new MousePositionControlClass({
       decimals,
     });
 
-    map.addControl(mousePositionControl, position);
+    map.addControl(mousePositionControl.current, position);
+
+    return () => {
+      if (mousePositionControl.current)
+        map.removeControl(mousePositionControl.current);
+    };
   }, [map, position, decimals]);
 
   return null;
