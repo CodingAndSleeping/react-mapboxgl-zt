@@ -22,3 +22,9 @@ export interface FullscreenControlProps {
   position?: ControlPosition;
   container?: HTMLElement;
 }
+
+export interface MousePositionControlProps {
+  position?: ControlPosition;
+
+  decimals?: number;
+}

@@ -8,4 +8,4 @@ This is a guide example
 
 ## fdsaf
 
-<code src='./examples/base/map/base.tsx'></code>
+<code src='./examples/base/map/base.tsx' compact='true'></code>
