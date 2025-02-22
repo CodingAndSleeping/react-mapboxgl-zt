@@ -17,3 +17,8 @@ export interface NavigationControlProps {
   showZoom?: boolean;
   visualizePitch?: boolean;
 }
+
+export interface FullscreenControlProps {
+  position?: ControlPosition;
+  container?: HTMLElement;
+}
