@@ -1,4 +1,3 @@
-import { MapContext } from '@react-mapbox/context';
 import mapboxgl from 'mapbox-gl';
 import {
   forwardRef,
@@ -8,11 +7,12 @@ import {
   useImperativeHandle,
   useRef,
 } from 'react';
-import { ScaleControlMethods, ScaleControlProps, Unit } from '../types';
+import { MapContext } from '../../../context';
+import { ScaleControlInstance, ScaleControlProps, Unit } from '../types';
 import './index.scss';
 
 const ScaleControl: ForwardRefRenderFunction<
-  ScaleControlMethods,
+  ScaleControlInstance,
   ScaleControlProps
 > = (props, ref) => {
   const { position = 'bottom-left', maxWidth = 100, unit = 'metric' } = props;

@@ -1,3 +1,8 @@
+export { default as NavigationControl } from './navigationControl';
 export { default as ScaleControl } from './scaleControl';
 
-export type { ScaleControlMethods, ScaleControlProps } from './types';
+export type {
+  NavigationControlProps,
+  ScaleControlInstance,
+  ScaleControlProps,
+} from './types';

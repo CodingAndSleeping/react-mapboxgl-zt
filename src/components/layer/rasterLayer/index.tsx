@@ -1,7 +1,7 @@
-import { MapContext } from '@react-mapbox/context';
 import { isEqual } from 'lodash-es';
 import { RasterLayerSpecification } from 'mapbox-gl';
 import { FC, useContext, useEffect, useRef } from 'react';
+import { MapContext } from '../../../context';
 import { RasterLayerProps } from '../types';
 
 const TileLayer: FC<RasterLayerProps> = (props) => {
