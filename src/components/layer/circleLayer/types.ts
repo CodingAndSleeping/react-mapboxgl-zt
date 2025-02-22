@@ -25,7 +25,7 @@ interface CircleLayerBaseProps {
 
   blur?: number | ExpressionSpecification;
   color?: string | ExpressionSpecification;
-  emissiveStrength?: number;
+  emissiveStrength?: number | ExpressionSpecification;
   opacity?: number | ExpressionSpecification;
   pitchAlignment?: 'map' | 'viewport';
   pitchScale?: 'map' | 'viewport';

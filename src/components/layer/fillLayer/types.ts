@@ -24,14 +24,13 @@ interface FillLayerBaseProps {
 
   antialias?: boolean;
   color?: string | ExpressionSpecification;
-  emissiveStrength?: number;
+  emissiveStrength?: number | ExpressionSpecification;
   opacity?: number | ExpressionSpecification;
   outlineColor?: string | ExpressionSpecification;
   imgUrl?: string;
   sortKey?: number;
   translate?: [number, number] | ExpressionSpecification;
   translateAnchor?: 'map' | 'viewport';
-  zOffset?: number | ExpressionSpecification;
 }
 
 export type FillLayerProps = FillLayerBaseProps &

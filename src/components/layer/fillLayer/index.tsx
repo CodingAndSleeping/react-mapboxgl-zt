@@ -27,7 +27,6 @@ const FIllLayer: FC<FillLayerProps & Events> = (props) => {
     sortKey,
     translate = [0, 0],
     translateAnchor = 'map',
-    zOffset = 0,
   } = props;
 
   const map = useContext(MapContext);
@@ -84,7 +83,6 @@ const FIllLayer: FC<FillLayerProps & Events> = (props) => {
     paint['fill-opacity'] = opacity;
     paint['fill-translate'] = translate;
     paint['fill-translate-anchor'] = translateAnchor;
-    paint['fill-z-offset'] = zOffset;
 
     layout['visibility'] = visibility;
 
@@ -181,9 +179,6 @@ const FIllLayer: FC<FillLayerProps & Events> = (props) => {
     if (translateAnchor !== prevProps.current.translateAnchor) {
       map.setPaintProperty(id, 'fill-translate-anchor', translateAnchor);
     }
-    if (!isEqual(zOffset, prevProps.current.zOffset)) {
-      map.setPaintProperty(id, 'fill-z-offset', zOffset);
-    }
 
     if (visibility !== prevProps.current.visibility) {
       map.setLayoutProperty(id, 'visibility', visibility);
@@ -209,13 +204,12 @@ const FIllLayer: FC<FillLayerProps & Events> = (props) => {
     beforeId,
     antialias,
     JSON.stringify(color),
-    emissiveStrength,
+    JSON.stringify(emissiveStrength),
     JSON.stringify(opacity),
     JSON.stringify(outlineColor),
     sortKey,
     JSON.stringify(translate),
     translateAnchor,
-    JSON.stringify(zOffset),
     imgUrl,
   ]);
 

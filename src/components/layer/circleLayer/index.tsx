@@ -203,7 +203,7 @@ const CircleLayer: FC<CircleLayerProps & Events> = (props) => {
     visibility,
     JSON.stringify(blur),
     JSON.stringify(color),
-    emissiveStrength,
+    JSON.stringify(emissiveStrength),
     JSON.stringify(opacity),
     pitchAlignment,
     pitchScale,

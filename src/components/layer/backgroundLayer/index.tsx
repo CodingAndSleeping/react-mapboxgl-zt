@@ -15,7 +15,7 @@ const BackgroundLayer: FC<BackgroundLayerProps> = (props) => {
     emissiveStrength = 0,
     opacity = 1,
     imgUrl,
-    pitchAlignment = 'map',
+
     visibility = 'visible',
     beforeId,
   } = props;
@@ -61,8 +61,6 @@ const BackgroundLayer: FC<BackgroundLayerProps> = (props) => {
     paint['background-emissive-strength'] = emissiveStrength;
 
     paint['background-opacity'] = opacity;
-
-    paint['background-pitch-alignment'] = pitchAlignment;
 
     layout['visibility'] = visibility;
 

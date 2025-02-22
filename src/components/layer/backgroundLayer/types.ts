@@ -11,5 +11,4 @@ export interface BackgroundLayerProps {
   emissiveStrength?: number;
   opacity?: number;
   imgUrl?: string;
-  pitchAlignment?: 'map' | 'viewport';
 }
