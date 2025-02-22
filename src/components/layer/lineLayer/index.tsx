@@ -1,12 +1,12 @@
 import { isEqual } from 'lodash-es';
-import { FillLayerSpecification } from 'mapbox-gl';
+import { LineLayerSpecification } from 'mapbox-gl';
 import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context';
 import { updateEvents } from '../events';
 import { Events } from '../events/types';
-import { FillLayerProps } from './types';
+import { LineLayerProps } from './types';
 
-const FIllLayer: FC<FillLayerProps & Events> = (props) => {
+const FIllLayer: FC<LineLayerProps & Events> = (props) => {
   const {
     id,
     source,
@@ -17,21 +17,32 @@ const FIllLayer: FC<FillLayerProps & Events> = (props) => {
     slot,
     beforeId,
     visibility = 'visible',
-
-    antialias = true,
-    color = '#000000',
-    emissiveStrength = 0,
-    opacity = 1,
-    outlineColor,
     imgUrl,
+
+    blur = 0,
+    cap = 'butt',
+    color = '#000000',
+    dasharray,
+    emissiveStrength = 0,
+    gapWidth = 0,
+    gradient,
+    join = 'miter',
+    miterLimit = 2,
+    occlusionOpacity = 0,
+    offset = 0,
+    opacity = 1,
+    roundLimit = 1.05,
     sortKey,
     translate = [0, 0],
     translateAnchor = 'map',
+
+    trimOffset = [0, 0],
+    width = 1,
   } = props;
 
   const map = useContext(MapContext);
 
-  const prevProps = useRef<FillLayerProps>();
+  const prevProps = useRef<LineLayerProps>();
 
   const loadImage = (imgUrl: string): Promise<string> => {
     return new Promise((reslove) => {
@@ -47,13 +58,13 @@ const FIllLayer: FC<FillLayerProps & Events> = (props) => {
   useEffect(() => {
     if (!map) return;
 
-    const layerOptions: FillLayerSpecification = {
+    const layerOptions: LineLayerSpecification = {
       id,
-      type: 'fill',
+      type: 'line',
       source: id,
     };
-    const paint: FillLayerSpecification['paint'] = {};
-    const layout: FillLayerSpecification['layout'] = {};
+    const paint: LineLayerSpecification['paint'] = {};
+    const layout: LineLayerSpecification['layout'] = {};
 
     if (sourceLayer) {
       layerOptions['source-layer'] = sourceLayer;
@@ -66,24 +77,35 @@ const FIllLayer: FC<FillLayerProps & Events> = (props) => {
     if (slot) {
       layerOptions.slot = slot;
     }
-    if (sortKey) {
-      layout['fill-sort-key'] = sortKey;
+    if (dasharray) {
+      paint['line-dasharray'] = dasharray;
+    }
+    if (gradient) {
+      paint['line-gradient'] = gradient;
     }
 
-    if (outlineColor) {
-      paint['fill-outline-color'] = outlineColor;
+    if (sortKey) {
+      layout['line-sort-key'] = sortKey;
     }
 
     layerOptions.maxzoom = maxzoom;
     layerOptions.minzoom = minzoom;
+    paint['line-blur'] = blur;
+    paint['line-color'] = color;
+    paint['line-emissive-strength'] = 0;
+    paint['line-gap-width'] = gapWidth;
 
-    paint['fill-antialias'] = antialias;
-    paint['fill-color'] = color;
-    paint['fill-emissive-strength'] = emissiveStrength;
-    paint['fill-opacity'] = opacity;
-    paint['fill-translate'] = translate;
-    paint['fill-translate-anchor'] = translateAnchor;
-
+    paint['line-occlusion-opacity'] = occlusionOpacity;
+    paint['line-offset'] = offset;
+    paint['line-opacity'] = opacity;
+    paint['line-translate'] = translate;
+    paint['line-translate-anchor'] = translateAnchor;
+    paint['line-trim-offset'] = trimOffset;
+    paint['line-width'] = width;
+    layout['line-round-limit'] = roundLimit;
+    layout['line-miter-limit'] = miterLimit;
+    layout['line-join'] = join;
+    layout['line-cap'] = cap;
     layout['visibility'] = visibility;
 
     layerOptions.paint = paint;
@@ -91,7 +113,7 @@ const FIllLayer: FC<FillLayerProps & Events> = (props) => {
 
     if (imgUrl) {
       loadImage(imgUrl).then((res) => {
-        layerOptions.paint!['fill-pattern'] = res;
+        layerOptions.paint!['line-pattern'] = res;
         if (map.getLayer(id)) map.removeLayer(id);
         if (map.getSource(id)) map.removeSource(id);
         map.addSource(id, source);
@@ -147,35 +169,69 @@ const FIllLayer: FC<FillLayerProps & Events> = (props) => {
     if (slot !== prevProps.current.slot) {
       map.setSlot(id, slot);
     }
-    if (antialias !== prevProps.current.antialias) {
-      map.setPaintProperty(id, 'fill-antialias', antialias);
+    if (!isEqual(blur, prevProps.current.blur)) {
+      map.setPaintProperty(id, 'line-blur', blur);
     }
 
+    if (cap !== prevProps.current.cap) {
+      map.setLayoutProperty(id, 'line-cap', cap);
+    }
     if (!isEqual(color, prevProps.current.color)) {
-      map.setPaintProperty(id, 'fill-color', color);
+      map.setPaintProperty(id, 'line-color', color);
+    }
+
+    if (!isEqual(dasharray, prevProps.current.dasharray)) {
+      map.setPaintProperty(id, 'line-dasharray', dasharray);
     }
 
     if (emissiveStrength !== prevProps.current.emissiveStrength) {
-      map.setPaintProperty(id, 'fill-emissive-strength', emissiveStrength);
+      map.setPaintProperty(id, 'line-emissive-strength', emissiveStrength);
+    }
+
+    if (!isEqual(gapWidth, prevProps.current.gapWidth)) {
+      map.setPaintProperty(id, 'line-gap-width', gapWidth);
+    }
+    if (!isEqual(gradient, prevProps.current.gradient)) {
+      map.setPaintProperty(id, 'line-gradient', gradient);
+    }
+    if (join !== prevProps.current.join) {
+      map.setLayoutProperty(id, 'line-join', join);
+    }
+
+    if (!isEqual(miterLimit, prevProps.current.miterLimit)) {
+      map.setLayoutProperty(id, 'line-miter-limit', miterLimit);
+    }
+    if (!isEqual(occlusionOpacity, prevProps.current.occlusionOpacity)) {
+      map.setPaintProperty(id, 'line-occlusion-opacity', occlusionOpacity);
+    }
+    if (!isEqual(offset, prevProps.current.offset)) {
+      map.setPaintProperty(id, 'line-offset', offset);
     }
 
     if (!isEqual(opacity, prevProps.current.opacity)) {
-      map.setPaintProperty(id, 'fill-opacity', opacity);
+      map.setPaintProperty(id, 'line-opacity', opacity);
     }
 
-    if (!isEqual(outlineColor, prevProps.current.outlineColor)) {
-      map.setPaintProperty(id, 'fill-outline-color', outlineColor);
+    if (!isEqual(roundLimit, prevProps.current.roundLimit)) {
+      map.setLayoutProperty(id, 'line-round-limit', roundLimit);
     }
 
     if (sortKey !== prevProps.current.sortKey) {
-      map.setLayoutProperty(id, 'fill-sort-key', sortKey);
+      map.setLayoutProperty(id, 'line-sort-key', sortKey);
     }
 
     if (!isEqual(translate, prevProps.current.translate)) {
-      map.setPaintProperty(id, 'fill-translate', translate);
+      map.setPaintProperty(id, 'line-translate', translate);
     }
     if (translateAnchor !== prevProps.current.translateAnchor) {
-      map.setPaintProperty(id, 'fill-translate-anchor', translateAnchor);
+      map.setPaintProperty(id, 'line-translate-anchor', translateAnchor);
+    }
+
+    if (!isEqual(trimOffset, prevProps.current.trimOffset)) {
+      map.setPaintProperty(id, 'line-trim-offset', trimOffset);
+    }
+    if (!isEqual(width, prevProps.current.width)) {
+      map.setPaintProperty(id, 'line-width', width);
     }
 
     if (visibility !== prevProps.current.visibility) {
@@ -200,14 +256,25 @@ const FIllLayer: FC<FillLayerProps & Events> = (props) => {
     slot,
     visibility,
     beforeId,
-    antialias,
+
+    JSON.stringify(blur),
+    cap,
     JSON.stringify(color),
+    JSON.stringify(dasharray),
     JSON.stringify(emissiveStrength),
+    gapWidth,
+    JSON.stringify(gradient),
+    join,
+    JSON.stringify(miterLimit),
+    JSON.stringify(occlusionOpacity),
+    JSON.stringify(offset),
     JSON.stringify(opacity),
-    JSON.stringify(outlineColor),
+    JSON.stringify(roundLimit),
     sortKey,
     JSON.stringify(translate),
     translateAnchor,
+    JSON.stringify(trimOffset),
+    JSON.stringify(width),
     imgUrl,
   ]);
 

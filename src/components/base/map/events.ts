@@ -1,4 +1,10 @@
-import { Map } from 'mapbox-gl';
+import {
+  Map,
+  MapDataEvent,
+  MapMouseEvent,
+  MapTouchEvent,
+  MapWheelEvent,
+} from 'mapbox-gl';
 import type { Events } from './types';
 
 export const eventMap: { [T in keyof Events]: string } = {
@@ -56,7 +62,9 @@ export const eventMap: { [T in keyof Events]: string } = {
 };
 
 const listeners: {
-  [T in keyof Events]: () => void;
+  [T in keyof Events]: (
+    e: MapMouseEvent | MapTouchEvent | MapWheelEvent | MapDataEvent,
+  ) => void;
 } = {};
 
 // 事件更新
@@ -97,8 +105,10 @@ export const updateEvents = (props: Events, map: Map) => {
     const handleFunc = props[key as keyof Events];
 
     if (event && typeof handleFunc === 'function') {
-      const listener = () => {
-        handleFunc(map);
+      const listener = (
+        e: MapMouseEvent | MapTouchEvent | MapWheelEvent | MapDataEvent,
+      ) => {
+        handleFunc(e);
       };
       map.on(event, listener);
 
@@ -114,8 +124,10 @@ export const updateEvents = (props: Events, map: Map) => {
     const handleFunc = props[key as keyof Events];
 
     if (event && typeof handleFunc === 'function') {
-      const listener = () => {
-        handleFunc(map);
+      const listener = (
+        e: MapMouseEvent | MapTouchEvent | MapWheelEvent | MapDataEvent,
+      ) => {
+        handleFunc(e);
       };
 
       map.on(event, listener);

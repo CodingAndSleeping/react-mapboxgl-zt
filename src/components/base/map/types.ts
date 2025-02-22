@@ -4,6 +4,10 @@ import {
   ConfigSpecification,
   LngLatBoundsLike,
   Map,
+  MapDataEvent,
+  MapMouseEvent,
+  MapTouchEvent,
+  MapWheelEvent,
   ProjectionSpecification,
   RequestTransformFunction,
   StyleSpecification,
@@ -70,10 +74,12 @@ export interface MapOptions {
   cameraOptions?: CameraOptions;
   animationOptions?: AnimationOptions;
 
-  onMapLoad?: MapEvent;
+  onMapLoad?: (map: Map) => void;
 }
 
-export type MapEvent = (map: Map) => void;
+export type MapEvent = (
+  e: MapMouseEvent | MapTouchEvent | MapWheelEvent | MapDataEvent,
+) => void;
 
 export interface Events {
   onResize?: MapEvent;

@@ -96,10 +96,8 @@ const BackgroundLayer: FC<BackgroundLayerProps> = (props) => {
     }
 
     if (
-      maxzoom &&
-      minzoom &&
-      (maxzoom !== prevProps.current.maxzoom ||
-        minzoom !== prevProps.current.minzoom)
+      maxzoom !== prevProps.current.maxzoom ||
+      minzoom !== prevProps.current.minzoom
     ) {
       map.setLayerZoomRange(id, minzoom, maxzoom);
     }
