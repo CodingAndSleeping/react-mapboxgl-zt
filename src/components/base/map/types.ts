@@ -81,7 +81,7 @@ export type MapEvent = (
   e: MapMouseEvent | MapTouchEvent | MapWheelEvent | MapDataEvent,
 ) => void;
 
-export interface Events {
+export interface MapEvents {
   onResize?: MapEvent;
   onIdle?: MapEvent;
   onRemove?: MapEvent;

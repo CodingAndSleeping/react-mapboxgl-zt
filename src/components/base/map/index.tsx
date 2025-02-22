@@ -8,7 +8,7 @@ import { isEqual } from 'lodash-es';
 import { MapContext } from '../../../context/index';
 
 import { updateEvents } from './events';
-import type { Events, MapFactoryParams, MapOptions } from './types';
+import type { MapEvents, MapFactoryParams, MapOptions } from './types';
 
 import './index.scss';
 
@@ -68,7 +68,7 @@ const MapFactory = ({
   trackResize = true,
   transformRequest,
 }: MapFactoryParams) => {
-  return (props: PropsWithChildren<MapOptions & Events>) => {
+  return (props: PropsWithChildren<MapOptions & MapEvents>) => {
     const {
       center = DEFAULT_CENTER,
       zoom = DEFAULT_ZOOM,

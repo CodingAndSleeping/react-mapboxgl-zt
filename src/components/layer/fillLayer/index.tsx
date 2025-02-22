@@ -3,9 +3,9 @@ import { FillLayerSpecification } from 'mapbox-gl';
 import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context';
 import { updateEvents } from '../events';
-import { Events, FillLayerProps } from '../types';
+import { FillLayerProps, LayerEvents } from '../types';
 
-const FIllLayer: FC<FillLayerProps & Events> = (props) => {
+const FIllLayer: FC<FillLayerProps & LayerEvents> = (props) => {
   const {
     id,
     source,
