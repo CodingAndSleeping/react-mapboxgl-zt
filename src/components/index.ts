@@ -1,2 +1,3 @@
 export * from './base';
-export * from './layer/index';
+export * from './control';
+export * from './layer';
