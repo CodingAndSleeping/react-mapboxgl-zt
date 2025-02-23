@@ -31,7 +31,7 @@ const TileLayer: FC<RasterLayerProps> = (props) => {
 
   const map = useContext(MapContext);
 
-  const prevProps = useRef<RasterLayerProps>();
+  const prevProps = useRef<RasterLayerProps | null>(null);
 
   useEffect(() => {
     if (!map) return;

@@ -30,7 +30,7 @@ const FIllLayer: FC<FillLayerProps & LayerEvents> = (props) => {
 
   const map = useContext(MapContext);
 
-  const prevProps = useRef<FillLayerProps>();
+  const prevProps = useRef<FillLayerProps | null>(null);
 
   const loadImage = (imgUrl: string): Promise<string> => {
     return new Promise((reslove) => {

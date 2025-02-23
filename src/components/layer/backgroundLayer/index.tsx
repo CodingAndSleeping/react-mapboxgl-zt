@@ -22,7 +22,7 @@ const BackgroundLayer: FC<BackgroundLayerProps> = (props) => {
 
   const map = useContext(MapContext);
 
-  const prevProps = useRef<BackgroundLayerProps>();
+  const prevProps = useRef<BackgroundLayerProps | null>(null);
 
   const loadImage = (imgUrl: string): Promise<string> => {
     return new Promise((reslove) => {

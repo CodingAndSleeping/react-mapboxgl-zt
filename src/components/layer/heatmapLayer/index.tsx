@@ -41,7 +41,7 @@ const FIllLayer: FC<HeatmapLayerProps & LayerEvents> = (props) => {
 
   const map = useContext(MapContext);
 
-  const prevProps = useRef<HeatmapLayerProps>();
+  const prevProps = useRef<HeatmapLayerProps | null>(null);
 
   useEffect(() => {
     if (!map) return;
