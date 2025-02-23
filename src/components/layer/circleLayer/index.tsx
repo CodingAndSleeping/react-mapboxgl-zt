@@ -92,8 +92,8 @@ const CircleLayer: FC<CircleLayerProps & LayerEvents> = (props) => {
     map.addLayer(layerOptions, beforeId);
 
     return () => {
-      if (map?.getLayer(id)) map.removeLayer(id);
-      if (map?.getSource(id)) map.removeSource(id);
+      if (map.getLayer(id)) map.removeLayer(id);
+      if (map.getSource(id)) map.removeSource(id);
       offEvents(listeners.current!, map, id);
       listeners.current = null;
       prevProps.current = null;

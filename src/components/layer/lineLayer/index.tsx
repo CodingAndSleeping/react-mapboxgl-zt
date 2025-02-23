@@ -127,8 +127,8 @@ const FIllLayer: FC<LineLayerProps & LayerEvents> = (props) => {
     }
 
     return () => {
-      if (map?.getLayer(id)) map.removeLayer(id);
-      if (map?.getSource(id)) map.removeSource(id);
+      if (map.getLayer(id)) map.removeLayer(id);
+      if (map.getSource(id)) map.removeSource(id);
       offEvents(listeners.current!, map, id);
       listeners.current = null;
       prevProps.current = null;

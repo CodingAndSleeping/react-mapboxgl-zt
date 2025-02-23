@@ -96,6 +96,10 @@ export const updateEvents = (
 
 export const offEvents = (listeners: Listeners, map: Map, layerId: string) => {
   Object.keys(listeners).forEach((key) => {
-    map.off(key, layerId, listeners[key as keyof LayerEvents]!);
+    map.off(
+      eventMap[key as keyof LayerEvents]!,
+      layerId,
+      listeners[key as keyof LayerEvents]!,
+    );
   });
 };

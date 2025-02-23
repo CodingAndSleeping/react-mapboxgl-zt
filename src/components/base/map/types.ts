@@ -151,3 +151,9 @@ export interface MapEvents {
   onStyleLoad?: MapEvent;
   onStyleImportLoad?: MapEvent;
 }
+
+export type Listeners = {
+  [T in keyof MapEvents]: (
+    e: MapMouseEvent | MapTouchEvent | MapWheelEvent | MapDataEvent,
+  ) => void;
+};

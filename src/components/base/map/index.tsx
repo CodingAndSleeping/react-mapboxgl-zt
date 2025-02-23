@@ -7,8 +7,13 @@ import cn from 'classnames';
 import { isEqual } from 'lodash-es';
 import { MapContext } from '../../../context/index';
 
-import { updateEvents } from './events';
-import type { MapEvents, MapFactoryParams, MapOptions } from './types';
+import { offEvents, updateEvents } from './events';
+import type {
+  Listeners,
+  MapEvents,
+  MapFactoryParams,
+  MapOptions,
+} from './types';
 
 import './index.scss';
 
@@ -100,6 +105,8 @@ const MapFactory = ({
 
     const container = useRef<HTMLDivElement>(null);
 
+    const listeners = useRef<Listeners | null>({});
+
     const [ready, setReady] = useState(false);
 
     useEffect(() => {
@@ -176,6 +183,8 @@ const MapFactory = ({
 
       return () => {
         if (mapInstance) mapInstance.remove();
+        offEvents(listeners.current!, mapInstance!);
+        listeners.current = null;
       };
     }, []);
 
@@ -266,7 +275,7 @@ const MapFactory = ({
 
     // 每次组件渲染都会去重新更新事件
     if (mapInstance) {
-      updateEvents(props, mapInstance);
+      updateEvents(listeners.current!, props, mapInstance);
     }
 
     return (

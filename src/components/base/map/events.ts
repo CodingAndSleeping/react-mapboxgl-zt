@@ -5,7 +5,7 @@ import {
   MapTouchEvent,
   MapWheelEvent,
 } from 'mapbox-gl';
-import type { MapEvents } from './types';
+import type { Listeners, MapEvents } from './types';
 
 export const eventMap: { [T in keyof MapEvents]: string } = {
   onResize: 'resize',
@@ -61,14 +61,12 @@ export const eventMap: { [T in keyof MapEvents]: string } = {
   onStyleImportLoad: 'style.import.load',
 };
 
-const listeners: {
-  [T in keyof MapEvents]: (
-    e: MapMouseEvent | MapTouchEvent | MapWheelEvent | MapDataEvent,
-  ) => void;
-} = {};
-
 // 事件更新
-export const updateEvents = (props: MapEvents, map: Map) => {
+export const updateEvents = (
+  listeners: Listeners,
+  props: MapEvents,
+  map: Map,
+) => {
   // 需要解除绑定的事件 即 下次渲染中 props 中减少的事件
   const listenersOff = Object.keys(listeners).filter((key) => {
     return (
@@ -140,5 +138,15 @@ export const updateEvents = (props: MapEvents, map: Map) => {
 
       listeners[key as keyof MapEvents] = listener;
     }
+  });
+};
+
+// 事件解绑
+export const offEvents = (listeners: Listeners, map: Map) => {
+  Object.keys(listeners).forEach((key) => {
+    map.off(
+      eventMap[key as keyof MapEvents]!,
+      listeners[key as keyof MapEvents]!,
+    );
   });
 };
