@@ -1,13 +1,4 @@
-import {
-  Map,
-  MapDataEvent,
-  MapMouseEvent,
-  MapTouchEvent,
-  MapWheelEvent,
-} from 'mapbox-gl';
-import type { Listeners, MapEvents } from './types';
-
-export const eventMap: { [T in keyof MapEvents]: string } = {
+const mapEventMap: Record<string, string> = {
   onResize: 'resize',
   onIdle: 'idle',
   onRemove: 'remove',
@@ -61,65 +52,99 @@ export const eventMap: { [T in keyof MapEvents]: string } = {
   onStyleImportLoad: 'style.import.load',
 };
 
+const layerEventMap: Record<string, string> = {
+  onMouseDown: 'mousedown',
+  onMouseUp: 'mouseup',
+  onMouseOver: 'mouseover',
+  onMouseMove: 'mousemove',
+  onMouseEnter: 'mouseenter',
+  onMouseLeave: 'mouseleave',
+  onMouseOut: 'mouseout',
+  onClick: 'click',
+  onTouchStart: 'touchstart',
+  onTouchEnd: 'touchend',
+  onTouchCancel: 'touchcancel',
+};
+
+const overlayEventMap: Record<string, string> = {
+  onOpen: 'open',
+  onClose: 'close',
+  onDragStart: 'dragstart',
+  onDrag: 'drag',
+  onDragEnd: 'dragend',
+};
+
+const eventMap = {
+  ...mapEventMap,
+  ...layerEventMap,
+  ...overlayEventMap,
+};
+
 // 事件更新
 export const updateEvents = (
-  listeners: Listeners,
-  props: MapEvents,
-  map: Map,
+  listeners: Record<string, (e: any) => void>,
+  props: Record<string, any>,
+  target: any,
+  layerId?: string,
 ) => {
-  console.log(1);
   // 需要解除绑定的事件 即 下次渲染中 props 中减少的事件
   const listenersOff = Object.keys(listeners).filter((key) => {
-    return (
-      listeners[key as keyof MapEvents] &&
-      typeof props[key as keyof MapEvents] !== 'function'
-    );
+    return listeners[key] && typeof props[key] !== 'function';
   });
 
   // 需要增加绑定的事件 即 下次渲染中 props 中增加的事件
   const listenersOn = Object.keys(eventMap).filter((key) => {
-    return (
-      !listeners[key as keyof MapEvents] &&
-      typeof props[key as keyof MapEvents] === 'function'
-    );
+    return !listeners[key] && typeof props[key] === 'function';
   });
 
   // 解除绑定的事件
-  listenersOff.forEach((key) => {
-    map.off(
-      eventMap[key as keyof MapEvents]!,
-      listeners[key as keyof MapEvents]!,
-    );
 
-    delete listeners[key as keyof MapEvents];
-  });
+  if (layerId) {
+    listenersOff.forEach((key) => {
+      target.off(eventMap[key]!, layerId, listeners[key]!);
+      delete listeners[key];
+    });
+  } else {
+    listenersOff.forEach((key) => {
+      target.off(eventMap[key]!, listeners[key]!);
+      delete listeners[key];
+    });
+  }
 
   // 增加绑定的事件
   listenersOn.forEach((key) => {
-    const event = eventMap[key as keyof MapEvents];
-    const handleFunc = props[key as keyof MapEvents];
+    const event = eventMap[key];
+    const handleFunc = props[key];
 
     if (event && typeof handleFunc === 'function') {
-      const listener = (
-        e: MapMouseEvent | MapTouchEvent | MapWheelEvent | MapDataEvent,
-      ) => {
+      const listener = (e: any) => {
         handleFunc(e);
       };
-      map.on(event, listener);
+      if (layerId) {
+        target.on(event, layerId, listener);
+      } else {
+        target.on(event, listener);
+      }
 
-      listeners[key as keyof MapEvents] = listener;
+      listeners[key] = listener;
     }
   });
 };
 
-// 事件解绑
-export const offEvents = (listeners: Listeners, map: Map) => {
-  Object.keys(listeners).forEach((key) => {
-    map.off(
-      eventMap[key as keyof MapEvents]!,
-      listeners[key as keyof MapEvents]!,
-    );
-
-    delete listeners[key as keyof MapEvents];
-  });
+export const offEvents = (
+  listeners: Record<string, (e: any) => void>,
+  target: any,
+  layerId?: string,
+) => {
+  if (layerId) {
+    Object.keys(listeners).forEach((key) => {
+      target.off(eventMap[key]!, layerId, listeners[key]!);
+      delete listeners[key];
+    });
+  } else {
+    Object.keys(listeners).forEach((key) => {
+      target.off(eventMap[key]!, listeners[key]!);
+      delete listeners[key];
+    });
+  }
 };

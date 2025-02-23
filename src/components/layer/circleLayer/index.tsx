@@ -2,7 +2,7 @@ import { isEqual } from 'lodash-es';
 import { CircleLayerSpecification } from 'mapbox-gl';
 import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context/index';
-import { offEvents, updateEvents } from '../events';
+import { offEvents, updateEvents } from '../../../events';
 import { CircleLayerProps, LayerEvents, Listeners } from '../types';
 
 const CircleLayer: FC<CircleLayerProps & LayerEvents> = (props) => {

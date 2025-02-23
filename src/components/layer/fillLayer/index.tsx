@@ -2,7 +2,7 @@ import { isEqual } from 'lodash-es';
 import { FillLayerSpecification } from 'mapbox-gl';
 import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context';
-import { offEvents, updateEvents } from '../events';
+import { offEvents, updateEvents } from '../../../events';
 import { FillLayerProps, LayerEvents, Listeners } from '../types';
 
 const FIllLayer: FC<FillLayerProps & LayerEvents> = (props) => {

@@ -7,7 +7,7 @@ import cn from 'classnames';
 import { isEqual } from 'lodash-es';
 import { MapContext } from '../../../context/index';
 
-import { offEvents, updateEvents } from './events';
+import { offEvents, updateEvents } from '../../../events';
 import type {
   Listeners,
   MapEvents,

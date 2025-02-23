@@ -10,6 +10,7 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { MapContext } from '../../../context';
+import { offEvents, updateEvents } from '../../../events';
 import { PopupEvents, PopupProps } from '../types';
 
 const Popup: ForwardRefRenderFunction<
@@ -34,6 +35,8 @@ const Popup: ForwardRefRenderFunction<
   const popup = useRef<mapboxgl.Popup | null>(null);
 
   const container = useRef<HTMLDivElement | null>(null);
+
+  const listeners = useRef<Record<string, (e: any) => void> | null>({});
 
   const [ready, setReady] = useState(false);
 
@@ -77,6 +80,8 @@ const Popup: ForwardRefRenderFunction<
 
     return () => {
       if (popup.current) popup.current.remove();
+      offEvents(listeners.current!, popup.current!);
+      listeners.current = null;
       popup.current = null;
       container.current = null;
     };
@@ -109,6 +114,8 @@ const Popup: ForwardRefRenderFunction<
     },
     [ready],
   );
+
+  if (popup.current) updateEvents(listeners.current!, props, popup.current);
 
   return container.current ? createPortal(children, container.current) : null;
 };

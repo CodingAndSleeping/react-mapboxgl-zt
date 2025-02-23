@@ -2,7 +2,7 @@ import { isEqual } from 'lodash-es';
 import { LineLayerSpecification } from 'mapbox-gl';
 import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context';
-import { offEvents, updateEvents } from '../events';
+import { offEvents, updateEvents } from '../../../events';
 import { LayerEvents, LineLayerProps, Listeners } from '../types';
 
 const FIllLayer: FC<LineLayerProps & LayerEvents> = (props) => {

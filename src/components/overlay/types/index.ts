@@ -1,4 +1,4 @@
-import { LngLatLike, PointLike } from 'mapbox-gl';
+import { LngLatLike, Marker, PointLike, Popup } from 'mapbox-gl';
 import { ReactNode } from 'react';
 
 export type Anchor =
@@ -40,6 +40,12 @@ export interface PopupProps {
 }
 
 export interface PopupEvents {
-  open?: () => void;
-  close?: () => void;
+  onOpen?: (popup: Popup) => void;
+  onClose?: (popup: Popup) => void;
+}
+
+export interface MarkerEvents {
+  onDragStart?: (marker: Marker) => void;
+  onDrag?: (marker: Marker) => void;
+  onDraEnd?: (marker: Marker) => void;
 }
