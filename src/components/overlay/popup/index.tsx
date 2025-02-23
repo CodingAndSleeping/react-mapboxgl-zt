@@ -2,6 +2,7 @@ import mapboxgl from 'mapbox-gl';
 import {
   forwardRef,
   ForwardRefRenderFunction,
+  PropsWithChildren,
   useContext,
   useEffect,
   useImperativeHandle,
@@ -11,11 +12,11 @@ import {
 import { createPortal } from 'react-dom';
 import { MapContext } from '../../../context';
 import { offEvents, updateEvents } from '../../../events';
-import { PopupEvents, PopupProps } from '../types';
+import { Listeners, PopupEvents, PopupProps } from '../types';
 
 const Popup: ForwardRefRenderFunction<
   mapboxgl.Popup,
-  PopupProps & PopupEvents
+  PropsWithChildren<PopupProps & PopupEvents>
 > = (props, ref) => {
   const {
     lngLat,
@@ -36,7 +37,7 @@ const Popup: ForwardRefRenderFunction<
 
   const container = useRef<HTMLDivElement | null>(null);
 
-  const listeners = useRef<Record<string, (e: any) => void> | null>({});
+  const listeners = useRef<Listeners | null>({});
 
   const [ready, setReady] = useState(false);
 
@@ -69,7 +70,7 @@ const Popup: ForwardRefRenderFunction<
     }
     if (children) {
       const div = document.createElement('div');
-      div.classList.add('mapboxgl-popup-content');
+      div.classList.add('mapboxgl-popup-content__inner');
       container.current = div;
       popup.current.setDOMContent(container.current);
     }
@@ -89,7 +90,6 @@ const Popup: ForwardRefRenderFunction<
     map,
     anchor,
     className,
-    offset,
     closeButton,
     closeOnClick,
     closeOnMove,

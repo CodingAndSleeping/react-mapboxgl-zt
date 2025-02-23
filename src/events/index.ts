@@ -98,7 +98,6 @@ export const updateEvents = (
   });
 
   // 解除绑定的事件
-
   if (layerId) {
     listenersOff.forEach((key) => {
       target.off(eventMap[key]!, layerId, listeners[key]!);
@@ -131,6 +130,7 @@ export const updateEvents = (
   });
 };
 
+// 解除所有事件
 export const offEvents = (
   listeners: Record<string, (e: any) => void>,
   target: any,

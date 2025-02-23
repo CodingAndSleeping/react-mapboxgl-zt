@@ -1,5 +1,4 @@
-import { LngLatLike, Marker, PointLike, Popup } from 'mapbox-gl';
-import { ReactNode } from 'react';
+import { LngLatLike, PointLike } from 'mapbox-gl';
 
 export type Anchor =
   | 'center'
@@ -14,38 +13,50 @@ export type Anchor =
 export type Offset = number | PointLike | Partial<Record<Anchor, PointLike>>;
 
 export interface MarkerProps {
+  lngLat?: LngLatLike;
+  anchor?: Anchor;
   className?: string;
+  clickTolerance?: number;
+  color?: string;
+  draggable?: boolean;
+  occludedOpacity?: number;
+  offset?: PointLike;
+  pitchAlignment?: string;
+  rotation?: number;
+  rotationAlignment?: string;
+  scale?: number;
 }
 
 export interface PopupProps {
   lngLat?: LngLatLike;
-
-  children?: ReactNode;
-
   anchor?: Anchor;
-
   className?: string;
-
   closeButton?: boolean;
-
   closeOnClick?: boolean;
-
   closeOnMove?: boolean;
-
   focusAfterOpen?: boolean;
-
   maxWidth?: string;
-
   offset?: Offset;
 }
 
+export interface OverlayEventParams<T> {
+  type: string;
+  target: T;
+}
+
+export type Listeners = {
+  [T in keyof PopupEvents & keyof MarkerEvents]: (
+    e: OverlayEventParams<T>,
+  ) => void;
+};
+
 export interface PopupEvents {
-  onOpen?: (popup: Popup) => void;
-  onClose?: (popup: Popup) => void;
+  onOpen?: (e: OverlayEventParams<mapboxgl.Popup>) => void;
+  onClose?: (e: OverlayEventParams<mapboxgl.Popup>) => void;
 }
 
 export interface MarkerEvents {
-  onDragStart?: (marker: Marker) => void;
-  onDrag?: (marker: Marker) => void;
-  onDraEnd?: (marker: Marker) => void;
+  onDragStart?: (e: OverlayEventParams<mapboxgl.Marker>) => void;
+  onDrag?: (e: OverlayEventParams<mapboxgl.Marker>) => void;
+  onDragEnd?: (e: OverlayEventParams<mapboxgl.Marker>) => void;
 }
