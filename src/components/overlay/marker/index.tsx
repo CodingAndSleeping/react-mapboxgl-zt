@@ -19,7 +19,7 @@ const Marker: ForwardRefRenderFunction<
   PropsWithChildren<MarkerProps & MarkerEvents>
 > = (props, ref) => {
   const {
-    lngLat,
+    lngLat = [180, 90],
     anchor = 'center',
     className,
     clickTolerance = 0,
@@ -78,9 +78,7 @@ const Marker: ForwardRefRenderFunction<
 
     marker.current = new mapboxgl.Marker(options);
 
-    if (lngLat) {
-      marker.current.setLngLat(lngLat);
-    }
+    marker.current.setLngLat(lngLat);
 
     marker.current.addTo(map);
 

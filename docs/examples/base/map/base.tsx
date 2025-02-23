@@ -1,16 +1,20 @@
 import {
   CircleLayer,
-  CustomControl,
   FillLayer,
   FullscreenControl,
   LineLayer,
   MapFactory,
+  Marker,
   MousePositionControl,
   NavigationControl,
   Popup,
   ScaleControl,
 } from '@react-mapbox';
-import { type GeoJSONSourceSpecification, type Map } from 'mapbox-gl';
+import {
+  MapMouseEvent,
+  type GeoJSONSourceSpecification,
+  type Map,
+} from 'mapbox-gl';
 import { useRef, useState } from 'react';
 const MapInstance = MapFactory({
   accessToken:
@@ -21,9 +25,7 @@ const MapInstance = MapFactory({
 class HelloWorldControl {
   _map: Map | undefined;
   _container: HTMLDivElement | undefined;
-  constructor({ a, b }) {
-    console.log(a, b);
-  }
+
   onAdd(map: Map) {
     this._map = map;
     this._container = document.createElement('div');
@@ -39,7 +41,7 @@ class HelloWorldControl {
 }
 export default function BaseMap() {
   const [imgUrl, setImgUrl] = useState('/imgs/background1.jpg');
-
+  const [icon, setIcon] = useState('/imgs/icon.png');
   const [color, setColor] = useState('#f00');
 
   const [source, setSource] = useState<GeoJSONSourceSpecification>({
@@ -67,42 +69,30 @@ export default function BaseMap() {
     },
   });
 
-  const scaleControlRef = useRef<mapboxgl.ScaleControl>(null);
+  const [title, setTitle] = useState('title');
 
+  const scaleControlRef = useRef<mapboxgl.ScaleControl>(null);
+  const popupRef = useRef<mapboxgl.Popup | null>(null);
+  const markerRef = useRef<mapboxgl.Marker | null>(null);
   const onClick = () => {
     // setColor(color === '#f00' ? '#0f0' : '#f00');
-    // setSource({
-    //   type: 'geojson',
-    //   data: {
-    //     type: 'FeatureCollection',
-    //     features: [
-    //       {
-    //         type: 'Feature',
-    //         properties: {},
-    //         geometry: {
-    //           coordinates: [113.90310757834482, 22.541427196370165],
-    //           type: 'Point',
-    //         },
-    //       },
-    //       {
-    //         type: 'Feature',
-    //         properties: {},
-    //         geometry: {
-    //           coordinates: [113.91668147739654, 22.52511855694496],
-    //           type: 'Point',
-    //         },
-    //       },
-    //     ],
-    //   },
-    // });
-    console.log(scaleControlRef.current);
+
     scaleControlRef.current?.setUnit('nautical');
+
+    setTitle(title === 'title' ? 'title2' : 'title');
+    console.log(markerRef.current);
+
+    popupRef.current?.setLngLat([113.90310757834482, 22.541427196370165]);
   };
 
+  const onCircleClick = (e: MapMouseEvent) => {
+    popupRef.current?.setLngLat(e.lngLat);
+    popupRef.current?.setText(e.lngLat.toString());
+  };
   const onMapLoad = (map: Map) => {
     console.log(map);
-    // map.on('click', 'line', (e) => {
-    //   console.log(e.features);
+    // map.on('click', (e) => {
+    //   console.log(e);
     // });
   };
   return (
@@ -123,12 +113,31 @@ export default function BaseMap() {
           >
             改变颜色
           </button>
-          <Popup></Popup>
-          <CustomControl
+          <Popup
+            ref={popupRef}
+            lngLat={[113.90310757834482, 22.541427196370165]}
+            onOpen={(e) => console.log(e)}
+            onClose={(e) => console.log(e.target.getLngLat())}
+          >
+            {123213}
+            <div
+              style={{
+                backgroundColor: '#f40',
+              }}
+            >
+              {title}
+            </div>
+            <div>content</div>
+          </Popup>
+          <Marker
+            ref={markerRef}
+            // lngLat={[113.90310757834482, 22.541427196370165]}
+            draggable={true}
+            onDragEnd={(e) => console.log(e.target.getLngLat())}
+          ></Marker>
+          {/* <CustomControl
             controlClass={HelloWorldControl}
-            b={'fdasf232112'}
-            a={'fdasf1'}
-          ></CustomControl>
+          ></CustomControl> */}
           <MousePositionControl></MousePositionControl>
           <FullscreenControl></FullscreenControl>
           <ScaleControl ref={scaleControlRef}></ScaleControl>
@@ -142,7 +151,7 @@ export default function BaseMap() {
               url: 'mapbox://mapbox.mapbox-streets-v6',
             }}
             sourceLayer="water"
-            onClick={(e) => console.log(e.features)}
+            onClick={onCircleClick}
           ></CircleLayer>
           <FillLayer
             id="fill"
@@ -201,7 +210,7 @@ export default function BaseMap() {
             }}
             gradient={undefined}
             width={10}
-            onClick={(e) => console.log(e.features)}
+            onClick={(e: MapMouseEvent) => console.log(e.features)}
           ></LineLayer>
 
           {/* <RasterLayer

@@ -1,6 +1,8 @@
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
+import replace from '@rollup/plugin-replace';
 import typescript from '@rollup/plugin-typescript';
+import scss from 'rollup-plugin-scss';
 export default {
   input: 'src/index.ts',
 
@@ -27,9 +29,16 @@ export default {
   plugins: [
     resolve({
       extensions: ['.js', '.ts', '.tsx'],
+      browser: true,
     }),
-    typescript(),
+    typescript({
+      // tslib: require.resolve('tslib'), // 强制使用 tslib
+    }),
     commonjs(),
+    scss(),
+    replace({
+      'process.env.NODE_ENV': JSON.stringify('production'),
+    }),
     // ignore(['.dumirc.ts', '.dumi/**/*.ts']),
   ],
 };

@@ -7,7 +7,9 @@ import {
   VectorSourceSpecification,
 } from 'mapbox-gl';
 
-export type LayerEvent = (e: MapMouseEvent | MapTouchEvent) => void;
+export type LayerEvent =
+  | ((e: MapMouseEvent) => void)
+  | ((e: MapTouchEvent) => void);
 
 export interface LayerEvents {
   onMouseDown?: LayerEvent;
