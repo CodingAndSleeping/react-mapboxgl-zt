@@ -31,6 +31,7 @@ const NavigationControl: FC<NavigationControlProps> = (props) => {
     return () => {
       if (navigationControl.current)
         map.removeControl(navigationControl.current);
+      navigationControl.current = null;
     };
   }, [map, position, showCompass, showZoom, visualizePitch]);
 

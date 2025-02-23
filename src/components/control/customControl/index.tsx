@@ -19,6 +19,7 @@ const CustomControl = <T extends IControl>(props: CustomControlProps<T>) => {
 
     return () => {
       if (control.current) map.removeControl(control.current);
+      control.current = null;
     };
   }, [map, position]);
 

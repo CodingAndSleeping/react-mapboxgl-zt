@@ -25,6 +25,7 @@ const FullscreenControl: FC<FullscreenControlProps> = (props) => {
     return () => {
       if (fullscreenControl.current)
         map.removeControl(fullscreenControl.current);
+      fullscreenControl.current = null;
     };
   }, [map, position, container]);
 

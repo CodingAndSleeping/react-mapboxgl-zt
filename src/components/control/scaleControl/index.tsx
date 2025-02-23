@@ -38,6 +38,7 @@ const ScaleControl: ForwardRefRenderFunction<
 
     return () => {
       if (scaleControl.current) map.removeControl(scaleControl.current);
+      scaleControl.current = null;
     };
   }, [map, position, maxWidth, unit]);
 

@@ -23,6 +23,7 @@ const MousePositionControl: FC<MousePositionControlProps> = (props) => {
     return () => {
       if (mousePositionControl.current)
         map.removeControl(mousePositionControl.current);
+      mousePositionControl.current = null;
     };
   }, [map, position, decimals]);
 
