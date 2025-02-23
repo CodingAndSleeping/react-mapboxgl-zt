@@ -6,45 +6,51 @@ import {
   useEffect,
   useImperativeHandle,
   useRef,
+  useState,
 } from 'react';
 import { MapContext } from '../../../context';
-import { ScaleControlInstance, ScaleControlProps, Unit } from '../types';
+import { ScaleControlProps } from '../types';
 import './index.scss';
 
 const ScaleControl: ForwardRefRenderFunction<
-  ScaleControlInstance,
+  mapboxgl.ScaleControl,
   ScaleControlProps
 > = (props, ref) => {
   const { position = 'bottom-left', maxWidth = 100, unit = 'metric' } = props;
 
   const map = useContext(MapContext);
 
-  const scaleControl = useRef<mapboxgl.ScaleControl>();
+  const scaleControl = useRef<mapboxgl.ScaleControl | null>(null);
 
-  useImperativeHandle(
-    ref,
-    () => ({
-      setUnit(unit: Unit) {
-        scaleControl.current?.setUnit(unit);
-      },
-    }),
-    [],
-  );
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     if (!map) return;
+    if (scaleControl.current) map.removeControl(scaleControl.current);
 
     scaleControl.current = new mapboxgl.ScaleControl({
       maxWidth,
       unit,
     });
-
     map.addControl(scaleControl.current, position);
+
+    setReady(true);
 
     return () => {
       if (scaleControl.current) map.removeControl(scaleControl.current);
     };
   }, [map, position, maxWidth, unit]);
+
+  useImperativeHandle<
+    mapboxgl.ScaleControl | null,
+    mapboxgl.ScaleControl | null
+  >(
+    ref,
+    () => {
+      return ready ? scaleControl.current : null;
+    },
+    [ready],
+  );
 
   return null;
 };

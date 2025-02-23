@@ -9,6 +9,5 @@ export type {
   FullscreenControlProps,
   MousePositionControlProps,
   NavigationControlProps,
-  ScaleControlInstance,
   ScaleControlProps,
 } from './types';

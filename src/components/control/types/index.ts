@@ -15,10 +15,6 @@ export interface ScaleControlProps {
   unit?: Unit;
 }
 
-export interface ScaleControlInstance {
-  setUnit: (unit: Unit) => void;
-}
-
 export interface NavigationControlProps {
   position?: ControlPosition;
   showCompass?: boolean;

@@ -14,10 +14,11 @@ const NavigationControl: FC<NavigationControlProps> = (props) => {
 
   const map = useContext(MapContext);
 
-  const navigationControl = useRef<mapboxgl.NavigationControl>();
+  const navigationControl = useRef<mapboxgl.NavigationControl | null>(null);
 
   useEffect(() => {
     if (!map) return;
+    if (navigationControl.current) map.removeControl(navigationControl.current);
 
     navigationControl.current = new mapboxgl.NavigationControl({
       showCompass,

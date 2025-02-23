@@ -9,10 +9,12 @@ const FullscreenControl: FC<FullscreenControlProps> = (props) => {
 
   const map = useContext(MapContext);
 
-  const fullscreenControl = useRef<mapboxgl.FullscreenControl>();
+  const fullscreenControl = useRef<mapboxgl.FullscreenControl | null>(null);
 
   useEffect(() => {
     if (!map) return;
+
+    if (fullscreenControl.current) map.removeControl(fullscreenControl.current);
 
     fullscreenControl.current = new mapboxgl.FullscreenControl({
       container,

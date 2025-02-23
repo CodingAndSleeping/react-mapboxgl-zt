@@ -7,10 +7,12 @@ const MousePositionControl: FC<MousePositionControlProps> = (props) => {
   const { position = 'bottom', decimals = 6 } = props;
   const map = useContext(MapContext);
 
-  const mousePositionControl = useRef<MousePositionControlClass>();
+  const mousePositionControl = useRef<MousePositionControlClass | null>(null);
 
   useEffect(() => {
     if (!map) return;
+    if (mousePositionControl.current)
+      map.removeControl(mousePositionControl.current);
 
     mousePositionControl.current = new MousePositionControlClass({
       decimals,
