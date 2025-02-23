@@ -23,7 +23,7 @@ const Popup: ForwardRefRenderFunction<
     anchor,
     className,
     closeButton = true,
-    closeOnClick = true,
+    closeOnClick = false,
     closeOnMove = false,
     focusAfterOpen = true,
     maxWidth = '240px',

@@ -5,6 +5,7 @@ export type {
   MarkerEvents,
   MarkerProps,
   Offset,
+  OverlayEventParams,
   PopupEvents,
   PopupProps,
 } from './types';
