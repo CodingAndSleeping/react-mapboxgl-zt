@@ -107,8 +107,6 @@ const MapFactory = ({
 
     const listeners = useRef<Listeners | null>({});
 
-    const [ready, setReady] = useState(false);
-
     useEffect(() => {
       mapboxgl.accessToken = accessToken;
 
@@ -173,12 +171,10 @@ const MapFactory = ({
       };
 
       const map = new mapboxgl.Map(options);
-      setMapInstance(map);
 
       map.on('load', () => {
         if (onMapLoad) onMapLoad(map);
-
-        setReady(true);
+        setMapInstance(map);
       });
 
       return () => {
@@ -281,7 +277,7 @@ const MapFactory = ({
     return (
       <MapContext.Provider value={mapInstance}>
         <div className={cn('map-container', className)} ref={container}>
-          {ready && children}
+          {mapInstance && children}
         </div>
       </MapContext.Provider>
     );

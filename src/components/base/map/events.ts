@@ -67,6 +67,7 @@ export const updateEvents = (
   props: MapEvents,
   map: Map,
 ) => {
+  console.log(1);
   // 需要解除绑定的事件 即 下次渲染中 props 中减少的事件
   const listenersOff = Object.keys(listeners).filter((key) => {
     return (
@@ -83,21 +84,14 @@ export const updateEvents = (
     );
   });
 
-  // 需要更新绑定的事件 即 下次渲染中 props 中变化的事件
-  const listenersUpdate = Object.keys(listeners).filter((key) => {
-    return (
-      listeners[key as keyof MapEvents] &&
-      typeof props[key as keyof MapEvents] === 'function' &&
-      listeners[key as keyof MapEvents] !== props[key as keyof MapEvents]
-    );
-  });
-
   // 解除绑定的事件
   listenersOff.forEach((key) => {
     map.off(
       eventMap[key as keyof MapEvents]!,
       listeners[key as keyof MapEvents]!,
     );
+
+    delete listeners[key as keyof MapEvents];
   });
 
   // 增加绑定的事件
@@ -116,29 +110,6 @@ export const updateEvents = (
       listeners[key as keyof MapEvents] = listener;
     }
   });
-
-  // 更新绑定的事件
-  listenersUpdate.forEach((key) => {
-    map.off(
-      eventMap[key as keyof MapEvents]!,
-      listeners[key as keyof MapEvents]!,
-    );
-
-    const event = eventMap[key as keyof MapEvents];
-    const handleFunc = props[key as keyof MapEvents];
-
-    if (event && typeof handleFunc === 'function') {
-      const listener = (
-        e: MapMouseEvent | MapTouchEvent | MapWheelEvent | MapDataEvent,
-      ) => {
-        handleFunc(e);
-      };
-
-      map.on(event, listener);
-
-      listeners[key as keyof MapEvents] = listener;
-    }
-  });
 };
 
 // 事件解绑
@@ -148,5 +119,7 @@ export const offEvents = (listeners: Listeners, map: Map) => {
       eventMap[key as keyof MapEvents]!,
       listeners[key as keyof MapEvents]!,
     );
+
+    delete listeners[key as keyof MapEvents];
   });
 };

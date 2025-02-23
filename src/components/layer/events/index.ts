@@ -38,15 +38,6 @@ export const updateEvents = (
     );
   });
 
-  // 需要更新绑定的事件 即 下次渲染中 props 中变化的事件
-  const listenersUpdate = Object.keys(listeners).filter((key) => {
-    return (
-      listeners[key as keyof LayerEvents] &&
-      typeof props[key as keyof LayerEvents] === 'function' &&
-      listeners[key as keyof LayerEvents] !== props[key as keyof LayerEvents]
-    );
-  });
-
   // 解除绑定的事件
   listenersOff.forEach((key) => {
     map.off(
@@ -54,6 +45,8 @@ export const updateEvents = (
       layerId,
       listeners[key as keyof LayerEvents]!,
     );
+
+    delete listeners[key as keyof LayerEvents];
   });
 
   // 增加绑定的事件
@@ -70,28 +63,6 @@ export const updateEvents = (
       listeners[key as keyof LayerEvents] = listener;
     }
   });
-
-  // 更新绑定的事件
-  listenersUpdate.forEach((key) => {
-    map.off(
-      eventMap[key as keyof LayerEvents]!,
-      layerId,
-      listeners[key as keyof LayerEvents]!,
-    );
-
-    const event = eventMap[key as keyof LayerEvents];
-    const handleFunc = props[key as keyof LayerEvents];
-
-    if (event && typeof handleFunc === 'function') {
-      const listener = (e: MapMouseEvent | MapTouchEvent) => {
-        handleFunc(e);
-      };
-
-      map.on(event, layerId, listener);
-
-      listeners[key as keyof LayerEvents] = listener;
-    }
-  });
 };
 
 export const offEvents = (listeners: Listeners, map: Map, layerId: string) => {
@@ -101,5 +72,6 @@ export const offEvents = (listeners: Listeners, map: Map, layerId: string) => {
       layerId,
       listeners[key as keyof LayerEvents]!,
     );
+    delete listeners[key as keyof LayerEvents];
   });
 };
