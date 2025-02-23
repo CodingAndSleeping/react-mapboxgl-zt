@@ -41,13 +41,12 @@ const ScaleControl: ForwardRefRenderFunction<
     };
   }, [map, position, maxWidth, unit]);
 
-  useImperativeHandle<
-    mapboxgl.ScaleControl | null,
-    mapboxgl.ScaleControl | null
-  >(
+  useImperativeHandle(
     ref,
     () => {
-      return ready ? scaleControl.current : null;
+      return ready
+        ? scaleControl.current!
+        : (null as unknown as mapboxgl.ScaleControl);
     },
     [ready],
   );
