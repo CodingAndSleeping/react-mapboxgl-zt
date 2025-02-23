@@ -2,9 +2,9 @@ import { isEqual } from 'lodash-es';
 import { HeatmapLayerSpecification } from 'mapbox-gl';
 import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context';
-import { HeatmapLayerProps, LayerEvents } from '../types';
+import { HeatmapLayerProps } from '../types';
 
-const FIllLayer: FC<HeatmapLayerProps & LayerEvents> = (props) => {
+const HeatmapLayer: FC<HeatmapLayerProps> = (props) => {
   const {
     id,
     source,
@@ -85,6 +85,7 @@ const FIllLayer: FC<HeatmapLayerProps & LayerEvents> = (props) => {
     return () => {
       if (map?.getLayer(id)) map.removeLayer(id);
       if (map?.getSource(id)) map.removeSource(id);
+      prevProps.current = null;
     };
   }, [map, id]);
 
@@ -171,4 +172,4 @@ const FIllLayer: FC<HeatmapLayerProps & LayerEvents> = (props) => {
   return null;
 };
 
-export default FIllLayer;
+export default HeatmapLayer;

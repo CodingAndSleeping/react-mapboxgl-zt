@@ -4,7 +4,7 @@ import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context';
 import { RasterLayerProps } from '../types';
 
-const TileLayer: FC<RasterLayerProps> = (props) => {
+const RasterLayer: FC<RasterLayerProps> = (props) => {
   const {
     id,
     source,
@@ -85,6 +85,7 @@ const TileLayer: FC<RasterLayerProps> = (props) => {
     return () => {
       if (map?.getLayer(id)) map.removeLayer(id);
       if (map?.getSource(id)) map.removeSource(id);
+      prevProps.current = null;
     };
   }, [map, id]);
 
@@ -190,4 +191,4 @@ const TileLayer: FC<RasterLayerProps> = (props) => {
   return null;
 };
 
-export default TileLayer;
+export default RasterLayer;

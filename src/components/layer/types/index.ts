@@ -23,6 +23,10 @@ export interface LayerEvents {
   onTouchCancel?: LayerEvent;
 }
 
+export type Listeners = {
+  [T in keyof LayerEvents]: LayerEvent;
+};
+
 export interface LayerProps {
   id: string;
   filter?: ExpressionSpecification;

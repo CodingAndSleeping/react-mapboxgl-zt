@@ -1,5 +1,5 @@
 import { Map, MapMouseEvent, MapTouchEvent } from 'mapbox-gl';
-import type { LayerEvent, LayerEvents } from '../types';
+import type { LayerEvents, Listeners } from '../types';
 
 export const eventMap: { [T in keyof LayerEvents]: string } = {
   onMouseDown: 'mousedown',
@@ -15,12 +15,13 @@ export const eventMap: { [T in keyof LayerEvents]: string } = {
   onTouchCancel: 'touchcancel',
 };
 
-const listeners: {
-  [T in keyof LayerEvents]: LayerEvent;
-} = {};
-
 // 事件更新
-export const updateEvents = (props: LayerEvents, map: Map, layerId: string) => {
+export const updateEvents = (
+  listeners: Listeners,
+  props: LayerEvents,
+  map: Map,
+  layerId: string,
+) => {
   // 需要解除绑定的事件 即 下次渲染中 props 中减少的事件
   const listenersOff = Object.keys(listeners).filter((key) => {
     return (
@@ -90,5 +91,11 @@ export const updateEvents = (props: LayerEvents, map: Map, layerId: string) => {
 
       listeners[key as keyof LayerEvents] = listener;
     }
+  });
+};
+
+export const offEvents = (listeners: Listeners, map: Map, layerId: string) => {
+  Object.keys(listeners).forEach((key) => {
+    map.off(key, layerId, listeners[key as keyof LayerEvents]!);
   });
 };

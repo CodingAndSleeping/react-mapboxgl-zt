@@ -2,8 +2,8 @@ import { isEqual } from 'lodash-es';
 import { FillLayerSpecification } from 'mapbox-gl';
 import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context';
-import { updateEvents } from '../events';
-import { FillLayerProps, LayerEvents } from '../types';
+import { offEvents, updateEvents } from '../events';
+import { FillLayerProps, LayerEvents, Listeners } from '../types';
 
 const FIllLayer: FC<FillLayerProps & LayerEvents> = (props) => {
   const {
@@ -31,7 +31,7 @@ const FIllLayer: FC<FillLayerProps & LayerEvents> = (props) => {
   const map = useContext(MapContext);
 
   const prevProps = useRef<FillLayerProps | null>(null);
-
+  const listeners = useRef<Listeners | null>({});
   const loadImage = (imgUrl: string): Promise<string> => {
     return new Promise((reslove) => {
       map!.loadImage(imgUrl, (error, image) => {
@@ -106,6 +106,9 @@ const FIllLayer: FC<FillLayerProps & LayerEvents> = (props) => {
     return () => {
       if (map?.getLayer(id)) map.removeLayer(id);
       if (map?.getSource(id)) map.removeSource(id);
+      offEvents(listeners.current!, map, id);
+      listeners.current = null;
+      prevProps.current = null;
     };
   }, [map, id]);
 
@@ -210,7 +213,7 @@ const FIllLayer: FC<FillLayerProps & LayerEvents> = (props) => {
     imgUrl,
   ]);
 
-  if (map) updateEvents(props, map, id);
+  if (map) updateEvents(listeners.current!, props, map, id);
 
   return null;
 };

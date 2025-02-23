@@ -80,6 +80,7 @@ const BackgroundLayer: FC<BackgroundLayerProps> = (props) => {
 
     return () => {
       if (map?.getLayer(id)) map.removeLayer(id);
+      prevProps.current = null;
     };
   }, [map, id]);
 
