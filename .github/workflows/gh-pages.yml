@@ -22,9 +22,7 @@ jobs:
           node-version: 22 # 选择你的 Node.js 版本
 
       - name: Install pnpm
-        run: |
-          corepack enable
-          corepack prepare pnpm@latest --activate
+        run: npm install -g pnpm
 
       - name: Install dependencies
         run: pnpm install
