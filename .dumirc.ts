@@ -5,4 +5,6 @@ export default defineConfig({
   themeConfig: {
     name: 'react-mapbox',
   },
+  base: '/react-mapboxgl-zt',
+  publicPath: '/react-mapboxgl-zt',
 });
