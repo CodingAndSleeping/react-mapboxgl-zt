@@ -34,6 +34,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
+          # 先去设置里面生成token 并打开相应权限， 再去项目的设置里面 生成secrets 并把gtoken填进去，把secrets的名字填到此处
           github_token: ${{ secrets.REACT_MAPBOXGL_ZT_SECRETS }}
           # 文档目录，如果是 react 模板需要修改为 docs-dist
           publish_dir: ./docs-dist
