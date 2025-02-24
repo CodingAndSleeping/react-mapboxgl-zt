@@ -1,6 +1,6 @@
-import { MapContext } from '@react-mapbox/context';
 import { IControl } from 'mapbox-gl';
 import { useContext, useEffect, useRef } from 'react';
+import { MapContext } from '../../../context';
 import { CustomControlProps } from '../types';
 
 const CustomControl = <T extends IControl>(props: CustomControlProps<T>) => {

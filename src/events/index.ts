@@ -87,6 +87,8 @@ export const updateEvents = (
   target: any,
   layerId?: string,
 ) => {
+  if (!target || !listeners) return;
+
   // 需要解除绑定的事件 即 下次渲染中 props 中减少的事件
   const listenersOff = Object.keys(listeners).filter((key) => {
     return listeners[key] && typeof props[key] !== 'function';
@@ -136,6 +138,7 @@ export const offEvents = (
   target: any,
   layerId?: string,
 ) => {
+  if (!target || !listeners) return;
   if (layerId) {
     Object.keys(listeners).forEach((key) => {
       target.off(eventMap[key]!, layerId, listeners[key]!);

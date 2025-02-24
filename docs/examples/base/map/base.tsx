@@ -1,4 +1,10 @@
 import {
+  MapMouseEvent,
+  type GeoJSONSourceSpecification,
+  type Map,
+} from 'mapbox-gl';
+import { useRef, useState } from 'react';
+import {
   CircleLayer,
   FillLayer,
   FullscreenControl,
@@ -9,13 +15,7 @@ import {
   NavigationControl,
   Popup,
   ScaleControl,
-} from '@react-mapbox';
-import {
-  MapMouseEvent,
-  type GeoJSONSourceSpecification,
-  type Map,
-} from 'mapbox-gl';
-import { useRef, useState } from 'react';
+} from 'react-mapboxgl-zt';
 const MapInstance = MapFactory({
   accessToken:
     'pk.eyJ1IjoiMnBpYyIsImEiOiJjbTczaXFxbGwwMGNtMm9zYjhjcW1hd3ZkIn0.YCpsYVQawB15Cf5Zyljscg',

@@ -8,15 +8,15 @@ export default {
 
   output: [
     {
-      file: 'dist/bundle.cjs.js',
+      file: 'dist/index.cjs.js',
       format: 'cjs',
     },
     {
-      file: 'dist/bundle.es.js',
+      file: 'dist/index.es.js',
       format: 'es',
     },
     {
-      file: 'dist/bundle.umd.js',
+      file: 'dist/index.umd.js',
       format: 'umd',
       name: 'ReactMap', // 需要为 UMD 格式提供全局变量名称
       globals: {
@@ -31,14 +31,14 @@ export default {
       extensions: ['.js', '.ts', '.tsx'],
       browser: true,
     }),
-    typescript({
-      // tslib: require.resolve('tslib'), // 强制使用 tslib
-    }),
+    typescript({}),
     commonjs(),
-    scss(),
+    scss({
+      fileName: 'index.css',
+    }),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production'),
+      preventAssignment: true,
     }),
-    // ignore(['.dumirc.ts', '.dumi/**/*.ts']),
   ],
 };
