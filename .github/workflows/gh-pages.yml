@@ -25,7 +25,7 @@ jobs:
         run: npm install -g pnpm
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Build with dumi
         # 文档编译命令，如果是 react 模板需要修改为 npm run docs:build
