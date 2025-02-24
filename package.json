@@ -21,6 +21,7 @@
     "docs:build": "dumi build",
     "docs:preview": "dumi preview",
     "doctor": "father doctor",
+    "husky": "husky install",
     "lib": "rimraf dist && rollup -c rollup.config.ts --configPlugin typescript",
     "lint": "npm run lint:es && npm run lint:css",
     "lint:css": "stylelint \"{src,test}/**/*.{css,less}\"",
