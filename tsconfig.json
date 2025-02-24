@@ -10,10 +10,10 @@
     "outDir": "dist",
     "paths": {
       "@@/*": [".dumi/tmp/*"],
-      "@react-mapbox": ["src"],
-      "@react-mapbox/*": ["src/*", "*"]
+      "react-mapboxgl-zt": ["src"],
+      "react-mapboxgl-zt/*": ["src/*", "*"]
     }
   },
-  "include": ["src/**/*", "docs/**/*"]
+  "include": ["src/**/*", "docs/**/*", ".dumirc.ts"]
   // "include": ["src/**/*"]
 }
