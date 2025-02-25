@@ -16,6 +16,7 @@ import {
   Popup,
   ScaleControl,
 } from 'react-mapboxgl-zt';
+
 const MapInstance = MapFactory({
   accessToken:
     'pk.eyJ1IjoiMnBpYyIsImEiOiJjbTczaXFxbGwwMGNtMm9zYjhjcW1hd3ZkIn0.YCpsYVQawB15Cf5Zyljscg',
@@ -40,8 +41,10 @@ class HelloWorldControl {
   }
 }
 export default function BaseMap() {
-  const [imgUrl, setImgUrl] = useState('/imgs/background1.jpg');
-  const [icon, setIcon] = useState('/imgs/icon.png');
+  const [imgUrl, setImgUrl] = useState(
+    '/react-mapboxgl-zt/imgs/background1.jpg',
+  );
+  const [icon, setIcon] = useState('/react-mapboxgl-zt/imgs/icon.png');
   const [color, setColor] = useState('#f00');
 
   const [source, setSource] = useState<GeoJSONSourceSpecification>({
@@ -75,7 +78,7 @@ export default function BaseMap() {
   const popupRef = useRef<mapboxgl.Popup | null>(null);
   const markerRef = useRef<mapboxgl.Marker | null>(null);
   const onClick = () => {
-    // setColor(color === '#f00' ? '#0f0' : '#f00');
+    setColor(color === '#f00' ? '#0f0' : '#f00');
 
     scaleControlRef.current?.setUnit('nautical');
 
