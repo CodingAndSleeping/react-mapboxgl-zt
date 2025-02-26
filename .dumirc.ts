@@ -7,6 +7,7 @@ export default defineConfig({
     socialLinks: {
       github: 'https://github.com/CodingAndSleeping/react-mapboxgl-zt',
     },
+    logo: '/react-mapboxgl-zt/logo.png',
   },
   base: '/react-mapboxgl-zt/',
   publicPath: '/react-mapboxgl-zt/',

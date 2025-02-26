@@ -1,12 +1,12 @@
 ---
 hero:
   title: React-Mapboxgl-Zt
-  description: 一个基于React和Mapbox的地图组件库。
+  description: 一个基于React和MapboxGl的地图组件库。
   actions:
     - text: 快速开始
-      link: /guide/start
+      link: /base/start
     - text: 文档
-      link: /document
+      link: /components/map
 features:
   - title: React
     emoji: ⚛️
@@ -14,7 +14,7 @@ features:
   - title: Mapbox
     emoji: 🗺️
     description: 一个web地图服务，提供地图数据和地图渲染。
-  - title: '快速上手'
+  - title: React-Mapboxgl-Zt
     emoji: 🚀
     description: 一个的地图组件库，帮助你快速上手开发地图应用。
 ---
