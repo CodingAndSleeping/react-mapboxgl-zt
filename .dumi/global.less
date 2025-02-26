@@ -28,19 +28,29 @@
     }
   }
   .dumi-default-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .dumi-default-hero-title {
       font-size: 100px;
     }
-    p {
-      font-size: 30px;
+
+    @media screen and (max-width: 768px) {
+      .dumi-default-hero-title {
+        font-size: 50px;
+      }
+
+      p {
+        font-size: 20px;
+      }
     }
   }
-  .dumi-default-features {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    .dumi-default-features-item {
-      width: auto;
-    }
-  }
+  // .dumi-default-features {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: space-between;
+  //   .dumi-default-features-item {
+  //     width: auto;
+  //   }
+  // }
 }
