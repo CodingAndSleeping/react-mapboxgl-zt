@@ -1,10 +1,10 @@
 ---
 nav:
   title: 快速开始
-  order: 2
+  order: 1
 group:
   title: 基础
-  order: 2
+  order: 1
 
 title: 介绍
 
