@@ -11,6 +11,10 @@ title: 快速开始
 toc: content
 ---
 
+## 入门
+
+本组件是基于 `mapboxgl` 开发的，以达到简化地图应用开发的目的，并且本组件的`api`与官方基本保持一致，因此，开发者在使用之前最好对`mapboxgl`的基本用法有一定的了解，具体可以参考[官方文档](https://docs.mapbox.com/mapbox-gl-js/api/)。
+
 ## 安装
 
 ### 1.使用包管理器

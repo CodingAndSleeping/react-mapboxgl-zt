@@ -1,8 +1,4 @@
-import {
-  MapMouseEvent,
-  type GeoJSONSourceSpecification,
-  type Map,
-} from 'mapbox-gl';
+import { MapMouseEvent, type Map } from 'mapbox-gl';
 import { useRef, useState } from 'react';
 import {
   CircleLayer,
@@ -23,54 +19,52 @@ const MapInstance = MapFactory({
 });
 
 // Control implemented as ES6 class
-class HelloWorldControl {
-  _map: Map | undefined;
-  _container: HTMLDivElement | undefined;
+// class HelloWorldControl {
+//   _map: Map | undefined;
+//   _container: HTMLDivElement | undefined;
 
-  onAdd(map: Map) {
-    this._map = map;
-    this._container = document.createElement('div');
-    this._container.className = 'mapboxgl-ctrl mapboxgl-ctrl-group';
-    this._container.textContent = 'Hello, world';
-    return this._container;
-  }
+//   onAdd(map: Map) {
+//     this._map = map;
+//     this._container = document.createElement('div');
+//     this._container.className = 'mapboxgl-ctrl mapboxgl-ctrl-group';
+//     this._container.textContent = 'Hello, world';
+//     return this._container;
+//   }
 
-  onRemove() {
-    this._container!.parentNode!.removeChild(this._container!);
-    this._map = undefined;
-  }
-}
+//   onRemove() {
+//     this._container!.parentNode!.removeChild(this._container!);
+//     this._map = undefined;
+//   }
+// }
 export default function BaseMap() {
-  const [imgUrl, setImgUrl] = useState(
-    '/react-mapboxgl-zt/imgs/background1.jpg',
-  );
-  const [icon, setIcon] = useState('/react-mapboxgl-zt/imgs/icon.png');
+  const [imgUrl] = useState('/react-mapboxgl-zt/imgs/background1.jpg');
+  // const [icon, setIcon] = useState('/react-mapboxgl-zt/imgs/icon.png');
   const [color, setColor] = useState('#f00');
 
-  const [source, setSource] = useState<GeoJSONSourceSpecification>({
-    type: 'geojson',
-    data: {
-      type: 'FeatureCollection',
-      features: [
-        {
-          type: 'Feature',
-          properties: {},
-          geometry: {
-            coordinates: [113.90310757834482, 22.541427196370165],
-            type: 'Point',
-          },
-        },
-        {
-          type: 'Feature',
-          properties: {},
-          geometry: {
-            coordinates: [113.91668147739654, 22.52511855694496],
-            type: 'Point',
-          },
-        },
-      ],
-    },
-  });
+  // const [source, setSource] = useState<GeoJSONSourceSpecification>({
+  //   type: 'geojson',
+  //   data: {
+  //     type: 'FeatureCollection',
+  //     features: [
+  //       {
+  //         type: 'Feature',
+  //         properties: {},
+  //         geometry: {
+  //           coordinates: [113.90310757834482, 22.541427196370165],
+  //           type: 'Point',
+  //         },
+  //       },
+  //       {
+  //         type: 'Feature',
+  //         properties: {},
+  //         geometry: {
+  //           coordinates: [113.91668147739654, 22.52511855694496],
+  //           type: 'Point',
+  //         },
+  //       },
+  //     ],
+  //   },
+  // });
 
   const [title, setTitle] = useState('title');
 
