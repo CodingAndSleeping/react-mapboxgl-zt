@@ -125,12 +125,12 @@ toc: content
 | `moveMethod`       | `'flyTo' \| 'easeTo' \| 'jumpTo'`      | `flyTo`                              | 地图移动方式。                                  |
 | `cameraOptions`    | `CameraOptions`                        | `-`                                  | 地图相机选项。                                  |
 | `animationOptions` | `AnimationOptions`                     | `{}`                                 | 地图动画选项。                                  |
-| `onMapLoad`        | `(map: Map) => void`                   | `-`                                  | 地图加载完成时的回调函数。                      |
 
 ### Map Event
 
 | 事件名                   | 参数            | 返回值 | 描述                                    |
 | ------------------------ | --------------- | ------ | --------------------------------------- |
+| `onMapLoad`              | `Map`           | `-`    | 地图加载完成时的回调函数。              |
 | `onResize`               | `MapDataEvent`  | `void` | 地图大小发生变化时触发。                |
 | `onIdle`                 | `MapDataEvent`  | `void` | 地图完成渲染且无需更新时触发。          |
 | `onRemove`               | `MapDataEvent`  | `void` | 地图实例被销毁时触发。                  |
@@ -146,10 +146,10 @@ toc: content
 | `onDblClick`             | `MapMouseEvent` | `void` | 用户在地图上双击时触发。                |
 | `onContextMenu`          | `MapMouseEvent` | `void` | 右键点击地图时触发。                    |
 | `onWheel`                | `MapWheelEvent` | `void` | 用户滚动鼠标滚轮时触发。                |
-| `onTouchStart`           | `MapTouchEvent` | `void` | 触摸开始时触发（移动端）。              |
-| `onTouchEnd`             | `MapTouchEvent` | `void` | 触摸结束时触发（移动端）。              |
-| `onTouchMove`            | `MapTouchEvent` | `void` | 触摸移动时触发（移动端）。              |
-| `onTouchCancel`          | `MapTouchEvent` | `void` | 触摸取消时触发（移动端）。              |
+| `onTouchStart`           | `MapTouchEvent` | `void` | 触摸开始时触发。                        |
+| `onTouchEnd`             | `MapTouchEvent` | `void` | 触摸结束时触发。                        |
+| `onTouchMove`            | `MapTouchEvent` | `void` | 触摸移动时触发。                        |
+| `onTouchCancel`          | `MapTouchEvent` | `void` | 触摸取消时触发。                        |
 | `onMoveStart`            | `MapDataEvent`  | `void` | 地图移动开始时触发。                    |
 | `onMove`                 | `MapDataEvent`  | `void` | 地图正在移动时触发。                    |
 | `onMoveEnd`              | `MapDataEvent`  | `void` | 地图移动结束时触发。                    |

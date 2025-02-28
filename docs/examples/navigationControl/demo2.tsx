@@ -1,5 +1,5 @@
 import { CSSProperties, FC } from 'react';
-import { MapFactory, ScaleControl } from 'react-mapboxgl-zt';
+import { MapFactory, NavigationControl } from 'react-mapboxgl-zt';
 
 const mapContainerStyle: CSSProperties = {
   width: '100%',
@@ -15,7 +15,7 @@ const App: FC = () => {
   return (
     <div className="map-container" style={mapContainerStyle}>
       <MapComponent>
-        <ScaleControl position="bottom-right" />
+        <NavigationControl position="top-right" />
       </MapComponent>
     </div>
   );

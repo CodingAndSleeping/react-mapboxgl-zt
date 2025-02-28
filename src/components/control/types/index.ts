@@ -2,7 +2,7 @@ import { ControlPosition, IControl } from 'mapbox-gl';
 
 export interface CustomControlProps<T extends IControl> {
   controlClass: { new (...args: any[]): T };
-  // options?: Record<string, any>;
+
   position?: ControlPosition;
 
   [key: string]: any;

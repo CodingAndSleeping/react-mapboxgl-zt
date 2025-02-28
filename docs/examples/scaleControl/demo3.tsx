@@ -3,7 +3,7 @@ import { MapFactory, ScaleControl } from 'react-mapboxgl-zt';
 
 const mapContainerStyle: CSSProperties = {
   width: '100%',
-  height: '20em',
+  height: '25rem',
 };
 
 const MapComponent = MapFactory({

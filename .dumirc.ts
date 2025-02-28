@@ -12,7 +12,7 @@ export default defineConfig({
 
   base: '/react-mapboxgl-zt/',
   publicPath: '/react-mapboxgl-zt/',
-
+  favicons: ['/react-mapboxgl-zt/logo.png'],
   apiParser: {},
   resolve: {
     entryFile: './src/index.ts',

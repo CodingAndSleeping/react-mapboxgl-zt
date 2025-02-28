@@ -21,25 +21,25 @@ toc: content
 
 ### 1.基本使用
 
-这是一个 ScaleControl 的基本使用示例。
+这是一个 `ScaleControl` 的基本使用示例。
 
 <code src="../examples/scaleControl/demo1.tsx" compact="true"></code>
 
 ### 2.设置位置
 
-可以通过 position 属性设置比例尺控件的位置。
+可以通过 `position` 属性设置比例尺控件的位置。
 
 <code src="../examples/scaleControl/demo2.tsx" compact="true"></code>
 
 ### 3.设置单位
 
-可以通过 unit 属性设置比例尺控件的单位。
+可以通过 `unit` 属性设置比例尺控件的单位。
 
 <code src="../examples/scaleControl/demo3.tsx" compact="true"></code>
 
 ### 4.获取比例尺组件实例
 
-通过 ref 获取组件实例，可以获取组件的属性和方法。
+通过 `ref` 获取组件实例，可以获取组件的属性和方法。
 
 <code src="../examples/scaleControl/demo4.tsx" compact="true"></code>
 
