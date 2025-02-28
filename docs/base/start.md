@@ -74,7 +74,7 @@ $ pnpm install react-mapboxgl-zt
 
 ## 示例
 
-下面是一个简单的 `Map` 组件，展示了如何使用 `react-mapboxgl-zt` 组件进行地图展示。
+下面使用浏览器直接引入的方式展示如何使用 `react-mapboxgl-zt` 创建地图。
 
 :::warning
 由于本组件是基于 mapboxgl 开发的，在使用之前需要去[mapboxgl 官网](https://docs.mapbox.com/mapbox-gl-js/api/)注册一个开发者账号，并申请一个`access token`。
@@ -82,30 +82,67 @@ $ pnpm install react-mapboxgl-zt
 
 **具体代码示例：**
 
-```tsx | pure
-// 引入 MapFactory 地图工厂函数
-import { MapFactory } from 'react-mapboxgl-zt';
+```html | pure
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ✅ React & ReactDOM (开发版，支持 createRoot) -->
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/react/18.2.0/umd/react.development.js"></script>
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/react-dom/18.2.0/umd/react-dom.development.js"></script>
 
-// 创建地图实例
-const MapInstance = MapFactory({
-  accessToken: 'your access token', // access token
-});
+    <!-- ✅ 最新 Babel，支持 React 18 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.3/babel.min.js"></script>
+    <!-- ✅ 引入css文件 -->
+    <link
+      rel="stylesheet"
+      href="https://www.unpkg.com/react-mapboxgl-zt@0.0.8/dist/index.css"
+    />
+    <!--✅ 引入核心库文件 -->
+    <script src="https://www.unpkg.com/react-mapboxgl-zt@0.0.8/dist/index.umd.js"></script>
 
-export default function BaseMap() {
-  return (
-    <div
-      style={{
-        height: '20rem',
-      }}
-    >
-      <MapInstance></MapInstance>
-    </div>
-  );
-}
+    <title>APP</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #root {
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      // ✅ 引入地图工厂函数
+      const { MapFactory } = ReactMap;
+
+      // ✅ 创建地图组件
+      const MapComponent = MapFactory({
+        accessToken: 'access token',
+      });
+
+      function App() {
+        return (
+          <div style={{ height: '100%', width: '100%' }}>
+            {/* ✅ 在 JSX 中使用 MapComponent */}
+            <MapComponent />
+          </div>
+        );
+      }
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
+    </script>
+  </body>
+</html>
 ```
 
 **地图展示效果如下：**
-
----
 
 <code src="../examples/base/start/hellowolrd.tsx" inline="true"></code>

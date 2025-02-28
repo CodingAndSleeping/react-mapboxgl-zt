@@ -8,6 +8,7 @@ group:
   order: 2
 
 title: 导航控件
+order: 2
 
 toc: content
 ---
@@ -15,6 +16,8 @@ toc: content
 # 导航控件
 
 ## 1
+
+2
 
 ## 2
 

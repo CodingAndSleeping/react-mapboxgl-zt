@@ -52,6 +52,7 @@
     ]
   },
   "dependencies": {
+    "antd": "^5.24.2",
     "classnames": "^2.5.1",
     "lodash-es": "^4.17.21",
     "mapbox-gl": "^3.10.0"

@@ -1,10 +1,10 @@
 import { Map, MapMouseEvent } from 'mapbox-gl';
-import { FC, useRef } from 'react';
+import { CSSProperties, FC, useRef } from 'react';
 import { MapFactory } from 'react-mapboxgl-zt';
 
-const mapContainerStyle = {
+const mapContainerStyle: CSSProperties = {
   width: '100%',
-  height: '20em',
+  height: '25rem',
 };
 
 const MapComponent = MapFactory({
@@ -20,7 +20,7 @@ const App: FC = () => {
   };
 
   const onClick = (e: MapMouseEvent) => {
-    console.log(e);
+    alert(`Clicked at ${e.lngLat}`);
   };
   return (
     <div className="map-container" style={mapContainerStyle}>

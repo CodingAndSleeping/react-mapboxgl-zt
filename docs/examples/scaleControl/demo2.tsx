@@ -1,9 +1,9 @@
 import { CSSProperties, FC } from 'react';
-import { MapFactory } from 'react-mapboxgl-zt';
+import { MapFactory, ScaleControl } from 'react-mapboxgl-zt';
 
 const mapContainerStyle: CSSProperties = {
   width: '100%',
-  height: '25rem',
+  height: '20em',
 };
 
 const MapComponent = MapFactory({
@@ -12,11 +12,11 @@ const MapComponent = MapFactory({
 });
 
 const App: FC = () => {
-  const style = 'mapbox://styles/mapbox/dark-v11';
-
   return (
     <div className="map-container" style={mapContainerStyle}>
-      <MapComponent style={style}></MapComponent>
+      <MapComponent>
+        <ScaleControl position="bottom-right" />
+      </MapComponent>
     </div>
   );
 };

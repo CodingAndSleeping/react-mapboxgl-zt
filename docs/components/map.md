@@ -44,13 +44,19 @@ toc: content
 
 <code src="../examples/map/demo4.tsx" compact="true"></code>
 
-> 注意：`style`的标准应该符合`Mapbox`官方标准，不符合可能-法正常展示。 具体配置项可以去[Mapbox Styles](https://docs.mapbox.com/mapbox-gl-js/guides/styles/)查看。
+> 注意：`style`的标准应该符合`Mapbox`官方标准，不符合可能无法正常展示。 具体配置项和内置样式可以去[Mapbox Styles](https://docs.mapbox.com/mapbox-gl-js/guides/styles/)查看。
 
 ### 5.地图事件
 
 地图组件提供了一些事件回调函数，可以监听地图的各种事件变化，包括`load`、`click`、`zoom`等。具体的事件函数和参数可以查看[地图组件的事件回调函数](/components/map#map-event)一节。
 
 <code src="../examples/map/demo5.tsx" compact="true"></code>
+
+### 6.子组件获取地图实例
+
+用户自定义的地图子组件如果想要获取地图实例，可以通过`useContext`获取地图实例,本组件库暴露了`MapContext`对象，因此可以在子组件内部通过`useContext(MapContext)`获取到地图实例。
+
+<code src="../examples/map/demo6.tsx" compact="true"></code>
 
 ## API
 
@@ -66,7 +72,7 @@ toc: content
 | `boxZoom`                      | `boolean`                                                      | `true`                 | 是否启用框选缩放功能。                                                |
 | `clickTolerance`               | `number`                                                       | `3`                    | 点击事件的容错像素范围。                                              |
 | `collectResourceTiming`        | `boolean`                                                      | `false`                | 是否收集资源加载时间数据。                                            |
-| `config`                       | `{ [key: string]: ConfigSpecification }`                       | `-`                    | 额外的 Mapbox 配置参数。                                              |
+| `config`                       | `Record<string, ConfigSpecification>`                          | `-`                    | 额外的 Mapbox 配置参数。                                              |
 | `cooperativeGestures`          | `boolean`                                                      | `false`                | 是否启用协作手势控制。                                                |
 | `crossSourceCollisions`        | `boolean`                                                      | `true`                 | 是否跨数据源检测符号冲突。                                            |
 | `customAttribution`            | `string \| string[]`                                           | `-`                    | 自定义归属信息。                                                      |
@@ -116,7 +122,7 @@ toc: content
 | `minZoom`          | `number`                               | `0`                                  | 最小缩放级别。                                  |
 | `style`            | `string \| StyleSpecification`         | `mapbox://styles/mapbox/streets-v11` | 地图样式 URL 或 `StyleSpecification` 对象。     |
 | `className`        | `string`                               | `-`                                  | 自定义 CSS 类名。                               |
-| `moveMethod`       | `'flyTo' \| 'easeTo' \| 'jumpTo'`      | `flyTo`                              | 地图移动方式：`flyTo`、`easeTo`、`jumpTo`。     |
+| `moveMethod`       | `'flyTo' \| 'easeTo' \| 'jumpTo'`      | `flyTo`                              | 地图移动方式。                                  |
 | `cameraOptions`    | `CameraOptions`                        | `-`                                  | 地图相机选项。                                  |
 | `animationOptions` | `AnimationOptions`                     | `{}`                                 | 地图动画选项。                                  |
 | `onMapLoad`        | `(map: Map) => void`                   | `-`                                  | 地图加载完成时的回调函数。                      |

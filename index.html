@@ -15,7 +15,7 @@
     />
     <script src="https://www.unpkg.com/react-mapboxgl-zt@0.0.8/dist/index.umd.js"></script>
 
-    <title>Document</title>
+    <title>APP</title>
     <style>
       html,
       body {
@@ -36,11 +36,9 @@
       const { MapFactory } = ReactMap;
 
       const MapInstance = MapFactory({
-        accessToken:
-          'pk.eyJ1IjoiMnBpYyIsImEiOiJjbTczaXFxbGwwMGNtMm9zYjhjcW1hd3ZkIn0.YCpsYVQawB15Cf5Zyljscg',
+        accessToken: 'access token',
       });
-      console.log(MapInstance);
-      // 简单的 React 组件
+
       function App() {
         return (
           <div style={{ height: '100%', width: '100%' }}>
@@ -48,9 +46,7 @@
           </div>
         );
       }
-
       const root = ReactDOM.createRoot(document.getElementById('root'));
-      // 渲染 React 组件到 DOM
       root.render(<App />);
     </script>
   </body>

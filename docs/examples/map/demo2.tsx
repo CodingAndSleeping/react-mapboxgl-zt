@@ -1,9 +1,9 @@
-import { FC } from 'react';
+import { CSSProperties, FC } from 'react';
 import { MapFactory } from 'react-mapboxgl-zt';
 
-const mapContainerStyle = {
+const mapContainerStyle: CSSProperties = {
   width: '100%',
-  height: '20em',
+  height: '25rem',
 };
 
 const MapComponent = MapFactory({
