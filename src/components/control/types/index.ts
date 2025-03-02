@@ -1,7 +1,7 @@
 import { ControlPosition, IControl } from 'mapbox-gl';
 
 export interface CustomControlProps<T extends IControl> {
-  controlClass: { new (...args: any[]): T };
+  controlClass: new (...args: any[]) => T;
 
   position?: ControlPosition;
 

@@ -15,15 +15,15 @@ const MapComponent = MapFactory({
 class HelloWorldControl {
   private _map: Map | undefined;
   private _container: HTMLElement | undefined;
-  private _options: { foo: number; bar: string };
-  constructor(options: { foo: number; bar: string }) {
+  private _options: { foo: string; bar: string };
+  constructor(options: { foo: string; bar: string }) {
     this._options = options;
   }
   onAdd(map: Map) {
     this._map = map;
     this._container = document.createElement('div');
     this._container.className = 'mapboxgl-ctrl mapboxgl-ctrl-group';
-    this._container.textContent = `Hello, world, ${this._options.foo}, ${this._options.bar}`;
+    this._container.textContent = `${this._options.foo}, ${this._options.bar}`;
     return this._container;
   }
 
@@ -38,8 +38,8 @@ const App: FC = () => {
       <MapComponent>
         <CustomControl
           controlClass={HelloWorldControl}
-          foo={'43'}
-          bar="2"
+          foo="hello"
+          bar="world"
           position="bottom-left"
         />
       </MapComponent>
