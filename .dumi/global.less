@@ -1,7 +1,7 @@
 .dumi-default-doc-layout {
   .dumi-default-header {
     .dumi-default-header-content {
-      max-width: 1600px;
+      // max-width: 1600px;
 
       .dumi-default-header-left {
         width: auto;
@@ -11,20 +11,17 @@
         .dumi-default-logo {
         }
       }
-      .dumi-default-header-right {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        .dumi-default-navbar {
-          margin-right: 2rem;
+
+      @media screen and (min-width: 923px) {
+        .dumi-default-header-right {
           display: flex;
           align-items: center;
-          justify-content: space-between;
-          li {
+          justify-content: flex-end;
+          .dumi-default-navbar {
             margin-right: 2rem;
           }
-        }
-        .dumi-default-header-right-aside {
+          .dumi-default-header-right-aside {
+          }
         }
       }
     }
