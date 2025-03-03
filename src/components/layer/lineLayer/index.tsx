@@ -35,7 +35,7 @@ const FIllLayer: FC<LineLayerProps & LayerEvents> = (props) => {
     translate = [0, 0],
     translateAnchor = 'map',
 
-    trimOffset = [0, 0],
+    trimOffset,
     width = 1,
   } = props;
 
@@ -88,6 +88,10 @@ const FIllLayer: FC<LineLayerProps & LayerEvents> = (props) => {
       layout['line-sort-key'] = sortKey;
     }
 
+    if (trimOffset) {
+      paint['line-trim-offset'] = trimOffset;
+    }
+
     layerOptions.maxzoom = maxzoom;
     layerOptions.minzoom = minzoom;
     paint['line-blur'] = blur;
@@ -100,7 +104,6 @@ const FIllLayer: FC<LineLayerProps & LayerEvents> = (props) => {
     paint['line-opacity'] = opacity;
     paint['line-translate'] = translate;
     paint['line-translate-anchor'] = translateAnchor;
-    paint['line-trim-offset'] = trimOffset;
     paint['line-width'] = width;
     layout['line-round-limit'] = roundLimit;
     layout['line-miter-limit'] = miterLimit;
@@ -122,6 +125,7 @@ const FIllLayer: FC<LineLayerProps & LayerEvents> = (props) => {
     } else {
       if (map.getLayer(id)) map.removeLayer(id);
       if (map.getSource(id)) map.removeSource(id);
+
       map.addSource(id, source);
       map.addLayer(layerOptions, beforeId);
     }

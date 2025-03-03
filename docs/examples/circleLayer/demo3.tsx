@@ -22,7 +22,7 @@ const App: FC = () => {
     color: [
       'match',
       ['get', 'name'],
-      '北京',
+      '北京市',
       '#ff0000',
       '#0000ff',
     ] as ExpressionSpecification,
@@ -48,7 +48,7 @@ const App: FC = () => {
     strokeColor: [
       'match',
       ['get', 'name'],
-      '北京',
+      '北京市',
       '#ff0000',
       '#0000ff',
     ] as ExpressionSpecification,
