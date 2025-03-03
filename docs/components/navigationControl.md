@@ -53,4 +53,3 @@ toc: content
 | `showCompass`    | `boolean`         | `true`       | 是否显示指南针按钮。                                                                                                                    |
 | `showZoom`       | `boolean`         | `true`       | 是否显示缩放按钮。                                                                                                                      |
 | `visualizePitch` | `boolean`         | `true`       | 是否在指南针按钮中可视化地图俯仰角度。                                                                                                  |
-|                  |

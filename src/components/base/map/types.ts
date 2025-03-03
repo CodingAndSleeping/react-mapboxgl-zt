@@ -77,83 +77,77 @@ export interface MapOptions {
   onMapLoad?: (map: Map) => void;
 }
 
-export type MapEvent = (
-  e: MapMouseEvent | MapTouchEvent | MapWheelEvent | MapDataEvent,
-) => void;
-
 export interface MapEvents {
-  onResize?: MapEvent;
-  onIdle?: MapEvent;
-  onRemove?: MapEvent;
+  onResize?: (e: MapDataEvent) => void;
+  onIdle?: (e: MapDataEvent) => void;
+  onRemove?: (e: MapDataEvent) => void;
 
-  onMouseDown?: MapEvent;
-  onMouseUp?: MapEvent;
-  onMouseOver?: MapEvent;
-  onMouseMove?: MapEvent;
+  onMouseDown?: (e: MapMouseEvent) => void;
+  onMouseUp?: (e: MapMouseEvent) => void;
+  onMouseOver?: (e: MapMouseEvent) => void;
+  onMouseMove?: (e: MapMouseEvent) => void;
 
-  onMouseEnter?: MapEvent;
-  onMouseLeave?: MapEvent;
-  onMouseOut?: MapEvent;
+  onMouseEnter?: (e: MapMouseEvent) => void;
+  onMouseLeave?: (e: MapMouseEvent) => void;
+  onMouseOut?: (e: MapMouseEvent) => void;
 
-  onPreClick?: MapEvent;
-  onClick?: MapEvent;
-  onDblClick?: MapEvent;
+  onPreClick?: (e: MapMouseEvent) => void;
+  onClick?: (e: MapMouseEvent) => void;
+  onDblClick?: (e: MapMouseEvent) => void;
 
-  onContextMenu?: MapEvent;
+  onContextMenu?: (e: MapMouseEvent) => void;
 
-  onWheel?: MapEvent;
+  onWheel?: (e: MapWheelEvent) => void;
 
-  onTouchStart?: MapEvent;
-  onTouchEnd?: MapEvent;
-  onTouchMove?: MapEvent;
-  onTouchCancel?: MapEvent;
+  onTouchStart?: (e: MapTouchEvent) => void;
+  onTouchEnd?: (e: MapTouchEvent) => void;
+  onTouchMove?: (e: MapTouchEvent) => void;
+  onTouchCancel?: (e: MapTouchEvent) => void;
 
-  onMoveStart?: MapEvent;
-  onMove?: MapEvent;
-  onMoveEnd?: MapEvent;
+  onMoveStart?: (e: MapDataEvent) => void;
+  onMove?: (e: MapDataEvent) => void;
+  onMoveEnd?: (e: MapDataEvent) => void;
 
-  onDragStart?: MapEvent;
-  onDrag?: MapEvent;
-  onDragEnd?: MapEvent;
+  onDragStart?: (e: MapDataEvent) => void;
+  onDrag?: (e: MapDataEvent) => void;
+  onDragEnd?: (e: MapDataEvent) => void;
 
-  onZoomStart?: MapEvent;
-  onZoom?: MapEvent;
-  onZoomEnd?: MapEvent;
+  onZoomStart?: (e: MapDataEvent) => void;
+  onZoom?: (e: MapDataEvent) => void;
+  onZoomEnd?: (e: MapDataEvent) => void;
 
-  onRotateStart?: MapEvent;
-  onRotate?: MapEvent;
-  onRotateEnd?: MapEvent;
+  onRotateStart?: (e: MapDataEvent) => void;
+  onRotate?: (e: MapDataEvent) => void;
+  onRotateEnd?: (e: MapDataEvent) => void;
 
-  onPitchStart?: MapEvent;
-  onPitch?: MapEvent;
-  onPitchEnd?: MapEvent;
+  onPitchStart?: (e: MapDataEvent) => void;
+  onPitch?: (e: MapDataEvent) => void;
+  onPitchEnd?: (e: MapDataEvent) => void;
 
-  onBoxZoomStart?: MapEvent;
-  onBoxZoomEnd?: MapEvent;
-  onBoxZoomCancel?: MapEvent;
+  onBoxZoomStart?: (e: MapDataEvent) => void;
+  onBoxZoomEnd?: (e: MapDataEvent) => void;
+  onBoxZoomCancel?: (e: MapDataEvent) => void;
 
-  onRenderStart?: MapEvent;
-  onRender?: MapEvent;
+  onRenderStart?: (e: MapDataEvent) => void;
+  onRender?: (e: MapDataEvent) => void;
 
-  onError?: MapEvent;
+  onError?: (e: MapDataEvent) => void;
 
-  onWebglContextLost?: MapEvent;
-  onWebglContextRestored?: MapEvent;
+  onWebglContextLost?: (e: MapDataEvent) => void;
+  onWebglContextRestored?: (e: MapDataEvent) => void;
 
-  onData?: MapEvent;
-  onStyleData?: MapEvent;
-  onSourceData?: MapEvent;
-  onDataLoading?: MapEvent;
-  onStyleDataLoading?: MapEvent;
-  onSourceDataLoading?: MapEvent;
-  onStyleImageMissing?: MapEvent;
+  onData?: (e: MapDataEvent) => void;
+  onStyleData?: (e: MapDataEvent) => void;
+  onSourceData?: (e: MapDataEvent) => void;
+  onDataLoading?: (e: MapDataEvent) => void;
+  onStyleDataLoading?: (e: MapDataEvent) => void;
+  onSourceDataLoading?: (e: MapDataEvent) => void;
+  onStyleImageMissing?: (e: MapDataEvent) => void;
 
-  onStyleLoad?: MapEvent;
-  onStyleImportLoad?: MapEvent;
+  onStyleLoad?: (e: MapDataEvent) => void;
+  onStyleImportLoad?: (e: MapDataEvent) => void;
 }
 
 export type Listeners = {
-  [T in keyof MapEvents]: (
-    e: MapMouseEvent | MapTouchEvent | MapWheelEvent | MapDataEvent,
-  ) => void;
+  [T in keyof MapEvents]: MapEvents[T];
 };

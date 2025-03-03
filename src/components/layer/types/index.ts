@@ -7,26 +7,22 @@ import {
   VectorSourceSpecification,
 } from 'mapbox-gl';
 
-export type LayerEvent =
-  | ((e: MapMouseEvent) => void)
-  | ((e: MapTouchEvent) => void);
-
 export interface LayerEvents {
-  onMouseDown?: LayerEvent;
-  onMouseUp?: LayerEvent;
-  onMouseOver?: LayerEvent;
-  onMouseMove?: LayerEvent;
-  onMouseEnter?: LayerEvent;
-  onMouseLeave?: LayerEvent;
-  onMouseOut?: LayerEvent;
-  onClick?: LayerEvent;
-  onTouchStart?: LayerEvent;
-  onTouchEnd?: LayerEvent;
-  onTouchCancel?: LayerEvent;
+  onMouseDown?: (e: MapMouseEvent) => void;
+  onMouseUp?: (e: MapMouseEvent) => void;
+  onMouseOver?: (e: MapMouseEvent) => void;
+  onMouseMove?: (e: MapMouseEvent) => void;
+  onMouseEnter?: (e: MapMouseEvent) => void;
+  onMouseLeave?: (e: MapMouseEvent) => void;
+  onMouseOut?: (e: MapMouseEvent) => void;
+  onClick?: (e: MapMouseEvent) => void;
+  onTouchStart?: (e: MapTouchEvent) => void;
+  onTouchEnd?: (e: MapTouchEvent) => void;
+  onTouchCancel?: (e: MapTouchEvent) => void;
 }
 
 export type Listeners = {
-  [T in keyof LayerEvents]: LayerEvent;
+  [T in keyof LayerEvents]: LayerEvents[T];
 };
 
 export interface LayerProps {
