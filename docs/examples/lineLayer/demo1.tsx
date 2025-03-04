@@ -19,7 +19,11 @@ const App: FC = () => {
   };
   return (
     <div className="map-container" style={mapContainerStyle}>
-      <MapComponent zoom={9.5} center={[114.095111, 22.634657]}>
+      <MapComponent
+        zoom={9.5}
+        center={[114.095111, 22.634657]}
+        style={'mapbox://styles/mapbox/light-v11'}
+      >
         <LineLayer id="line" source={source} width={2}></LineLayer>
       </MapComponent>
     </div>

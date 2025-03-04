@@ -1,4 +1,4 @@
-import { GeoJSONSourceSpecification } from 'mapbox-gl';
+import { GeoJSONSourceSpecification, MapMouseEvent } from 'mapbox-gl';
 import { CSSProperties, FC } from 'react';
 import { LineLayer, MapFactory } from 'react-mapboxgl-zt';
 
@@ -18,7 +18,13 @@ const App: FC = () => {
     data: '/react-mapboxgl-zt/data/line.geojson',
   };
 
-  const imgUrl = '/react-mapboxgl-zt/imgs/line.png';
+  const onClick = (e: MapMouseEvent) => {
+    alert(`click at ${e.features![0].properties!.name}`);
+  };
+
+  const onMouseOver = (e: MapMouseEvent) => {
+    console.log(e);
+  };
 
   return (
     <div className="map-container" style={mapContainerStyle}>
@@ -27,7 +33,13 @@ const App: FC = () => {
         center={[114.095111, 22.634657]}
         style={'mapbox://styles/mapbox/light-v11'}
       >
-        <LineLayer id="circle" source={source} width={5} imgUrl={imgUrl} />
+        <LineLayer
+          id="circle"
+          source={source}
+          onClick={onClick}
+          onMouseOver={onMouseOver}
+          width={5}
+        />
       </MapComponent>
     </div>
   );

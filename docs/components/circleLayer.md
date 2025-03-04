@@ -49,7 +49,7 @@ toc: content
 
 ### CircleLayer API
 
-| 参数               | 类型                                                                           | 默认值       | 描述                                                                            |
+| 参数               | 类型                                                                           | 默认值       | 说明                                                                            |
 | ------------------ | ------------------------------------------------------------------------------ | ------------ | ------------------------------------------------------------------------------- |
 | `id`               | `string`                                                                       | **必填**     | 图层 ID                                                                         |
 | `source`           | `string`                                                                       | **必填**     | 数据源，具体查看[source](https://docs.mapbox.com/style-spec/reference/sources/) |
@@ -76,18 +76,18 @@ toc: content
 
 ### CircleLayer Event
 
-| 事件            | 类型                         | 说明     |
-| --------------- | ---------------------------- | -------- |
-| `onMouseDown`   | `(e: MapMouseEvent) => void` | 鼠标按下 |
-| `onMouseUp`     | `(e: MapMouseEvent) => void` | 鼠标抬起 |
-| `onMouseOver`   | `(e: MapMouseEvent) => void` | 鼠标悬停 |
-| `onMouseMove`   | `(e: MapMouseEvent) => void` | 鼠标移动 |
-| `onMouseEnter`  | `(e: MapMouseEvent) => void` | 鼠标进入 |
-| `onMouseLeave`  | `(e: MapMouseEvent) => void` | 鼠标离开 |
-| `onMouseOut`    | `(e: MapMouseEvent) => void` | 鼠标移出 |
-| `onClick`       | `(e: MapMouseEvent) => void` | 鼠标点击 |
-| `onTouchStart`  | `(e: MapTouchEvent) => void` | 触摸开始 |
-| `onTouchEnd`    | `(e: MapTouchEvent) => void` | 触摸结束 |
-| `onTouchCancel` | `(e: MapTouchEvent) => void` | 触摸取消 |
+| 事件 | 参数 ｜ 返回值 | 说明 |
+| --------------- | ----------------｜------------ | -------------- |
+| `onMouseUp` | `MapMouseEvent` ｜ `void` | 鼠标抬起时触发 |
+| `onMouseDown` | `MapMouseEvent` ｜ `void` | 鼠标按下时触发 |
+| `onMouseOver` | `MapMouseEvent` ｜ `void` | 鼠标悬停时触发 |
+| `onMouseMove` | `MapMouseEvent` ｜ `void` | 鼠标移动时触发 |
+| `onMouseEnter` | `MapMouseEvent` ｜ `void` | 鼠标移入时触发 |
+| `onMouseLeave` | `MapMouseEvent` ｜ `void` | 鼠标离开时触发 |
+| `onMouseOut` | `MapMouseEvent` ｜ `void` | 鼠标移出时触发 |
+| `onClick` | `MapMouseEvent` ｜ `void` | 鼠标点击时触发 |
+| `onTouchStart` | `MapTouchEvent` ｜ `void` | 触摸开始时触发 |
+| `onTouchEnd` | `MapTouchEvent` ｜ `void` | 触摸结束时触发 |
+| `onTouchCancel` | `MapTouchEvent` ｜ `void` | 触摸取消时触发 |
 
 ---

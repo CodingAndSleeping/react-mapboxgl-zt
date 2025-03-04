@@ -33,8 +33,12 @@ const App: FC = () => {
 
   return (
     <div className="map-container" style={mapContainerStyle}>
-      <MapComponent zoom={9.5} center={[114.095111, 22.634657]}>
-        <LineLayer id="circle" source={source} width={6} gradient={gradinent} />
+      <MapComponent
+        zoom={9.5}
+        center={[114.095111, 22.634657]}
+        style={'mapbox://styles/mapbox/light-v11'}
+      >
+        <LineLayer id="circle" source={source} width={5} gradient={gradinent} />
       </MapComponent>
     </div>
   );

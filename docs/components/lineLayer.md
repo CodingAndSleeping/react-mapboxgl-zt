@@ -12,7 +12,7 @@ order: 3
 toc: content
 ---
 
-## 点图层
+## 线图层
 
 :::info{title=介绍}
 线图层可以在地图上绘制线要素。
@@ -51,51 +51,63 @@ toc: content
 
 ### 5.图层事件
 
-可以通过`click`、`mouseover`等事件监听图层的交互行为。仅当点击或移入具体的要素才有效。
+可以通过设置`imgUrl`属性设置线的图片样式。
 
 <code src="../examples/lineLayer/demo5.tsx" compact="true"></code>
 
-### CircleLayer API
+### 6.图层事件
 
-| 参数               | 类型                                                                           | 默认值       | 描述                                                                            |
-| ------------------ | ------------------------------------------------------------------------------ | ------------ | ------------------------------------------------------------------------------- |
-| `id`               | `string`                                                                       | **必填**     | 图层 ID                                                                         |
-| `source`           | `string`                                                                       | **必填**     | 数据源，具体查看[source](https://docs.mapbox.com/style-spec/reference/sources/) |
-| `sourceLayer`      | `string`                                                                       | `-`          | 数据源的子图层 ID                                                               |
-| `filter`           | `ExpressionSpecification`                                                      | `-`          | 过滤条件                                                                        |
-| `maxzoom`          | `number`                                                                       | `24`         | 最大缩放级别                                                                    |
-| `minzoom`          | `number`                                                                       | `0`          | 最小缩放级别                                                                    |
-| `visibility`       | `'visible'` \| `'none'`                                                        | `'visible'`  | 是否可见                                                                        |
-| `beforeId`         | `string`                                                                       | `-`          | 该图层应插入到的图层 ID 之前                                                    |
-| `slot`             | `string`                                                                       | `-`          | 该层被分配到的图层槽位                                                          |
-| `blur`             | `number` \| `ExpressionSpecification`                                          | `0`          | 模糊程度, 正数为外圈模糊度，负数为内圈模糊度                                    |
-| `color`            | `string` \| `ExpressionSpecification`                                          | `'#000000'`  | 颜色                                                                            |
-| `emissiveStrength` | `number` \| `ExpressionSpecification`                                          | `0`          | 发光强度                                                                        |
-| `opacity`          | `number` \| `ExpressionSpecification`                                          | `1`          | 透明度                                                                          |
-| `pitchAlignment`   | `'map'` \| `'viewport'`                                                        | `'viewport'` | 俯仰对齐方式。 `'map'`:与地图对齐；`'viewport'`:与视窗对齐                      |
-| `pitchScale`       | `'map'` \| `'viewport'`                                                        | `'map'`      | 俯仰缩放方式。`'map'`:根据相机的视距进行缩放；`'viewport'`:不缩放               |
-| `radius`           | `number` \| `ExpressionSpecification`                                          | `5`          | 半径                                                                            |
-| `sortKey`          | `number`                                                                       | `-`          | 排序关键字                                                                      |
-| `strokeColor`      | `string` \| `ExpressionSpecification`                                          | `'#000000'`  | 边框颜色                                                                        |
-| `strokeOpacity`    | `number` \| `ExpressionSpecification`                                          | `1`          | 边框透明度                                                                      |
-| `strokeWidth`      | `number` \| `ExpressionSpecification`                                          | `0`          | 边框宽度                                                                        |
-| `translate`        | `[number, number]` \| `ExpressionSpecification`                                | `[0, 0]`     | 偏移量                                                                          |
-| `translateAnchor`  | `'map'` \| '`viewport'`。`'map'`:相对于地图平移；`'viewport'`：相对于视窗平移: | `'map'`      | 偏移锚点                                                                        |
+可以通过`click`、`mouseover`等事件监听图层的交互行为。仅当点击或移入具体的要素才有效。
 
-### CircleLayer Event
+<code src="../examples/lineLayer/demo6.tsx" compact="true"></code>
 
-| 事件            | 类型                         | 说明     |
-| --------------- | ---------------------------- | -------- |
-| `onMouseDown`   | `(e: MapMouseEvent) => void` | 鼠标按下 |
-| `onMouseUp`     | `(e: MapMouseEvent) => void` | 鼠标抬起 |
-| `onMouseOver`   | `(e: MapMouseEvent) => void` | 鼠标悬停 |
-| `onMouseMove`   | `(e: MapMouseEvent) => void` | 鼠标移动 |
-| `onMouseEnter`  | `(e: MapMouseEvent) => void` | 鼠标进入 |
-| `onMouseLeave`  | `(e: MapMouseEvent) => void` | 鼠标离开 |
-| `onMouseOut`    | `(e: MapMouseEvent) => void` | 鼠标移出 |
-| `onClick`       | `(e: MapMouseEvent) => void` | 鼠标点击 |
-| `onTouchStart`  | `(e: MapTouchEvent) => void` | 触摸开始 |
-| `onTouchEnd`    | `(e: MapTouchEvent) => void` | 触摸结束 |
-| `onTouchCancel` | `(e: MapTouchEvent) => void` | 触摸取消 |
+## API
 
----
+### LineLayer API
+
+| 属性               | 类型                                                      | 默认值      | 说明                                                                                                               |
+| ------------------ | --------------------------------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------ |
+| `id`               | `string`                                                  | `-`         | 图层 ID                                                                                                            |
+| `source`           | `GeoJSONSourceSpecification \| VectorSourceSpecification` | `-`         | 数据源                                                                                                             |
+| `sourceLayer`      | `string`                                                  | `-`         | 数据源层                                                                                                           |
+| `filter`           | `any`                                                     | `-`         | 过滤条件                                                                                                           |
+| `maxzoom`          | `number`                                                  | `24`        | 最大缩放级别                                                                                                       |
+| `minzoom`          | `number`                                                  | `0`         | 最小缩放级别                                                                                                       |
+| `slot`             | `any`                                                     | `-`         | 该层被分配到的图层槽位                                                                                             |
+| `beforeId`         | `string`                                                  | `-`         | 插入到指定 ID 之前                                                                                                 |
+| `visibility`       | `'visible' \| 'none'`                                     | `'visible'` | 可见性                                                                                                             |
+| `imgUrl`           | `string`                                                  | `-`         | 图片 URL                                                                                                           |
+| `blur`             | `number \| ExpressionSpecification`                       | `0`         | 模糊度                                                                                                             |
+| `cap`              | `'butt' \| 'round' \| 'square'`                           | `'butt'`    | 端点样式                                                                                                           |
+| `color`            | `string \| ExpressionSpecification`                       | `'#000000'` | 颜色                                                                                                               |
+| `dasharray`        | `number[]`                                                | `-`         | 虚线数组                                                                                                           |
+| `emissiveStrength` | `number \| ExpressionSpecification`                       | `0`         | 自发光强度                                                                                                         |
+| `gapWidth`         | `number`                                                  | `0`         | 间隙宽度                                                                                                           |
+| `gradient`         | `ExpressionSpecification`                                 | `-`         | 渐变。设置了`gradient`属性时，`source`必须为`geojson`数据源，并且`source`中的`lineMetrics`必须设置为`true`         |
+| `join`             | `'bevel' \| 'round' \| 'miter' \| 'none'`                 | `'miter'`   | 连接样式                                                                                                           |
+| `miterLimit`       | `number \| ExpressionSpecification`                       | `2`         | 斜接限制                                                                                                           |
+| `occlusionOpacity` | `number \| ExpressionSpecification`                       | `0`         | 遮挡透明度                                                                                                         |
+| `offset`           | `number \| ExpressionSpecification`                       | `0`         | 偏移量                                                                                                             |
+| `opacity`          | `number \| ExpressionSpecification`                       | `1`         | 透明度                                                                                                             |
+| `roundLimit`       | `number \| ExpressionSpecification`                       | `1.05`      | 圆角限制                                                                                                           |
+| `sortKey`          | `number`                                                  | `-`         | 排序键                                                                                                             |
+| `translate`        | `[number, number] \| ExpressionSpecification`             | `[0, 0]`    | 平移量                                                                                                             |
+| `translateAnchor`  | `'map' \| 'viewport'`                                     | `'map'`     | 平移锚点                                                                                                           |
+| `trimOffset`       | `[number, number]`                                        | `-`         | 修剪偏移量。设置了`trimOffset`属性时，`source`必须为`geojson`数据源，并且`source`中的`lineMetrics`必须设置为`true` |
+| `width`            | `number \| ExpressionSpecification`                       | `1`         | 线宽                                                                                                               |
+
+### LineLayer Event
+
+| 事件 | 参数 ｜ 返回值 | 说明 |
+| --------------- | ----------------｜------------ | -------------- |
+| `onMouseUp` | `MapMouseEvent` ｜ `void` | 鼠标抬起时触发 |
+| `onMouseDown` | `MapMouseEvent` ｜ `void` | 鼠标按下时触发 |
+| `onMouseOver` | `MapMouseEvent` ｜ `void` | 鼠标悬停时触发 |
+| `onMouseMove` | `MapMouseEvent` ｜ `void` | 鼠标移动时触发 |
+| `onMouseEnter` | `MapMouseEvent` ｜ `void` | 鼠标移入时触发 |
+| `onMouseLeave` | `MapMouseEvent` ｜ `void` | 鼠标离开时触发 |
+| `onMouseOut` | `MapMouseEvent` ｜ `void` | 鼠标移出时触发 |
+| `onClick` | `MapMouseEvent` ｜ `void` | 鼠标点击时触发 |
+| `onTouchStart` | `MapTouchEvent` ｜ `void` | 触摸开始时触发 |
+| `onTouchEnd` | `MapTouchEvent` ｜ `void` | 触摸结束时触发 |
+| `onTouchCancel` | `MapTouchEvent` ｜ `void` | 触摸取消时触发 |

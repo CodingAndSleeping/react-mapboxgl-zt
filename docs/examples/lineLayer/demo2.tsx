@@ -32,7 +32,7 @@ const App: FC = () => {
     color: '#6969da',
     opacity: 1,
     blur: 0,
-    width: 6,
+    width: 5,
     cap: 'butt' as 'butt',
     dasharray: [1, 0],
     gapWidth: 0,
@@ -41,7 +41,11 @@ const App: FC = () => {
 
   return (
     <div className="map-container" style={mapContainerStyle}>
-      <MapComponent zoom={9.5} center={[114.095111, 22.634657]}>
+      <MapComponent
+        zoom={9.5}
+        center={[114.095111, 22.634657]}
+        style={'mapbox://styles/mapbox/light-v11'}
+      >
         <div className="tool-container" style={toolContainerStyle}>
           <Form labelCol={{ span: 10 }}>
             <Form.Item label="颜色" colon>

@@ -53,7 +53,7 @@ const App: FC = () => {
       <MapComponent
         zoom={9.5}
         center={[114.095111, 22.634657]}
-        style={'mapbox://styles/mapbox/dark-v11'}
+        style={'mapbox://styles/mapbox/light-v11'}
       >
         <LineLayer id="circle" source={source} color={color} width={3} />
       </MapComponent>

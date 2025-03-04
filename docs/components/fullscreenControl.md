@@ -41,7 +41,7 @@ toc: content
 
 ### FullscreenControl API
 
-| 参数        | 类型              | 默认值          | 描述                                                                                                                                    |
+| 参数        | 类型              | 默认值          | 说明                                                                                                                                    |
 | ----------- | ----------------- | --------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
 | `position`  | `ControlPosition` | `'bottom-left'` | 控制全屏控件在地图上的位置。可选值有`'left'`,`'right'`,`'top'`,`'bottom'`,`'top-left'`,`'top-right'`,`'bottom-left'`,`'bottom-right'`。 |
 | `container` | `HTMLElement`     | -               | 全屏显示的 [兼容的 DOM 元素](https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullscreen#compatible_elements)            |
