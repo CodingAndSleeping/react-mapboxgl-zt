@@ -49,7 +49,7 @@ toc: content
 
 <code src="../examples/lineLayer/demo4.tsx" compact="true"></code>
 
-### 5.图层事件
+### 5.设置图片
 
 可以通过设置`imgUrl`属性设置线的图片样式。
 
@@ -98,16 +98,16 @@ toc: content
 
 ### LineLayer Event
 
-| 事件 | 参数 ｜ 返回值 | 说明 |
-| --------------- | ----------------｜------------ | -------------- |
-| `onMouseUp` | `MapMouseEvent` ｜ `void` | 鼠标抬起时触发 |
-| `onMouseDown` | `MapMouseEvent` ｜ `void` | 鼠标按下时触发 |
-| `onMouseOver` | `MapMouseEvent` ｜ `void` | 鼠标悬停时触发 |
-| `onMouseMove` | `MapMouseEvent` ｜ `void` | 鼠标移动时触发 |
-| `onMouseEnter` | `MapMouseEvent` ｜ `void` | 鼠标移入时触发 |
-| `onMouseLeave` | `MapMouseEvent` ｜ `void` | 鼠标离开时触发 |
-| `onMouseOut` | `MapMouseEvent` ｜ `void` | 鼠标移出时触发 |
-| `onClick` | `MapMouseEvent` ｜ `void` | 鼠标点击时触发 |
-| `onTouchStart` | `MapTouchEvent` ｜ `void` | 触摸开始时触发 |
-| `onTouchEnd` | `MapTouchEvent` ｜ `void` | 触摸结束时触发 |
-| `onTouchCancel` | `MapTouchEvent` ｜ `void` | 触摸取消时触发 |
+| 事件            | 参数            | 返回值 | 说明           |
+| --------------- | --------------- | ------ | -------------- |
+| `onMouseUp`     | `MapMouseEvent` | `void` | 鼠标抬起时触发 |
+| `onMouseDown`   | `MapMouseEvent` | `void` | 鼠标按下时触发 |
+| `onMouseOver`   | `MapMouseEvent` | `void` | 鼠标悬停时触发 |
+| `onMouseMove`   | `MapMouseEvent` | `void` | 鼠标移动时触发 |
+| `onMouseEnter`  | `MapMouseEvent` | `void` | 鼠标移入时触发 |
+| `onMouseLeave`  | `MapMouseEvent` | `void` | 鼠标离开时触发 |
+| `onMouseOut`    | `MapMouseEvent` | `void` | 鼠标移出时触发 |
+| `onClick`       | `MapMouseEvent` | `void` | 鼠标点击时触发 |
+| `onTouchStart`  | `MapTouchEvent` | `void` | 触摸开始时触发 |
+| `onTouchEnd`    | `MapTouchEvent` | `void` | 触摸结束时触发 |
+| `onTouchCancel` | `MapTouchEvent` | `void` | 触摸取消时触发 |

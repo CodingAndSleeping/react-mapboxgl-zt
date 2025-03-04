@@ -5,5 +5,5 @@ dist
 .dumi/tmp-production
 .DS_Store
 
-
+transJson.js
 docs-dist

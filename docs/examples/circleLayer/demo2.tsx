@@ -40,7 +40,11 @@ const App: FC = () => {
 
   return (
     <div className="map-container" style={mapContainerStyle}>
-      <MapComponent zoom={2.5} center={[105.405522, 37.2241]}>
+      <MapComponent
+        zoom={2.5}
+        center={[105.405522, 37.2241]}
+        style={'mapbox://styles/mapbox/light-v11'}
+      >
         <div className="tool-container" style={toolContainerStyle}>
           <Form labelCol={{ span: 10 }}>
             <Form.Item label="颜色" colon>

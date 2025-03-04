@@ -1,6 +1,6 @@
-import { GeoJSONSourceSpecification, MapMouseEvent } from 'mapbox-gl';
+import { GeoJSONSourceSpecification } from 'mapbox-gl';
 import { CSSProperties, FC } from 'react';
-import { CircleLayer, MapFactory } from 'react-mapboxgl-zt';
+import { FillLayer, MapFactory } from 'react-mapboxgl-zt';
 
 const mapContainerStyle: CSSProperties = {
   width: '100%',
@@ -15,16 +15,10 @@ const MapComponent = MapFactory({
 const App: FC = () => {
   const source: GeoJSONSourceSpecification = {
     type: 'geojson',
-    data: '/react-mapboxgl-zt/data/point.geojson',
+    data: '/react-mapboxgl-zt/data/polygon.geojson',
   };
 
-  const onClick = (e: MapMouseEvent) => {
-    alert(`click at ${e.features![0].properties!.name}`);
-  };
-
-  const onMouseOver = (e: MapMouseEvent) => {
-    console.log(e);
-  };
+  const imgUrl = '/react-mapboxgl-zt/imgs/polygon.png';
 
   return (
     <div className="map-container" style={mapContainerStyle}>
@@ -33,12 +27,7 @@ const App: FC = () => {
         center={[105.405522, 37.2241]}
         style={'mapbox://styles/mapbox/light-v11'}
       >
-        <CircleLayer
-          id="circle"
-          source={source}
-          onClick={onClick}
-          onMouseOver={onMouseOver}
-        />
+        <FillLayer id="fill" source={source} imgUrl={imgUrl} />
       </MapComponent>
     </div>
   );
