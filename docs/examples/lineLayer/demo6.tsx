@@ -34,7 +34,7 @@ const App: FC = () => {
         style={'mapbox://styles/mapbox/light-v11'}
       >
         <LineLayer
-          id="circle"
+          id="line"
           source={source}
           onClick={onClick}
           onMouseOver={onMouseOver}

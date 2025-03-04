@@ -55,7 +55,7 @@ const App: FC = () => {
         center={[114.095111, 22.634657]}
         style={'mapbox://styles/mapbox/light-v11'}
       >
-        <LineLayer id="circle" source={source} color={color} width={3} />
+        <LineLayer id="line" source={source} color={color} width={3} />
       </MapComponent>
     </div>
   );
