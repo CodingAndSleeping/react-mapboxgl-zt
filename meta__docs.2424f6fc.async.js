@@ -941,7 +941,7 @@ const App: FC = () => {
         center={[114.095111, 22.634657]}
         style={'mapbox://styles/mapbox/light-v11'}
       >
-        <LineLayer id="circle" source={source} width={5} gradient={gradinent} />
+        <LineLayer id="line" source={source} width={5} gradient={gradinent} />
       </MapComponent>
     </div>
   );
@@ -1005,7 +1005,7 @@ const App: FC = () => {
         center={[114.095111, 22.634657]}
         style={'mapbox://styles/mapbox/light-v11'}
       >
-        <LineLayer id="circle" source={source} color={color} width={3} />
+        <LineLayer id="line" source={source} color={color} width={3} />
       </MapComponent>
     </div>
   );
@@ -1041,7 +1041,7 @@ const App: FC = () => {
         center={[114.095111, 22.634657]}
         style={'mapbox://styles/mapbox/light-v11'}
       >
-        <LineLayer id="circle" source={source} width={5} imgUrl={imgUrl} />
+        <LineLayer id="line" source={source} width={5} imgUrl={imgUrl} />
       </MapComponent>
     </div>
   );
@@ -1084,7 +1084,7 @@ const App: FC = () => {
         style={'mapbox://styles/mapbox/light-v11'}
       >
         <LineLayer
-          id="circle"
+          id="line"
           source={source}
           onClick={onClick}
           onMouseOver={onMouseOver}
