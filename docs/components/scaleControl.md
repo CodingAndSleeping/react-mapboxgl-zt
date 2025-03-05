@@ -44,7 +44,7 @@ toc: content
 <code src="../examples/scaleControl/demo4.tsx" compact="true"></code>
 
 :::warning{title="注意！！！"}
-由于控件是在地图组件的`load`事件完成后才渲染的，所以获取组件实例在使用时会出现在`useEffect`函数中获取不到的问题！
+由于控件是在地图组件的`load`事件完成后才渲染的，所在使用时会出现在`useEffect`函数中获取不到的问题！
 :::
 
 ## API

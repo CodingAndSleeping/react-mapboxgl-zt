@@ -30,10 +30,10 @@ const App: FC = () => {
 
   const [style, setStyle] = useState({
     color: 'color1' as keyof typeof colorOptions,
-    intensity: 1,
+    intensity: 0.5,
     opacity: 1,
     radius: 30,
-    weight: 1,
+    weight: 0.5,
   });
 
   const colorOptions = {
@@ -116,7 +116,7 @@ const App: FC = () => {
                 style={{ width: '5rem' }}
                 value={style.intensity}
                 min={0}
-                max={10}
+                max={1}
                 step={0.1}
                 dots={false}
                 onChange={(value) => setStyle({ ...style, intensity: value })}
@@ -138,7 +138,7 @@ const App: FC = () => {
                 style={{ width: '5rem' }}
                 value={style.weight}
                 min={0}
-                max={10}
+                max={1}
                 step={0.1}
                 dots={false}
                 onChange={(value) => setStyle({ ...style, weight: value })}
