@@ -81,28 +81,28 @@ toc: content
 
 ### Marker Methods
 
-| 方法名                 | 参数                  | 返回值        | 说明                     |
-| ---------------------- | --------------------- | ------------- | ------------------------ |
-| `addTo`                | `Map`                 | `Marker`      | 将标记添加到地图         |
-| `remove`               | `-`                   | `Marker`      | 从地图上移除标记         |
-| `getLngLat`            | `-`                   | `LngLat`      | 获取标记的地理位置       |
-| `setLngLat`            | `LngLat`              | `Marker`      | 设置标记的位置           |
-| `getElement`           | `-`                   | `HTMLElement` | 返回标记的 HTML 元素     |
-| `setPopup`             | `Popup \| null`       | `Marker`      | 绑定一个弹出框到标记     |
-| `getPopup`             | `-`                   | `Popup`       | 获取绑定到标记的弹出框   |
-| `togglePopup`          | `-`                   | `Marker`      | 打开或关闭标记的弹出框   |
-| `getOffset`            | `-`                   | `Point`       | 获取标记的偏移量         |
-| `setOffset`            | `PointLike`           | `Marker`      | 设置标记的偏移量         |
-| `addClassName`         | `string`              | `Marker`      | 添加 CSS 类到标记元素    |
-| `removeClassName`      | `string`              | `Marker`      | 从标记元素移除 CSS 类    |
-| `toggleClassName`      | `string`              | `boolean`     | 切换标记元素的 CSS 类    |
-| `setDraggable`         | `boolean`             | `Marker`      | 设置标记是否可拖动       |
-| `isDraggable`          | `-`                   | `boolean`     | 检查标记是否可拖动       |
-| `setRotation`          | `number`              | `Marker`      | 设置标记的旋转角度       |
-| `getRotation`          | `-`                   | `number`      | 获取标记的旋转角度       |
-| `setRotationAlignment` | `string`              | `Marker`      | 设置标记的旋转对齐方式   |
-| `getRotationAlignment` | `-`                   | `string`      | 获取标记的旋转对齐方式   |
-| `setPitchAlignment`    | `string?`             | `Marker`      | 设置标记的俯仰对齐方式   |
-| `getPitchAlignment`    | `-`                   | `string`      | 获取标记的俯仰对齐方式   |
-| `setOccludedOpacity`   | `number` (默认 `0.2`) | `Marker`      | 设置标记被遮挡时的透明度 |
-| `getOccludedOpacity`   | `-`                   | `number`      | 获取标记被遮挡时的透明度 |
+| 方法名                 | 参数            | 返回值        | 说明                     |
+| ---------------------- | --------------- | ------------- | ------------------------ |
+| `addTo`                | `Map`           | `Marker`      | 将标记添加到地图         |
+| `remove`               | `-`             | `Marker`      | 从地图上移除标记         |
+| `getLngLat`            | `-`             | `LngLat`      | 获取标记的地理位置       |
+| `setLngLat`            | `LngLat`        | `Marker`      | 设置标记的位置           |
+| `getElement`           | `-`             | `HTMLElement` | 返回标记的 HTML 元素     |
+| `setPopup`             | `Popup \| null` | `Marker`      | 绑定一个弹出框到标记     |
+| `getPopup`             | `-`             | `Popup`       | 获取绑定到标记的弹出框   |
+| `togglePopup`          | `-`             | `Marker`      | 打开或关闭标记的弹出框   |
+| `getOffset`            | `-`             | `Point`       | 获取标记的偏移量         |
+| `setOffset`            | `PointLike`     | `Marker`      | 设置标记的偏移量         |
+| `addClassName`         | `string`        | `Marker`      | 添加 CSS 类到标记元素    |
+| `removeClassName`      | `string`        | `Marker`      | 从标记元素移除 CSS 类    |
+| `toggleClassName`      | `string`        | `boolean`     | 切换标记元素的 CSS 类    |
+| `setDraggable`         | `boolean`       | `Marker`      | 设置标记是否可拖动       |
+| `isDraggable`          | `-`             | `boolean`     | 检查标记是否可拖动       |
+| `setRotation`          | `number`        | `Marker`      | 设置标记的旋转角度       |
+| `getRotation`          | `-`             | `number`      | 获取标记的旋转角度       |
+| `setRotationAlignment` | `string`        | `Marker`      | 设置标记的旋转对齐方式   |
+| `getRotationAlignment` | `-`             | `string`      | 获取标记的旋转对齐方式   |
+| `setPitchAlignment`    | `string?`       | `Marker`      | 设置标记的俯仰对齐方式   |
+| `getPitchAlignment`    | `-`             | `string`      | 获取标记的俯仰对齐方式   |
+| `setOccludedOpacity`   | `number`        | `Marker`      | 设置标记被遮挡时的透明度 |
+| `getOccludedOpacity`   | `-`             | `number`      | 获取标记被遮挡时的透明度 |
