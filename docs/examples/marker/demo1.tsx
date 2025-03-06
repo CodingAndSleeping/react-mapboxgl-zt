@@ -20,6 +20,11 @@ const App: FC = () => {
         style={'mapbox://styles/mapbox/light-v11'}
       >
         <Marker lngLat={[114.095111, 22.634657]}></Marker>
+        <Marker lngLat={[114.018446, 22.669424]}></Marker>
+        <Marker lngLat={[113.933587, 22.555961]}></Marker>
+        <Marker lngLat={[114.052852, 22.534916]}></Marker>
+        <Marker lngLat={[114.111121, 22.557448]}></Marker>
+        <Marker lngLat={[114.143223, 22.622246]}></Marker>
       </MapComponent>
     </div>
   );

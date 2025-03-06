@@ -1,3 +1,4 @@
+import { Radio, RadioChangeEvent } from 'antd';
 import { CSSProperties, FC, useContext } from 'react';
 import { MapContext, MapFactory } from 'react-mapboxgl-zt';
 
@@ -21,10 +22,39 @@ const MapComponent = MapFactory({
 
 const Children = () => {
   const map = useContext(MapContext);
+
+  const options = [
+    {
+      value: 'mapbox://styles/mapbox/streets-v11',
+      label: '街道',
+    },
+    {
+      value: 'mapbox://styles/mapbox/satellite-streets-v12',
+      label: '影像图',
+    },
+    {
+      value: 'mapbox://styles/mapbox/light-v11',
+      label: '白天',
+    },
+    {
+      value: 'mapbox://styles/mapbox/dark-v11',
+      label: '黑夜',
+    },
+  ];
+
+  const onChange = (e: RadioChangeEvent) => {
+    if (map) {
+      map.setStyle(e.target.value);
+    }
+  };
+
   return (
-    <div style={toolContainerStyle}>
-      <div>子组件</div>
-      <div>zoom: {map?.getZoom()}</div>
+    <div className="tool-container" style={toolContainerStyle}>
+      <Radio.Group
+        defaultValue={'mapbox://styles/mapbox/streets-v11'}
+        onChange={onChange}
+        options={options}
+      />
     </div>
   );
 };

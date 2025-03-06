@@ -29,6 +29,22 @@ const App: FC = () => {
         <Marker lngLat={[114.095111, 22.634657]}>
           <img style={imgStyle} src={imgUrl} alt="marker" />
         </Marker>
+
+        <Marker lngLat={[114.018446, 22.669424]}>
+          <img style={imgStyle} src={imgUrl} alt="marker" />
+        </Marker>
+        <Marker lngLat={[113.933587, 22.555961]}>
+          <img style={imgStyle} src={imgUrl} alt="marker" />
+        </Marker>
+        <Marker lngLat={[114.052852, 22.534916]}>
+          <img style={imgStyle} src={imgUrl} alt="marker" />
+        </Marker>
+        <Marker lngLat={[114.111121, 22.557448]}>
+          <img style={imgStyle} src={imgUrl} alt="marker" />
+        </Marker>
+        <Marker lngLat={[114.143223, 22.622246]}>
+          <img style={imgStyle} src={imgUrl} alt="marker" />
+        </Marker>
       </MapComponent>
     </div>
   );

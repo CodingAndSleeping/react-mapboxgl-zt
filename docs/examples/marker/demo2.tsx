@@ -85,7 +85,7 @@ const App: FC = () => {
               <Slider
                 style={{ width: '5rem' }}
                 value={style.scale}
-                min={0}
+                min={1}
                 max={5}
                 step={1}
                 dots={false}
@@ -95,6 +95,11 @@ const App: FC = () => {
           </Form>
         </div>
         <Marker lngLat={[114.095111, 22.634657]} {...style}></Marker>
+        <Marker lngLat={[114.018446, 22.669424]} {...style}></Marker>
+        <Marker lngLat={[113.933587, 22.555961]} {...style}></Marker>
+        <Marker lngLat={[114.052852, 22.534916]} {...style}></Marker>
+        <Marker lngLat={[114.111121, 22.557448]} {...style}></Marker>
+        <Marker lngLat={[114.143223, 22.622246]} {...style}></Marker>
       </MapComponent>
     </div>
   );
