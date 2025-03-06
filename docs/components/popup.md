@@ -66,10 +66,10 @@ toc: content
 
 ### Popup Event
 
-| 事件名  | 参数                                 | 返回值 | 说明           |
-| ------- | ------------------------------------ | ------ | -------------- |
-| onOpen  | `OverlayEventParams<mapboxgl.Popup>` | `void` | 弹窗打开时触发 |
-| onClose | `OverlayEventParams<mapboxgl.Popup>` | `void` | 弹窗关闭时触发 |
+| 事件名    | 参数                                 | 返回值 | 说明           |
+| --------- | ------------------------------------ | ------ | -------------- |
+| `onOpen`  | `OverlayEventParams<mapboxgl.Popup>` | `void` | 弹窗打开时触发 |
+| `onClose` | `OverlayEventParams<mapboxgl.Popup>` | `void` | 弹窗关闭时触发 |
 
 ### Popup Method
 

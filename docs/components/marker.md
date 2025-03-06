@@ -56,28 +56,28 @@ toc: content
 
 ### Marker API
 
-| 参数              | 类型         | 默认值      | 说明               |
-| ----------------- | ------------ | ----------- | ------------------ |
-| lngLat            | `LngLatLike` | `[180, 90]` | 坐标位置（经纬度） |
-| anchor            | `Anchor`     | `'center'`  | 锚点位置           |
-| className         | `string`     | `-`         | 自定义 CSS 类名    |
-| clickTolerance    | `number`     | `0`         | 点击容差（像素）   |
-| color             | `string`     | `'#3FB1CE'` | 颜色               |
-| draggable         | `boolean`    | `false`     | 是否可拖拽         |
-| occludedOpacity   | `number`     | `0.2`       | 被遮挡时的不透明度 |
-| offset            | `PointLike`  | `-`         | 偏移量             |
-| pitchAlignment    | `string`     | `'auto'`    | 俯仰对齐方式       |
-| rotation          | `number`     | `0`         | 旋转角度（度）     |
-| rotationAlignment | `string`     | `'auto'`    | 旋转对齐方式       |
-| scale             | `number`     | `1`         | 缩放比例           |
+| 参数                | 类型         | 默认值      | 说明               |
+| ------------------- | ------------ | ----------- | ------------------ |
+| `lngLat`            | `LngLatLike` | `[180, 90]` | 坐标位置（经纬度） |
+| `anchor`            | `Anchor`     | `'center'`  | 锚点位置           |
+| `className`         | `string`     | `-`         | 自定义 CSS 类名    |
+| `clickTolerance`    | `number`     | `0`         | 点击容差（像素）   |
+| `color`             | `string`     | `'#3FB1CE'` | 颜色               |
+| `draggable`         | `boolean`    | `false`     | 是否可拖拽         |
+| `occludedOpacity`   | `number`     | `0.2`       | 被遮挡时的不透明度 |
+| `offset`            | `PointLike`  | `-`         | 偏移量             |
+| `pitchAlignment`    | `string`     | `'auto'`    | 俯仰对齐方式       |
+| `rotation`          | `number`     | `0`         | 旋转角度（度）     |
+| `rotationAlignment` | `string`     | `'auto'`    | 旋转对齐方式       |
+| `scale`             | `number`     | `1`         | 缩放比例           |
 
 ### Marker Event
 
-| 事件名      | 参数                                  | 返回值 | 说明           |
-| ----------- | ------------------------------------- | ------ | -------------- |
-| onDragStart | `OverlayEventParams<mapboxgl.Marker>` | `void` | 拖拽开始事件   |
-| onDrag      | `OverlayEventParams<mapboxgl.Marker>` | `void` | 拖拽过程中触发 |
-| onDragEnd   | `OverlayEventParams<mapboxgl.Marker>` | `void` | 拖拽结束事件   |
+| 事件名        | 参数                                  | 返回值 | 说明           |
+| ------------- | ------------------------------------- | ------ | -------------- |
+| `onDragStart` | `OverlayEventParams<mapboxgl.Marker>` | `void` | 拖拽开始事件   |
+| `onDrag`      | `OverlayEventParams<mapboxgl.Marker>` | `void` | 拖拽过程中触发 |
+| `onDragEnd`   | `OverlayEventParams<mapboxgl.Marker>` | `void` | 拖拽结束事件   |
 
 ### Marker Method
 
