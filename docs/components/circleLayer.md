@@ -51,8 +51,8 @@ toc: content
 
 | 参数               | 类型                                                                           | 默认值       | 说明                                                                            |
 | ------------------ | ------------------------------------------------------------------------------ | ------------ | ------------------------------------------------------------------------------- |
-| `id`               | `string`                                                                       | **必填**     | 图层 ID                                                                         |
-| `source`           | `string`                                                                       | **必填**     | 数据源，具体查看[source](https://docs.mapbox.com/style-spec/reference/sources/) |
+| `id`               | `string`                                                                       | 必填         | 图层 ID                                                                         |
+| `source`           | `string`                                                                       | 必填         | 数据源，具体查看[source](https://docs.mapbox.com/style-spec/reference/sources/) |
 | `sourceLayer`      | `string`                                                                       | `-`          | 数据源的子图层 ID                                                               |
 | `filter`           | `ExpressionSpecification`                                                      | `-`          | 过滤条件                                                                        |
 | `maxzoom`          | `number`                                                                       | `24`         | 最大缩放级别                                                                    |

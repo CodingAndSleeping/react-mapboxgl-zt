@@ -7,7 +7,7 @@ group:
   order: 4
 
 title: 地图标记
-order: 4
+order: 1
 
 toc: content
 ---
@@ -20,36 +20,36 @@ toc: content
 
 ### 1.基本使用
 
-`marker`组件的基本使用。默认样式为定位图标。
+`Marker`组件的基本使用。默认样式为定位图标。
 
 <code src="../examples/marker/demo1.tsx" compact="true"></code>
 
 ### 2.设置样式
 
-可以给`marker`设置颜色、锚点、旋转角度和缩放比例等样式。
+可以给`Marker`设置颜色、锚点、旋转角度和缩放比例等样式。
 
 <code src="../examples/marker/demo2.tsx" compact="true"></code>
 
 ### 3.自定义内容
 
-可以在通过给`marker`组件传递子组件或 HTML 元素来自定义`marker`的内容。
+可以在通过给`Marker`组件传递子组件或 HTML 元素来自定义`Marker`的内容。
 
 <code src="../examples/marker/demo3.tsx" compact="true"></code>
 
 ### 4.拖拽与事件
 
-可通过设置`draggable`属性为`true`来开启拖拽功能，并可以监听`marker`的拖拽事件。
+可通过设置`draggable`属性为`true`来开启拖拽功能，并可以监听`Marker`的拖拽事件。
 
 <code src="../examples/marker/demo4.tsx" compact="true"></code>
 
-### 5.获取 marker 实例
+### 5.获取 Marker 实例
 
-可以通过 `useRef` 获取`marker`实例。以便获取组件身上的属性和方法。
+可以通过 `useRef` 获取`Marker`实例。以便获取组件身上的属性和方法。
 
 <code src="../examples/marker/demo5.tsx" compact="true"></code>
 
 :::warning{title="注意！！！"}
-由于`marker`是在地图组件的`load`事件完成后才渲染的，所以在使用时会出现在`useEffect`函数中获取不到的问题！
+由于`Marker`是在地图组件的`load`事件完成后才渲染的，所以在使用时会出现在`useEffect`函数中获取不到的问题！
 :::
 
 ## API
@@ -71,7 +71,7 @@ toc: content
 | rotationAlignment | `string`     | `'auto'`    | 旋转对齐方式       |
 | scale             | `number`     | `1`         | 缩放比例           |
 
-### Marker Events
+### Marker Event
 
 | 事件名      | 参数                                  | 返回值 | 说明           |
 | ----------- | ------------------------------------- | ------ | -------------- |
@@ -79,7 +79,7 @@ toc: content
 | onDrag      | `OverlayEventParams<mapboxgl.Marker>` | `void` | 拖拽过程中触发 |
 | onDragEnd   | `OverlayEventParams<mapboxgl.Marker>` | `void` | 拖拽结束事件   |
 
-### Marker Methods
+### Marker Method
 
 | 方法名                 | 参数            | 返回值        | 说明                     |
 | ---------------------- | --------------- | ------------- | ------------------------ |
