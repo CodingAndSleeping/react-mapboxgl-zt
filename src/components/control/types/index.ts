@@ -1,3 +1,4 @@
+import { MapboxDrawOptions } from '@mapbox/mapbox-gl-draw';
 import { ControlPosition, IControl } from 'mapbox-gl';
 
 export interface CustomControlProps<T extends IControl> {
@@ -31,4 +32,8 @@ export interface MousePositionControlProps {
   position?: ControlPosition;
 
   decimals?: number;
+}
+
+export interface DrawControlProps extends MapboxDrawOptions {
+  position?: ControlPosition;
 }
