@@ -36,7 +36,7 @@ const CircleLayer: FC<CircleLayerProps & LayerEvents> = (props) => {
 
   const prevProps = useRef<CircleLayerProps | null>(null);
 
-  const { updateEvents, offEvents } = useEvents();
+  const { updateEvents, offEvents } = useEvents(props);
 
   useEffect(() => {
     if (!map) return;
@@ -219,7 +219,7 @@ const CircleLayer: FC<CircleLayerProps & LayerEvents> = (props) => {
     beforeId,
   ]);
 
-  if (map) updateEvents(props, map, id);
+  if (map) updateEvents(map, id);
 
   return null;
 };

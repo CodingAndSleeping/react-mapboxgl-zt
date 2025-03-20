@@ -76,20 +76,29 @@ const overlayEventMap: Record<string, string> = {
   onDragEnd: 'dragend',
 };
 
+const drawControlEventMap: Record<string, string> = {
+  onDrawCreate: 'draw.create',
+  onDrawUpdate: 'draw.update',
+  onDrawDelete: 'draw.delete',
+  onDrawCombine: 'draw.combine',
+  onDrawUncombine: 'draw.uncombine',
+  onDrawRender: 'draw.render',
+  onDrawSelectionChange: 'draw.selectionchange',
+  onDrawModeChange: 'draw.modechange',
+  onDrawActionable: 'draw.actionable',
+};
+
 const eventMap = {
   ...mapEventMap,
   ...layerEventMap,
   ...overlayEventMap,
+  ...drawControlEventMap,
 };
 
-const useEvents = () => {
+const useEvents = (props: Record<string, any>) => {
   const listeners = useRef<Record<string, (e: any) => void>>({});
   // 事件更新
-  const updateEvents = (
-    props: Record<string, any>,
-    target: any,
-    layerId?: string,
-  ) => {
+  const updateEvents = (target: any, layerId?: string) => {
     if (!target || !listeners) return;
 
     // 需要解除绑定的事件 即 下次渲染中 props 中减少的事件

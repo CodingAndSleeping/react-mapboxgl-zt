@@ -44,12 +44,6 @@ export interface OverlayEventParams<T> {
   target: T;
 }
 
-export type Listeners = {
-  [T in keyof PopupEvents & keyof MarkerEvents]: (
-    e: OverlayEventParams<T>,
-  ) => void;
-};
-
 export interface PopupEvents {
   onOpen?: (e: OverlayEventParams<mapboxgl.Popup>) => void;
   onClose?: (e: OverlayEventParams<mapboxgl.Popup>) => void;

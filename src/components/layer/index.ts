@@ -5,11 +5,4 @@ export { default as HeatmapLayer } from './heatmapLayer';
 export { default as LineLayer } from './lineLayer';
 export { default as RasterLayer } from './rasterLayer';
 
-export type {
-  BackgroundLayerProps,
-  CircleLayerProps,
-  FillLayerProps,
-  HeatmapLayerProps,
-  LineLayerProps,
-  RasterLayerProps,
-} from './types';
+export * from './types';

@@ -147,7 +147,3 @@ export interface MapEvents {
   onStyleLoad?: (e: MapDataEvent) => void;
   onStyleImportLoad?: (e: MapDataEvent) => void;
 }
-
-export type Listeners = {
-  [T in keyof MapEvents]: MapEvents[T];
-};

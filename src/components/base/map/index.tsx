@@ -100,7 +100,7 @@ const MapFactory = ({
 
     const container = useRef<HTMLDivElement>(null);
 
-    const { updateEvents, offEvents } = useEvents();
+    const { updateEvents, offEvents } = useEvents(props);
 
     useEffect(() => {
       mapboxgl.accessToken = accessToken;
@@ -265,7 +265,7 @@ const MapFactory = ({
 
     // 每次组件渲染都会去重新更新事件
     if (mapInstance) {
-      updateEvents(props, mapInstance);
+      updateEvents(mapInstance);
     }
 
     return (

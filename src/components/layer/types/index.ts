@@ -21,10 +21,6 @@ export interface LayerEvents {
   onTouchCancel?: (e: MapTouchEvent) => void;
 }
 
-export type Listeners = {
-  [T in keyof LayerEvents]: LayerEvents[T];
-};
-
 export interface LayerProps {
   id: string;
   filter?: ExpressionSpecification;

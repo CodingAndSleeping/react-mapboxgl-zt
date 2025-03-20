@@ -40,7 +40,7 @@ const Marker: ForwardRefRenderFunction<
 
   const container = useRef<HTMLDivElement | null>(null);
 
-  const { updateEvents, offEvents } = useEvents();
+  const { updateEvents, offEvents } = useEvents(props);
 
   const [ready, setReady] = useState(false);
 
@@ -125,7 +125,7 @@ const Marker: ForwardRefRenderFunction<
     [ready],
   );
 
-  if (marker.current) updateEvents(props, marker.current);
+  if (marker.current) updateEvents(marker.current);
 
   return container.current ? createPortal(children, container.current) : null;
 };

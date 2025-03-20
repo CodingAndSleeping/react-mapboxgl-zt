@@ -31,7 +31,7 @@ const FIllLayer: FC<FillLayerProps & LayerEvents> = (props) => {
   const map = useContext(MapContext);
 
   const prevProps = useRef<FillLayerProps | null>(null);
-  const { updateEvents, offEvents } = useEvents();
+  const { updateEvents, offEvents } = useEvents(props);
   const loadImage = (imgUrl: string): Promise<string> => {
     return new Promise((reslove) => {
       map!.loadImage(imgUrl, (error, image) => {
@@ -213,7 +213,7 @@ const FIllLayer: FC<FillLayerProps & LayerEvents> = (props) => {
     imgUrl,
   ]);
 
-  if (map) updateEvents(props, map, id);
+  if (map) updateEvents(map, id);
 
   return null;
 };

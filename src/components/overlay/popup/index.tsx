@@ -37,7 +37,7 @@ const Popup: ForwardRefRenderFunction<
 
   const container = useRef<HTMLDivElement | null>(null);
 
-  const { updateEvents, offEvents } = useEvents();
+  const { updateEvents, offEvents } = useEvents(props);
 
   const [ready, setReady] = useState(false);
 
@@ -117,7 +117,7 @@ const Popup: ForwardRefRenderFunction<
     [ready],
   );
 
-  if (popup.current) updateEvents(props, popup.current);
+  if (popup.current) updateEvents(popup.current);
 
   return container.current ? createPortal(children, container.current) : null;
 };

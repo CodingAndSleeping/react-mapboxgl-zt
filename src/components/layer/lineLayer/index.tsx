@@ -42,7 +42,7 @@ const FIllLayer: FC<LineLayerProps & LayerEvents> = (props) => {
   const map = useContext(MapContext);
 
   const prevProps = useRef<LineLayerProps | null>(null);
-  const { updateEvents, offEvents } = useEvents();
+  const { updateEvents, offEvents } = useEvents(props);
 
   const loadImage = (imgUrl: string): Promise<string> => {
     return new Promise((reslove) => {
@@ -285,7 +285,7 @@ const FIllLayer: FC<LineLayerProps & LayerEvents> = (props) => {
     imgUrl,
   ]);
 
-  if (map) updateEvents(props, map, id);
+  if (map) updateEvents(map, id);
 
   return null;
 };
