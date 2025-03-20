@@ -85,8 +85,10 @@ const Marker: ForwardRefRenderFunction<
     setReady(true);
 
     return () => {
-      if (marker.current) marker.current.remove();
-      offEvents(marker.current!);
+      if (marker.current) {
+        marker.current.remove();
+        offEvents(marker.current);
+      }
 
       marker.current = null;
       container.current = null;

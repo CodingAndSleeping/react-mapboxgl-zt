@@ -80,8 +80,10 @@ const Popup: ForwardRefRenderFunction<
     setReady(true);
 
     return () => {
-      if (popup.current) popup.current.remove();
-      offEvents(popup.current!);
+      if (popup.current) {
+        popup.current.remove();
+        offEvents(popup.current);
+      }
 
       popup.current = null;
       container.current = null;
