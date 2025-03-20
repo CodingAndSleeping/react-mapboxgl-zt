@@ -13,6 +13,7 @@ import { MapContext } from '../../../context';
 import useEvents from '../../../events';
 import { DrawControlEvents, DrawControlProps } from '../types';
 import './index.scss';
+import { insertCustmeButton } from './utils/index';
 
 import staticMode from './modes/staticMode';
 import defaultStyles from './styles';
@@ -24,19 +25,6 @@ const defaultControls: MapboxDrawControls = {
   combine_features: false,
   uncombine_features: false,
 };
-
-function insertCustmeButton(className: string, onClickFun: () => void) {
-  const controlButtons = document.getElementsByClassName(
-    'mapbox-gl-draw_ctrl-draw-btn',
-  );
-  const controlContainter = controlButtons[0].parentElement;
-  if (controlContainter) {
-    const staticButton = document.createElement('button');
-    staticButton.classList.add('mapbox-gl-draw_ctrl-draw-btn', className);
-    staticButton.onclick = onClickFun;
-    controlContainter.appendChild(staticButton);
-  }
-}
 
 const DrawControl: ForwardRefRenderFunction<
   MapboxDraw,
@@ -92,9 +80,20 @@ const DrawControl: ForwardRefRenderFunction<
 
     map.addControl(drawControl.current, position);
 
-    insertCustmeButton('mapbox-gl-draw_static', () => {
-      drawControl.current?.changeMode('static');
-    });
+    insertCustmeButton(
+      0,
+      'mapbox-gl-draw_static',
+      {
+        title: 'static',
+      },
+      () => {
+        if (drawControl.current?.getMode() === 'static') {
+          drawControl.current?.changeMode('simple_select');
+        } else {
+          drawControl.current?.changeMode('static');
+        }
+      },
+    );
 
     setReady(true);
 

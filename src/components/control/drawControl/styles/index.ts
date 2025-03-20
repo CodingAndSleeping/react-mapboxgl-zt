@@ -1,8 +1,10 @@
-/* eslint comma-dangle: ["error", "always-multiline"] */
+// features’ default styles
 
 const blue = '#3bb2d0';
 const orange = '#fbb03b';
 const white = '#fff';
+
+const staticColor = '#000000';
 
 export default [
   // Polygons
@@ -119,7 +121,7 @@ export default [
     ],
     paint: {
       'circle-radius': 5,
-      'circle-color': '#000000',
+      'circle-color': staticColor,
     },
   },
   {
@@ -133,10 +135,11 @@ export default [
     ],
 
     paint: {
-      'line-color': '#000000',
+      'line-color': staticColor,
       'line-width': 2,
     },
   },
+
   {
     id: 'static-polygon',
     type: 'fill',
@@ -147,8 +150,23 @@ export default [
       ['==', 'mode', 'static'],
     ],
     paint: {
-      'fill-color': '#000000',
-      'fill-opacity': 0.1,
+      'fill-color': staticColor,
+      'fill-opacity': 0.3,
+    },
+  },
+  {
+    id: 'static-polygon-outline',
+    type: 'line',
+    filter: [
+      'all',
+      ['==', '$type', 'Polygon'],
+      ['==', 'meta', 'feature'],
+      ['==', 'mode', 'static'],
+    ],
+
+    paint: {
+      'line-color': staticColor,
+      'line-width': 2,
     },
   },
 ];
