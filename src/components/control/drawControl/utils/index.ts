@@ -6,12 +6,17 @@
  * @param onClickFun 点击事件回调函数
  */
 export function insertCustmeButton(
+  container: HTMLElement,
   index: number,
   className: string,
   attributes: Record<string, string> = {},
   onClickFun: () => void,
 ) {
-  const controlButtons = document.getElementsByClassName(
+  if (container.getElementsByClassName(className).length > 0) {
+    return;
+  }
+
+  const controlButtons = container.getElementsByClassName(
     'mapbox-gl-draw_ctrl-draw-btn',
   );
   const controlContainter = controlButtons[0].parentElement;

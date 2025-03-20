@@ -24,3 +24,15 @@ toc: content
 这是一个 `DrawControl` 的基本使用示例。
 
 <code src="../examples/drawControl/demo1.tsx" compact="true"></code>
+
+### 2.自定义按钮展示
+
+可以通过 `controls`属性来控制绘图控件按钮的展示。默认情况下 `static`、`point`、`line_string`、`polygon`、`trash` 按钮会展示，`combine_features`、`uncombine_features` 按钮不会展示。
+
+<code src="../examples/drawControl/demo2.tsx" compact="true"></code>
+
+:::info{title=注意}
+这里的 `controls` 属性是一个对象，并不会覆盖默认配置，而是会与默认配置进行合并。
+:::
+
+###

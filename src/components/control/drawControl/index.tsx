@@ -1,4 +1,4 @@
-import MapboxDraw, { MapboxDrawControls } from '@mapbox/mapbox-gl-draw';
+import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 import {
   forwardRef,
@@ -11,13 +11,18 @@ import {
 } from 'react';
 import { MapContext } from '../../../context';
 import useEvents from '../../../events';
-import { DrawControlEvents, DrawControlProps } from '../types';
+import {
+  DrawControlButtons,
+  DrawControlEvents,
+  DrawControlProps,
+} from '../types';
 import './index.scss';
 import { insertCustmeButton } from './utils/index';
 
 import staticMode from './modes/staticMode';
 import defaultStyles from './styles';
-const defaultControls: MapboxDrawControls = {
+const defaultControls: DrawControlButtons = {
+  static: true,
   point: true,
   line_string: true,
   polygon: true,
@@ -32,8 +37,7 @@ const DrawControl: ForwardRefRenderFunction<
 > = (props, ref) => {
   const {
     position = 'top-right',
-    displayControlsDefault = true,
-    keybindings = true,
+    keybindings = true, // enter escape
     touchEnabled = true,
     boxSelect = true,
     clickBuffer = 2,
@@ -58,8 +62,7 @@ const DrawControl: ForwardRefRenderFunction<
 
     if (drawControl.current) map.removeControl(drawControl.current);
 
-    const options: DrawControlProps = {
-      displayControlsDefault,
+    const options = {
       keybindings,
       touchEnabled,
       boxSelect,
@@ -80,20 +83,22 @@ const DrawControl: ForwardRefRenderFunction<
 
     map.addControl(drawControl.current, position);
 
-    insertCustmeButton(
-      0,
-      'mapbox-gl-draw_static',
-      {
-        title: 'static',
-      },
-      () => {
-        if (drawControl.current?.getMode() === 'static') {
-          drawControl.current?.changeMode('simple_select');
-        } else {
-          drawControl.current?.changeMode('static');
-        }
-      },
-    );
+    options.controls.static &&
+      insertCustmeButton(
+        map.getContainer(),
+        0,
+        'mapbox-gl-draw_static',
+        {
+          title: 'static',
+        },
+        () => {
+          if (drawControl.current?.getMode() === 'static') {
+            drawControl.current?.changeMode('simple_select');
+          } else {
+            drawControl.current?.changeMode('static');
+          }
+        },
+      );
 
     setReady(true);
 
@@ -105,7 +110,6 @@ const DrawControl: ForwardRefRenderFunction<
   }, [
     map,
     position,
-    displayControlsDefault,
     keybindings,
     touchEnabled,
     boxSelect,
