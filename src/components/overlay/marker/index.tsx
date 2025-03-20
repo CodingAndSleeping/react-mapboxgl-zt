@@ -11,8 +11,8 @@ import {
 } from 'react';
 import { createPortal } from 'react-dom';
 import { MapContext } from '../../../context';
-import { offEvents, updateEvents } from '../../../events';
-import { Listeners, MarkerEvents, MarkerProps } from '../types';
+import useEvents from '../../../events';
+import { MarkerEvents, MarkerProps } from '../types';
 
 const Marker: ForwardRefRenderFunction<
   mapboxgl.Marker,
@@ -40,7 +40,7 @@ const Marker: ForwardRefRenderFunction<
 
   const container = useRef<HTMLDivElement | null>(null);
 
-  const listeners = useRef<Listeners | null>({});
+  const { updateEvents, offEvents } = useEvents();
 
   const [ready, setReady] = useState(false);
 
@@ -86,8 +86,8 @@ const Marker: ForwardRefRenderFunction<
 
     return () => {
       if (marker.current) marker.current.remove();
-      offEvents(listeners.current!, marker.current!);
-      listeners.current = null;
+      offEvents(marker.current!);
+
       marker.current = null;
       container.current = null;
     };
@@ -123,7 +123,7 @@ const Marker: ForwardRefRenderFunction<
     [ready],
   );
 
-  if (marker.current) updateEvents(listeners.current!, props, marker.current);
+  if (marker.current) updateEvents(props, marker.current);
 
   return container.current ? createPortal(children, container.current) : null;
 };

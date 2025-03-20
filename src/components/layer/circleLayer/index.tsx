@@ -2,8 +2,8 @@ import { isEqual } from 'lodash-es';
 import { CircleLayerSpecification } from 'mapbox-gl';
 import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context/index';
-import { offEvents, updateEvents } from '../../../events';
-import { CircleLayerProps, LayerEvents, Listeners } from '../types';
+import useEvents from '../../../events';
+import { CircleLayerProps, LayerEvents } from '../types';
 
 const CircleLayer: FC<CircleLayerProps & LayerEvents> = (props) => {
   const {
@@ -36,7 +36,7 @@ const CircleLayer: FC<CircleLayerProps & LayerEvents> = (props) => {
 
   const prevProps = useRef<CircleLayerProps | null>(null);
 
-  const listeners = useRef<Listeners | null>({});
+  const { updateEvents, offEvents } = useEvents();
 
   useEffect(() => {
     if (!map) return;
@@ -94,8 +94,8 @@ const CircleLayer: FC<CircleLayerProps & LayerEvents> = (props) => {
     return () => {
       if (map.getLayer(id)) map.removeLayer(id);
       if (map.getSource(id)) map.removeSource(id);
-      offEvents(listeners.current!, map, id);
-      listeners.current = null;
+      offEvents(map, id);
+
       prevProps.current = null;
     };
   }, [map, id]);
@@ -219,7 +219,7 @@ const CircleLayer: FC<CircleLayerProps & LayerEvents> = (props) => {
     beforeId,
   ]);
 
-  if (map) updateEvents(listeners.current!, props, map, id);
+  if (map) updateEvents(props, map, id);
 
   return null;
 };

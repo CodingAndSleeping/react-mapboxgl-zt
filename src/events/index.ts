@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+
 const mapEventMap: Record<string, string> = {
   onResize: 'resize',
   onIdle: 'idle',
@@ -80,74 +82,80 @@ const eventMap = {
   ...overlayEventMap,
 };
 
-// 事件更新
-export const updateEvents = (
-  listeners: Record<string, (e: any) => void>,
-  props: Record<string, any>,
-  target: any,
-  layerId?: string,
-) => {
-  if (!target || !listeners) return;
+const useEvents = () => {
+  const listeners = useRef<Record<string, (e: any) => void>>({});
+  // 事件更新
+  const updateEvents = (
+    props: Record<string, any>,
+    target: any,
+    layerId?: string,
+  ) => {
+    if (!target || !listeners) return;
 
-  // 需要解除绑定的事件 即 下次渲染中 props 中减少的事件
-  const listenersOff = Object.keys(listeners).filter((key) => {
-    return listeners[key] && typeof props[key] !== 'function';
-  });
-
-  // 需要增加绑定的事件 即 下次渲染中 props 中增加的事件
-  const listenersOn = Object.keys(eventMap).filter((key) => {
-    return !listeners[key] && typeof props[key] === 'function';
-  });
-
-  // 解除绑定的事件
-  if (layerId) {
-    listenersOff.forEach((key) => {
-      target.off(eventMap[key]!, layerId, listeners[key]!);
-      delete listeners[key];
+    // 需要解除绑定的事件 即 下次渲染中 props 中减少的事件
+    const listenersOff = Object.keys(listeners).filter((key) => {
+      return listeners.current[key] && typeof props[key] !== 'function';
     });
-  } else {
-    listenersOff.forEach((key) => {
-      target.off(eventMap[key]!, listeners[key]!);
-      delete listeners[key];
+
+    // 需要增加绑定的事件 即 下次渲染中 props 中增加的事件
+    const listenersOn = Object.keys(eventMap).filter((key) => {
+      return !listeners.current[key] && typeof props[key] === 'function';
     });
-  }
 
-  // 增加绑定的事件
-  listenersOn.forEach((key) => {
-    const event = eventMap[key];
-    const handleFunc = props[key];
-
-    if (event && typeof handleFunc === 'function') {
-      const listener = (e: any) => {
-        handleFunc(e);
-      };
-      if (layerId) {
-        target.on(event, layerId, listener);
-      } else {
-        target.on(event, listener);
-      }
-
-      listeners[key] = listener;
+    // 解除绑定的事件
+    if (layerId) {
+      listenersOff.forEach((key) => {
+        target.off(eventMap[key]!, layerId, listeners.current[key]!);
+        delete listeners.current[key];
+      });
+    } else {
+      listenersOff.forEach((key) => {
+        target.off(eventMap[key]!, listeners.current[key]!);
+        delete listeners.current[key];
+      });
     }
-  });
+
+    // 增加绑定的事件
+    listenersOn.forEach((key) => {
+      const event = eventMap[key];
+      const handleFunc = props[key];
+
+      if (event && typeof handleFunc === 'function') {
+        const listener = (e: any) => {
+          handleFunc(e);
+        };
+        if (layerId) {
+          target.on(event, layerId, listener);
+        } else {
+          target.on(event, listener);
+        }
+
+        listeners.current[key] = listener;
+      }
+    });
+  };
+
+  // 解除所有事件
+  const offEvents = (target: any, layerId?: string) => {
+    if (!target || !listeners) return;
+    if (layerId) {
+      Object.keys(listeners).forEach((key) => {
+        target.off(eventMap[key]!, layerId, listeners.current[key]!);
+        delete listeners.current[key];
+      });
+    } else {
+      Object.keys(listeners).forEach((key) => {
+        target.off(eventMap[key]!, listeners.current[key]!);
+        delete listeners.current[key];
+      });
+    }
+  };
+
+  return {
+    listeners,
+    updateEvents,
+    offEvents,
+  };
 };
 
-// 解除所有事件
-export const offEvents = (
-  listeners: Record<string, (e: any) => void>,
-  target: any,
-  layerId?: string,
-) => {
-  if (!target || !listeners) return;
-  if (layerId) {
-    Object.keys(listeners).forEach((key) => {
-      target.off(eventMap[key]!, layerId, listeners[key]!);
-      delete listeners[key];
-    });
-  } else {
-    Object.keys(listeners).forEach((key) => {
-      target.off(eventMap[key]!, listeners[key]!);
-      delete listeners[key];
-    });
-  }
-};
+export default useEvents;

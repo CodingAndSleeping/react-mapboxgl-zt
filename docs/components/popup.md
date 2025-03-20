@@ -30,7 +30,7 @@ toc: content
 
 <code src="../examples/popup/demo2.tsx" compact="true"></code>
 
-### 3.自定义内容
+### 3.弹窗事件
 
 给`Popup`组件绑定事件。
 

@@ -2,8 +2,8 @@ import { isEqual } from 'lodash-es';
 import { LineLayerSpecification } from 'mapbox-gl';
 import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context';
-import { offEvents, updateEvents } from '../../../events';
-import { LayerEvents, LineLayerProps, Listeners } from '../types';
+import useEvents from '../../../events';
+import { LayerEvents, LineLayerProps } from '../types';
 
 const FIllLayer: FC<LineLayerProps & LayerEvents> = (props) => {
   const {
@@ -42,7 +42,7 @@ const FIllLayer: FC<LineLayerProps & LayerEvents> = (props) => {
   const map = useContext(MapContext);
 
   const prevProps = useRef<LineLayerProps | null>(null);
-  const listeners = useRef<Listeners | null>({});
+  const { updateEvents, offEvents } = useEvents();
 
   const loadImage = (imgUrl: string): Promise<string> => {
     return new Promise((reslove) => {
@@ -133,8 +133,8 @@ const FIllLayer: FC<LineLayerProps & LayerEvents> = (props) => {
     return () => {
       if (map.getLayer(id)) map.removeLayer(id);
       if (map.getSource(id)) map.removeSource(id);
-      offEvents(listeners.current!, map, id);
-      listeners.current = null;
+      offEvents(map, id);
+
       prevProps.current = null;
     };
   }, [map, id]);
@@ -285,7 +285,7 @@ const FIllLayer: FC<LineLayerProps & LayerEvents> = (props) => {
     imgUrl,
   ]);
 
-  if (map) updateEvents(listeners.current!, props, map, id);
+  if (map) updateEvents(props, map, id);
 
   return null;
 };
