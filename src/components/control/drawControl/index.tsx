@@ -37,7 +37,7 @@ const DrawControl: ForwardRefRenderFunction<
 > = (props, ref) => {
   const {
     position = 'top-right',
-    keybindings = true, // enter escape
+    keybindings = true,
     touchEnabled = true,
     boxSelect = true,
     clickBuffer = 2,

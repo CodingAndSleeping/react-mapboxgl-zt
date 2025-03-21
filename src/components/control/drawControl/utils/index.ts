@@ -1,5 +1,6 @@
 /**
  * 插入自定义按钮
+ * @param container 地图容器
  * @param index 插入的位置索引
  * @param className 标签的类名
  * @param attributes 标签的自定义属性
