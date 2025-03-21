@@ -36,17 +36,13 @@ toc: content
 
 <code src="../examples/popup/demo3.tsx" compact="true"></code>
 
-### 5.获取 Popup 实例
+### 4.获取 Popup 实例
 
-可以通过 `useRef` 获取`Popup`实例。
+可以通过 `onAdd` 事件回调函数获取 `Popup` 实例。
 
 点击地图显示弹窗。
 
 <code src="../examples/popup/demo4.tsx" compact="true"></code>
-
-:::warning{title="注意！！！"}
-由于`Popup`是在地图组件的`load`事件完成后才渲染的，所以在使用时会出现在`useEffect`函数中获取不到的问题！
-:::
 
 ## API
 
@@ -66,10 +62,11 @@ toc: content
 
 ### Popup Event
 
-| 事件名    | 参数                                 | 返回值 | 说明           |
-| --------- | ------------------------------------ | ------ | -------------- |
-| `onOpen`  | `OverlayEventParams<mapboxgl.Popup>` | `void` | 弹窗打开时触发 |
-| `onClose` | `OverlayEventParams<mapboxgl.Popup>` | `void` | 弹窗关闭时触发 |
+| 事件名    | 参数                        | 返回值 | 说明           |
+| --------- | --------------------------- | ------ | -------------- |
+| `onAdd`   | `Popup`                     | `void` | 弹窗打开时触发 |
+| `onOpen`  | `OverlayEventParams<Popup>` | `void` | 弹窗打开时触发 |
+| `onClose` | `OverlayEventParams<Popup>` | `void` | 弹窗关闭时触发 |
 
 ### Popup Method
 

@@ -35,7 +35,7 @@ const App: FC = () => {
             点击改变比例尺单位
           </button>
         </div>
-        <ScaleControl ref={scaleControRef} />
+        <ScaleControl onAdd={(control) => (scaleControRef.current = control)} />
       </MapComponent>
     </div>
   );

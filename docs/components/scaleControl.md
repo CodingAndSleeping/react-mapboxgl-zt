@@ -37,15 +37,11 @@ toc: content
 
 <code src="../examples/scaleControl/demo3.tsx" compact="true"></code>
 
-### 4.获取比例尺组件实例
+### 4.获取比例尺控件实例
 
-通过 `ref` 获取组件实例，可以获取组件的属性和方法。
+可以通过 `onAdd` 事件回调函数获取比例尺控件实例。
 
 <code src="../examples/scaleControl/demo4.tsx" compact="true"></code>
-
-:::warning{title="注意！！！"}
-由于控件是在地图组件的`load`事件完成后才渲染的，所在使用时会出现在`useEffect`函数中获取不到的问题！
-:::
 
 ## API
 

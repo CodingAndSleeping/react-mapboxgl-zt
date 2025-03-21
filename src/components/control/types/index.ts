@@ -1,5 +1,5 @@
 import { MapboxDrawControls, MapboxDrawOptions } from '@mapbox/mapbox-gl-draw';
-import { ControlPosition, IControl, Map } from 'mapbox-gl';
+import { ControlPosition, IControl, Map, ScaleControl } from 'mapbox-gl';
 
 export interface CustomControlProps<T extends IControl> {
   controlClass: new (...args: any[]) => T;
@@ -9,11 +9,19 @@ export interface CustomControlProps<T extends IControl> {
   [key: string]: any;
 }
 
+export interface CustomControlEvents<T> {
+  onAdd?: (control: T) => void;
+}
+
 export type Unit = 'imperial' | 'metric' | 'nautical';
 export interface ScaleControlProps {
   position?: ControlPosition;
   maxWidth?: number;
   unit?: Unit;
+}
+
+export interface ScaleControlEvents {
+  onAdd?: (control: ScaleControl) => void;
 }
 
 export interface NavigationControlProps {
@@ -98,6 +106,7 @@ export interface DrawActionableEvent {
 }
 
 export interface DrawControlEvents {
+  onAdd?: (control: MapboxDraw) => void;
   onDrawCreate?: (e: DrawCreateEvent) => void;
   onDrawUpdate?: (e: DrawUpdateEvent) => void;
   onDrawDelete?: (e: DrawDeleteEvent) => void;

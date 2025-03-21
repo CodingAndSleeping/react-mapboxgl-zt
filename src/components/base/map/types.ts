@@ -73,11 +73,11 @@ export interface MapOptions {
   moveMethod?: 'flyTo' | 'easeTo' | 'jumpTo';
   cameraOptions?: CameraOptions;
   animationOptions?: AnimationOptions;
-
-  onMapLoad?: (map: Map) => void;
 }
 
 export interface MapEvents {
+  onMapLoad?: (map: Map) => void;
+
   onResize?: (e: MapDataEvent) => void;
   onIdle?: (e: MapDataEvent) => void;
   onRemove?: (e: MapDataEvent) => void;

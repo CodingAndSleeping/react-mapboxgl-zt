@@ -1,14 +1,6 @@
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
-import {
-  forwardRef,
-  ForwardRefRenderFunction,
-  useContext,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react';
+import { FC, useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context';
 import useEvents from '../../../events';
 import {
@@ -31,10 +23,7 @@ const defaultControls: DrawControlButtons = {
   uncombine_features: false,
 };
 
-const DrawControl: ForwardRefRenderFunction<
-  MapboxDraw,
-  DrawControlProps & DrawControlEvents
-> = (props, ref) => {
+const DrawControl: FC<DrawControlProps & DrawControlEvents> = (props) => {
   const {
     position = 'top-right',
     keybindings = true,
@@ -47,13 +36,12 @@ const DrawControl: ForwardRefRenderFunction<
     modes = {},
     defaultMode = 'static',
     userProperties = false,
+    onAdd,
   } = props;
 
   const map = useContext(MapContext);
 
   const drawControl = useRef<MapboxDraw | null>(null);
-
-  const [ready, setReady] = useState(false);
 
   const { updateEvents, offEvents } = useEvents(props);
 
@@ -82,7 +70,7 @@ const DrawControl: ForwardRefRenderFunction<
     drawControl.current = new MapboxDraw(options);
 
     map.addControl(drawControl.current, position);
-
+    if (onAdd) onAdd(drawControl.current);
     options.controls.static &&
       insertCustmeButton(
         map.getContainer(),
@@ -99,8 +87,6 @@ const DrawControl: ForwardRefRenderFunction<
           }
         },
       );
-
-    setReady(true);
 
     return () => {
       if (drawControl.current) map.removeControl(drawControl.current);
@@ -124,14 +110,7 @@ const DrawControl: ForwardRefRenderFunction<
 
   if (map) updateEvents(map);
 
-  useImperativeHandle(
-    ref,
-    () => {
-      return ready ? drawControl.current! : (null as unknown as MapboxDraw);
-    },
-    [ready],
-  );
   return null;
 };
 
-export default forwardRef(DrawControl);
+export default DrawControl;

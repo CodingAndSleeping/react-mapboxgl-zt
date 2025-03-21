@@ -63,6 +63,12 @@ class HelloWorldControl {
 
 <code src="../examples/customControl/demo2.tsx" compact="true"></code>
 
+### 3.获取自定义控件实例
+
+可以通过 `onAdd` 事件回调函数获取自定义控件实例。
+
+<code src="../examples/customControl/demo3.tsx" compact="true"></code>
+
 ## API
 
 ### CustomControl API
@@ -72,3 +78,9 @@ class HelloWorldControl {
 | `controlClass` | `{ new (...args: any[]): T }` | -              | 自定义的控制类，必须是一个可实例化的类。可选值有`'left'`,`'right'`,`'top'`,`'bottom'`,`'top-left'`,`'top-right'`,`'bottom-left'`,`'bottom-right'`。 |
 | `position`     | `ControlPosition`             | `bottom-right` | 控制控件在地图上的位置。                                                                                                                            |
 | `_args`        | -                             | -              | 允许传入其他额外的自定义参数。                                                                                                                      |
+
+### CustomControl Event
+
+| 事件名  | 参数            | 返回值 | 说明           |
+| ------- | --------------- | ------ | -------------- |
+| `onAdd` | `CustomControl` | `void` | 控件添加时触发 |

@@ -68,7 +68,7 @@ const App: FC = () => {
           </Button>
         </div>
 
-        <DrawControl ref={drawControlRef} />
+        <DrawControl onAdd={(control) => (drawControlRef.current = control)} />
       </MapComponent>
     </div>
   );

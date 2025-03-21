@@ -1,11 +1,9 @@
 import mapboxgl from 'mapbox-gl';
 import {
-  forwardRef,
-  ForwardRefRenderFunction,
+  FC,
   PropsWithChildren,
   useContext,
   useEffect,
-  useImperativeHandle,
   useRef,
   useState,
 } from 'react';
@@ -14,10 +12,7 @@ import { MapContext } from '../../../context';
 import useEvents from '../../../events';
 import { PopupEvents, PopupProps } from '../types';
 
-const Popup: ForwardRefRenderFunction<
-  mapboxgl.Popup,
-  PropsWithChildren<PopupProps & PopupEvents>
-> = (props, ref) => {
+const Popup: FC<PropsWithChildren<PopupProps & PopupEvents>> = (props) => {
   const {
     lngLat,
     anchor,
@@ -28,6 +23,7 @@ const Popup: ForwardRefRenderFunction<
     focusAfterOpen = true,
     maxWidth = '240px',
     offset,
+    onAdd,
     children,
   } = props;
 
@@ -39,7 +35,7 @@ const Popup: ForwardRefRenderFunction<
 
   const { updateEvents, offEvents } = useEvents(props);
 
-  const [ready, setReady] = useState(false);
+  const [, setReady] = useState(false);
 
   useEffect(() => {
     if (!map) return;
@@ -76,9 +72,8 @@ const Popup: ForwardRefRenderFunction<
     }
 
     popup.current.addTo(map);
-
+    if (onAdd) onAdd(popup.current);
     setReady(true);
-
     return () => {
       if (popup.current) {
         popup.current.remove();
@@ -109,17 +104,9 @@ const Popup: ForwardRefRenderFunction<
     }
   }, [JSON.stringify(lngLat)]);
 
-  useImperativeHandle(
-    ref,
-    () => {
-      return ready ? popup.current! : (null as unknown as mapboxgl.Popup);
-    },
-    [ready],
-  );
-
   if (popup.current) updateEvents(popup.current);
 
   return container.current ? createPortal(children, container.current) : null;
 };
 
-export default forwardRef(Popup);
+export default Popup;

@@ -1,4 +1,4 @@
-import { LngLatLike, PointLike } from 'mapbox-gl';
+import { LngLatLike, Marker, PointLike, Popup } from 'mapbox-gl';
 
 export type Anchor =
   | 'center'
@@ -45,12 +45,14 @@ export interface OverlayEventParams<T> {
 }
 
 export interface PopupEvents {
-  onOpen?: (e: OverlayEventParams<mapboxgl.Popup>) => void;
-  onClose?: (e: OverlayEventParams<mapboxgl.Popup>) => void;
+  onAdd?: (e: Popup) => void;
+  onOpen?: (e: OverlayEventParams<Popup>) => void;
+  onClose?: (e: OverlayEventParams<Popup>) => void;
 }
 
 export interface MarkerEvents {
-  onDragStart?: (e: OverlayEventParams<mapboxgl.Marker>) => void;
-  onDrag?: (e: OverlayEventParams<mapboxgl.Marker>) => void;
-  onDragEnd?: (e: OverlayEventParams<mapboxgl.Marker>) => void;
+  onAdd?: (e: Marker) => void;
+  onDragStart?: (e: OverlayEventParams<Marker>) => void;
+  onDrag?: (e: OverlayEventParams<Marker>) => void;
+  onDragEnd?: (e: OverlayEventParams<Marker>) => void;
 }

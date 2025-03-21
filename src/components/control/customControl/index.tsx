@@ -1,10 +1,12 @@
 import { IControl } from 'mapbox-gl';
 import { useContext, useEffect, useRef } from 'react';
 import { MapContext } from '../../../context';
-import { CustomControlProps } from '../types';
+import { CustomControlEvents, CustomControlProps } from '../types';
 
-const CustomControl = <T extends IControl>(props: CustomControlProps<T>) => {
-  const { controlClass, position = 'bottom-right', ...rest } = props;
+const CustomControl = <T extends IControl>(
+  props: CustomControlProps<T> & CustomControlEvents<T>,
+) => {
+  const { controlClass, position = 'bottom-right', onAdd, ...rest } = props;
 
   const map = useContext(MapContext);
 
@@ -16,6 +18,8 @@ const CustomControl = <T extends IControl>(props: CustomControlProps<T>) => {
 
     control.current = new controlClass(rest);
     map.addControl(control.current, position);
+
+    if (onAdd) onAdd(control.current);
 
     return () => {
       if (control.current) map.removeControl(control.current);

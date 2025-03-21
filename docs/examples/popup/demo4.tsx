@@ -32,7 +32,7 @@ const App: FC = () => {
         style={'mapbox://styles/mapbox/light-v11'}
         onClick={onClick}
       >
-        <Popup ref={popupRef}></Popup>
+        <Popup onAdd={(popup) => (popupRef.current = popup)}></Popup>
       </MapComponent>
     </div>
   );

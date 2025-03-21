@@ -1,11 +1,9 @@
 import mapboxgl from 'mapbox-gl';
 import {
-  forwardRef,
-  ForwardRefRenderFunction,
+  FC,
   PropsWithChildren,
   useContext,
   useEffect,
-  useImperativeHandle,
   useRef,
   useState,
 } from 'react';
@@ -14,10 +12,7 @@ import { MapContext } from '../../../context';
 import useEvents from '../../../events';
 import { MarkerEvents, MarkerProps } from '../types';
 
-const Marker: ForwardRefRenderFunction<
-  mapboxgl.Marker,
-  PropsWithChildren<MarkerProps & MarkerEvents>
-> = (props, ref) => {
+const Marker: FC<PropsWithChildren<MarkerProps & MarkerEvents>> = (props) => {
   const {
     lngLat = [180, 90],
     anchor = 'center',
@@ -31,6 +26,7 @@ const Marker: ForwardRefRenderFunction<
     rotation = 0,
     rotationAlignment = 'auto',
     scale = 1,
+    onAdd,
     children,
   } = props;
 
@@ -42,7 +38,7 @@ const Marker: ForwardRefRenderFunction<
 
   const { updateEvents, offEvents } = useEvents(props);
 
-  const [ready, setReady] = useState(false);
+  const [, setReady] = useState(false);
 
   useEffect(() => {
     if (!map) return;
@@ -82,8 +78,8 @@ const Marker: ForwardRefRenderFunction<
 
     marker.current.addTo(map);
 
+    if (onAdd) onAdd(marker.current);
     setReady(true);
-
     return () => {
       if (marker.current) {
         marker.current.remove();
@@ -117,17 +113,9 @@ const Marker: ForwardRefRenderFunction<
     }
   }, [JSON.stringify(lngLat)]);
 
-  useImperativeHandle(
-    ref,
-    () => {
-      return ready ? marker.current! : (null as unknown as mapboxgl.Marker);
-    },
-    [ready],
-  );
-
   if (marker.current) updateEvents(marker.current);
 
   return container.current ? createPortal(children, container.current) : null;
 };
 
-export default forwardRef(Marker);
+export default Marker;

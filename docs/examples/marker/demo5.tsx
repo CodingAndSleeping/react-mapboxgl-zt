@@ -1,3 +1,4 @@
+import { Button } from 'antd';
 import { CSSProperties, FC, useRef } from 'react';
 import { MapFactory, Marker } from 'react-mapboxgl-zt';
 
@@ -37,11 +38,14 @@ const App: FC = () => {
         style={'mapbox://styles/mapbox/light-v11'}
       >
         <div className="tool-container" style={toolContainerStyle}>
-          <button type="button" onClick={onClick}>
+          <Button size="small" onClick={onClick}>
             点击移除marker
-          </button>
+          </Button>
         </div>
-        <Marker lngLat={[114.095111, 22.634657]} ref={markerRef}></Marker>
+        <Marker
+          lngLat={[114.095111, 22.634657]}
+          onAdd={(marker) => (markerRef.current = marker)}
+        ></Marker>
       </MapComponent>
     </div>
   );
