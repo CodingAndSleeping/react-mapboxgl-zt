@@ -104,21 +104,21 @@ toc: content
 
 ### DrawControl Method
 
-| 方法名               | 参数                                                      | 返回值                                                       | 说明                                                                                     |
-| -------------------- | --------------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
-| `add`                | `GeoJSON Feature \| FeatureCollection \|  Geometry`       | `Array<string>`                                              | 将 `GeoJSON` 要素添加到地图中。返回要素的 `id` 数组。如果要素没有 `id`，则自动生成一个。 |
-| `get`                | `string`                                                  | `Feature \| undefined`                                       | 获取指定 `id` 的 `GeoJSON` 要素。如果 `id` 不存在，则返回 `undefined`。                  |
-| `getFeatureIdsAt`    | `{x: number, y: number}`                                  | `Array<string>`                                              | 根据坐标获取要素，返回在指定点渲染的要素的 `id` 数组。                                   |
-| `getSelectedIds`     | `void`                                                    | `Array<string>`                                              | 获取当前选中的要素的 `id` 数组。                                                         |
-| `getSelected`        | `void`                                                    | `FeatureCollection`                                          | 获取当前选中的所有要素的 FeatureCollection。                                             |
-| `getSelectedPoints`  | `void`                                                    | `FeatureCollection`                                          | 获取当前选中的所有顶点的 FeatureCollection。                                             |
-| `getAll()`           | `void`                                                    | `FeatureCollection`                                          | 获取所有要素的 FeatureCollection。                                                       |
-| `delete`             | `string \| Array<string>`                                 | `ids`: 要删除的要素的 `id` 或 `id` 数组 \| `drDrawControlaw` | 删除指定 `id` 的要素。返回 `DrawControl` 实例以便链式调用。 \|                           |
-| `deleteAll`          | `void`                                                    | `MapboxDraw`                                                 | 删除所有要素。返回 `DrawControl` 实例以便链式调用。                                      |
-| `set`                | `FeatureCollection`                                       | `Array<string>`                                              | 将 绘制的图形设置为指定的 `FeatureCollection`。返回添加的要素的 `id` 数组。              |
-| `trash`              | `void`                                                    | `DrawControl`                                                | 调用当前模式的删除操作。返回 `DrawControl` 实例以便链式调用。                            |
-| `combineFeatures`    | `void`                                                    | `DrawControl`                                                | 调用当前模式的合并要素操作。返回 `DrawControl` 实例以便链式调用。                        |
-| `uncombineFeatures`  | `void`                                                    | `DrawControl`                                                | 调用当前模式的拆分要素操作。返回 `DrawControl` 实例以便链式调用。                        |
-| `getMode`            | `void`                                                    | `string`                                                     | 返回 `DrawControl` 的当前模式。                                                          |
-| `changeMode`         | `mode`: `string`;`options?`: `object`                     | `DrawControl`                                                | 更改 `DrawControl` 的模式。返回 `DrawControl` 实例以便链式调用。                         |
-| `setFeatureProperty` | `featureId`: `string`;`property`: `string`;`value`: `any` | `DrawControl`                                                | 设置指定要素的属性的值。返回 `DrawControl` 实例以便链式调用。                            |
+| 方法名               | 参数                                                      | 返回值                    | 说明                                                                                     |
+| -------------------- | --------------------------------------------------------- | ------------------------- | ---------------------------------------------------------------------------------------- |
+| `add`                | `GeoJSON Feature \| FeatureCollection \|  Geometry`       | `Array<string>`           | 将 `GeoJSON` 要素添加到地图中。返回要素的 `id` 数组。如果要素没有 `id`，则自动生成一个。 |
+| `get`                | `string`                                                  | `Feature \| undefined`    | 获取指定 `id` 的 `GeoJSON` 要素。如果 `id` 不存在，则返回 `undefined`。                  |
+| `getFeatureIdsAt`    | `{x: number, y: number}`                                  | `Array<string>`           | 根据坐标获取要素，返回在指定点渲染的要素的 `id` 数组。                                   |
+| `getSelectedIds`     | `void`                                                    | `Array<string>`           | 获取当前选中的要素的 `id` 数组。                                                         |
+| `getSelected`        | `void`                                                    | `FeatureCollection`       | 获取当前选中的所有要素的 FeatureCollection。                                             |
+| `getSelectedPoints`  | `void`                                                    | `FeatureCollection`       | 获取当前选中的所有顶点的 FeatureCollection。                                             |
+| `getAll()`           | `void`                                                    | `FeatureCollection`       | 获取所有要素的 FeatureCollection。                                                       |
+| `delete`             | `string \| Array<string>`                                 | `string \| Array<string>` | 删除指定 `id` 的要素。返回 `DrawControl` 实例以便链式调用。                              |
+| `deleteAll`          | `void`                                                    | `MapboxDraw`              | 删除所有要素。返回 `DrawControl` 实例以便链式调用。                                      |
+| `set`                | `FeatureCollection`                                       | `Array<string>`           | 将 绘制的图形设置为指定的 `FeatureCollection`。返回添加的要素的 `id` 数组。              |
+| `trash`              | `void`                                                    | `DrawControl`             | 调用当前模式的删除操作。返回 `DrawControl` 实例以便链式调用。                            |
+| `combineFeatures`    | `void`                                                    | `DrawControl`             | 调用当前模式的合并要素操作。返回 `DrawControl` 实例以便链式调用。                        |
+| `uncombineFeatures`  | `void`                                                    | `DrawControl`             | 调用当前模式的拆分要素操作。返回 `DrawControl` 实例以便链式调用。                        |
+| `getMode`            | `void`                                                    | `string`                  | 返回 `DrawControl` 的当前模式。                                                          |
+| `changeMode`         | `mode`: `string`;`options?`: `object`                     | `DrawControl`             | 更改 `DrawControl` 的模式。返回 `DrawControl` 实例以便链式调用。                         |
+| `setFeatureProperty` | `featureId`: `string`;`property`: `string`;`value`: `any` | `DrawControl`             | 设置指定要素的属性的值。返回 `DrawControl` 实例以便链式调用。                            |
