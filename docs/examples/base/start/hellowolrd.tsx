@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { MapFactory } from 'react-mapboxgl-zt';
 
 const MapInstance = MapFactory({
@@ -5,7 +6,7 @@ const MapInstance = MapFactory({
     'pk.eyJ1IjoiMnBpYyIsImEiOiJjbTczaXFxbGwwMGNtMm9zYjhjcW1hd3ZkIn0.YCpsYVQawB15Cf5Zyljscg',
 });
 
-export default function BaseMap() {
+const APP: FC = () => {
   return (
     <div
       style={{
@@ -15,4 +16,6 @@ export default function BaseMap() {
       <MapInstance></MapInstance>
     </div>
   );
-}
+};
+
+export default APP;
