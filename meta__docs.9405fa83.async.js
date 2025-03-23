@@ -13,10 +13,10 @@ $ pnpm install react-mapboxgl-zt
   <!-- Import style -->
   <link
     rel="stylesheet"
-    href="https://www.unpkg.com/react-mapboxgl-zt@0.0.8/dist/index.css"
+    href="https://www.unpkg.com/react-mapboxgl-zt@1.0.0/dist/index.css"
   />
   <!-- Import library -->
-  <script src="https://www.unpkg.com/react-mapboxgl-zt@0.0.8/dist/index.umd.js"><\/script>
+  <script src="https://www.unpkg.com/react-mapboxgl-zt@1.0.0/dist/index.umd.js"><\/script>
 </head>
 `,paraId:5,tocIndex:3},{value:"\u540C\u65F6\u5728\u5F15\u5165\u4E4B\u524D\u9700\u8981\u5F15\u5165 ",paraId:6,tocIndex:3},{value:"React",paraId:6,tocIndex:3},{value:" \u3001",paraId:6,tocIndex:3},{value:"ReactDOM",paraId:6,tocIndex:3},{value:" \u548C ",paraId:6,tocIndex:3},{value:"babel",paraId:6,tocIndex:3},{value:" \u8FD9\u4E09\u4E2A\u5E93\u3002",paraId:6,tocIndex:3},{value:`<head>
   <!-- Import React -->
@@ -40,10 +40,10 @@ $ pnpm install react-mapboxgl-zt
     <!-- \u2705 \u5F15\u5165css\u6587\u4EF6 -->
     <link
       rel="stylesheet"
-      href="https://www.unpkg.com/react-mapboxgl-zt@0.0.8/dist/index.css"
+      href="https://www.unpkg.com/react-mapboxgl-zt@1.0.0/dist/index.css"
     />
     <!--\u2705 \u5F15\u5165\u6838\u5FC3\u5E93\u6587\u4EF6 -->
-    <script src="https://www.unpkg.com/react-mapboxgl-zt@0.0.8/dist/index.umd.js"><\/script>
+    <script src="https://www.unpkg.com/react-mapboxgl-zt@1.0.0/dist/index.umd.js"><\/script>
 
     <title>APP</title>
     <style>
