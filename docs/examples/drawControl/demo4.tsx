@@ -58,7 +58,7 @@ const App: FC = () => {
 
   return (
     <div className="map-container" style={mapContainerStyle}>
-      <MapComponent>
+      <MapComponent style={'mapbox://styles/mapbox/light-v11'}>
         <div className="tool-container" style={toolContainerStyle}>
           <Button onClick={onAdd} size="small">
             添加图形

@@ -1,3 +1,4 @@
+import { Button } from 'antd';
 import { CSSProperties, FC, useRef } from 'react';
 import { MapFactory, ScaleControl } from 'react-mapboxgl-zt';
 
@@ -31,9 +32,9 @@ const App: FC = () => {
     <div className="map-container" style={mapContainerStyle}>
       <MapComponent>
         <div style={toolContainerStyle}>
-          <button type="button" onClick={onClick}>
+          <Button size="small" onClick={onClick}>
             点击改变比例尺单位
-          </button>
+          </Button>
         </div>
         <ScaleControl onAdd={(control) => (scaleControRef.current = control)} />
       </MapComponent>

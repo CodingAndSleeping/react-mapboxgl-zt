@@ -19,7 +19,7 @@ const App: FC = () => {
 
   return (
     <div className="map-container" style={mapContainerStyle}>
-      <MapComponent>
+      <MapComponent style={'mapbox://styles/mapbox/light-v11'}>
         <DrawControl controls={controls} />
       </MapComponent>
     </div>

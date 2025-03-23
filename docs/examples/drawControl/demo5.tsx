@@ -33,7 +33,7 @@ const App: FC = () => {
   };
   return (
     <div className="map-container" style={mapContainerStyle}>
-      <MapComponent>
+      <MapComponent style={'mapbox://styles/mapbox/light-v11'}>
         <DrawControl onDrawCreate={onCreate} onDrawDelete={onDelete} />
       </MapComponent>
     </div>
