@@ -46,10 +46,10 @@ $ pnpm install react-mapboxgl-zt
   <!-- Import style -->
   <link
     rel="stylesheet"
-    href="https://www.unpkg.com/react-mapboxgl-zt@0.0.8/dist/index.css"
+    href="https://www.unpkg.com/react-mapboxgl-zt@1.0.0/dist/index.css"
   />
   <!-- Import library -->
-  <script src="https://www.unpkg.com/react-mapboxgl-zt@0.0.8/dist/index.umd.js"></script>
+  <script src="https://www.unpkg.com/react-mapboxgl-zt@1.0.0/dist/index.umd.js"></script>
 </head>
 ```
 
@@ -97,10 +97,10 @@ $ pnpm install react-mapboxgl-zt
     <!-- ✅ 引入css文件 -->
     <link
       rel="stylesheet"
-      href="https://www.unpkg.com/react-mapboxgl-zt@0.0.8/dist/index.css"
+      href="https://www.unpkg.com/react-mapboxgl-zt@1.0.0/dist/index.css"
     />
     <!--✅ 引入核心库文件 -->
-    <script src="https://www.unpkg.com/react-mapboxgl-zt@0.0.8/dist/index.umd.js"></script>
+    <script src="https://www.unpkg.com/react-mapboxgl-zt@1.0.0/dist/index.umd.js"></script>
 
     <title>APP</title>
     <style>
