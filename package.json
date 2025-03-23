@@ -1,6 +1,6 @@
 {
   "name": "react-mapboxgl-zt",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": false,
   "description": "一个基于mapbox和react的地图组件库",
   "license": "MIT",
