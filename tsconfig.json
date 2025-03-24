@@ -14,6 +14,6 @@
       "react-mapboxgl-zt/*": ["src/*", "*"]
     }
   },
-  "include": ["src/**/*", "docs/**/*", ".dumirc.ts"]
+  "include": ["src/**/*", "docs/**/*", ".dumirc.ts", ".dumi/**/*"]
   // "include": ["src/**/*"]
 }

@@ -5,7 +5,7 @@ hero:
   actions:
     - text: 快速开始
       link: /base/start
-    - text: 文档
+    - text: 组件
       link: /components/map
 features:
   - title: React

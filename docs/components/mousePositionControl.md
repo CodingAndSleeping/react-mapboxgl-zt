@@ -1,7 +1,7 @@
 ---
 nav:
   title: 组件
-  order: 2
+  order: 3
 
 group:
   title: 地图控件
@@ -31,7 +31,7 @@ toc: content
 
 <code src="../examples/mousePositionControl/demo2.tsx" compact="true"></code>
 
-### 3.设置单位
+### 3.设置精度
 
 可以通过 `decimals` 属性设置鼠标位置控件的精度。
 

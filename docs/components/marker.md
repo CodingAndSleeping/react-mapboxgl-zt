@@ -1,7 +1,7 @@
 ---
 nav:
   title: 组件
-  order: 2
+  order: 3
 group:
   title: 地图覆盖物
   order: 4

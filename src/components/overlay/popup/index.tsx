@@ -20,7 +20,7 @@ const Popup: FC<PropsWithChildren<PopupProps & PopupEvents>> = (props) => {
     closeButton = true,
     closeOnClick = false,
     closeOnMove = false,
-    focusAfterOpen = true,
+    focusAfterOpen = false,
     maxWidth = '240px',
     offset,
     onAdd,

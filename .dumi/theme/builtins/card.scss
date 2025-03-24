@@ -1,0 +1,32 @@
+.card {
+  padding: 6px;
+  margin: 0.5%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: inline-block;
+  box-sizing: border-box;
+  cursor: pointer;
+  .card-img {
+    width: 100%;
+    height: 12rem;
+    background-size: contain;
+    background-repeat: no-repeat; /* 防止图片重复 */
+    // background-position: center;
+    transition: transform 0.3s ease;
+  }
+
+  .card-title {
+    width: 100%;
+    border-top: 1px solid #ccc;
+    text-align: center;
+    line-height: 1.5rem;
+    font-size: 15px;
+    z-index: 99;
+  }
+}
+
+.card-img:hover {
+  transform: scale(1.1);
+}

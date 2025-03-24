@@ -2,6 +2,10 @@
 
 本组件是基于 `mapboxgl` 开发的，以达到简化地图应用开发的目的，并且本组件的`api`与官方基本保持一致，因此，开发者在使用之前最好对`mapboxgl`的基本用法有一定的了解，具体可以参考[官方文档](https://docs.mapbox.com/mapbox-gl-js/api/)。
 
+## 文档
+
+- [文档](<[base/start.md](https://codingandsleeping.github.io/react-mapboxgl-zt/components/map)>)
+
 ## 安装
 
 ### 1.使用包管理器
