@@ -50,7 +50,7 @@ toc: content
 
 **参数**
 
-- `geojson`:`GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>` 要素。
+- `feature`:`GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>` 要素。
 - `distance`:`number` 缓冲区距离。
 - `options`: `object`
   - `units`:`string` 缓冲区单位，默认值：`kilometers`。
@@ -58,7 +58,7 @@ toc: content
 
 **返回值**
 
-- `geojson`:`GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>` 缓冲区。
+- `feature`:`GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>` 缓冲区。
 
 <code src="../examples/spatialCalculation/demo3.tsx" compact="true"  ></code>
 
@@ -86,7 +86,7 @@ toc: content
 
 **返回值**
 
-- `geojson`:`GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.MultiPolygon>` 并集。
+- `feature`:`GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.MultiPolygon>` 并集。
 
 <code src="../examples/spatialCalculation/demo5.tsx" compact="true"  ></code>
 
@@ -100,7 +100,7 @@ toc: content
 
 **返回值**
 
-- `geojson`:`GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.MultiPolygon>` 第一个图形减去第二个图形的部分。
+- `feature`:`GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.MultiPolygon>` 第一个图形减去第二个图形的部分。
 
 <code src="../examples/spatialCalculation/demo6.tsx" compact="true"  ></code>
 
@@ -108,7 +108,7 @@ toc: content
 
 **参数**
 
-- `geojson`:`GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>` 要素。
+- `feature`:`GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>` 要素。
 
 **返回值**
 
@@ -132,7 +132,7 @@ toc: content
 
 **参数**
 
-- `geojson`:`GeoJSON.Feature | GeoJSON.FeatureCollection` 要素。
+- `feature`:`GeoJSON.Feature | GeoJSON.FeatureCollection` 要素。
 
 **返回值**
 
@@ -144,7 +144,7 @@ toc: content
 
 **参数**
 
-- `geojson`:`GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>` 要素。
+- `feature`:`GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>` 要素。
 
 **返回值**
 
