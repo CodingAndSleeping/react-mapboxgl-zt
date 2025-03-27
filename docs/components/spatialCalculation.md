@@ -22,6 +22,8 @@ toc: content
 
 ### nearestPointOnLine
 
+计算点到线上最近的点。
+
 **参数**
 
 - `point`:`number[] | GeoJSON.Feature<GeoJSON.Point>` 点。
@@ -35,6 +37,8 @@ toc: content
 
 ### pointAlongLine
 
+计算线上指定百分比处的点。
+
 **参数**
 
 - `line`:`number[] | GeoJSON.Feature<GeoJSON.LineString>` 线。
@@ -47,6 +51,8 @@ toc: content
 <code src="../examples/spatialCalculation/demo2.tsx" compact="true" ></code>
 
 ### buffer
+
+计算缓冲区。
 
 **参数**
 
@@ -64,6 +70,8 @@ toc: content
 
 ### intersection
 
+相交计算。
+
 **参数**
 
 - `feature1`:`GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.MultiPolygon>` 要素 1。
@@ -77,6 +85,8 @@ toc: content
 <code src="../examples/spatialCalculation/demo4.tsx" compact="true"  ></code>
 
 ### union
+
+合并计算。
 
 **参数**
 
@@ -92,6 +102,8 @@ toc: content
 
 ### difference
 
+差集计算。
+
 **参数**
 
 - `feature1`:`GeoJSON.Feature<GeoJSON.Polygon | GeoJSON.MultiPolygon>` 要素 1。
@@ -106,6 +118,8 @@ toc: content
 
 ### bbox
 
+计算四至。
+
 **参数**
 
 - `feature`:`GeoJSON.Feature<any> | GeoJSON.FeatureCollection<any>` 要素。
@@ -117,6 +131,8 @@ toc: content
 <code src="../examples/spatialCalculation/demo7.tsx" compact="true" ></code>
 
 ### bboxPolygon
+
+计算边界多边形。
 
 **参数**
 
@@ -130,6 +146,8 @@ toc: content
 
 ### centroid
 
+计算质心。
+
 **参数**
 
 - `feature`:`GeoJSON.Feature | GeoJSON.FeatureCollection` 要素。
@@ -141,6 +159,8 @@ toc: content
 <code src="../examples/spatialCalculation/demo9.tsx" compact="true"  ></code>
 
 ### center
+
+计算中心点。
 
 **参数**
 
