@@ -4,7 +4,7 @@
 
 ## 文档
 
-- [文档](<[base/start.md](https://codingandsleeping.github.io/react-mapboxgl-zt/components/map)>)
+- [文档](https://codingandsleeping.github.io/react-mapboxgl-zt/components/map)
 
 ## 安装
 
@@ -57,8 +57,3 @@ $ pnpm install react-mapboxgl-zt
 </head>
 ```
 
----
-
-:::info{title=提示}
-我们建议使用 CDN 引入 react-mapboxgl-zt 的用户在链接地址上锁定版本，以免将来 react-mapboxgl-zt 升级时受到非兼容性更新的影响。 锁定版本的方法请查看 [unpkg.com](https://unpkg.com/)。
-:::
