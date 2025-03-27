@@ -7,12 +7,12 @@ export default defineConfig({
     socialLinks: {
       github: 'https://github.com/CodingAndSleeping/react-mapboxgl-zt',
     },
-    logo: '/react-mapboxgl-zt/logo.png',
+    logo: '/react-mapboxgl-zt/logo.svg',
   },
 
   base: '/react-mapboxgl-zt/',
   publicPath: '/react-mapboxgl-zt/',
-  favicons: ['/react-mapboxgl-zt/logo.png'],
+  favicons: ['/react-mapboxgl-zt/logo.svg'],
   apiParser: {},
   resolve: {
     entryFile: './src/index.ts',
