@@ -62,15 +62,18 @@ const Main: FC<Props> = (props) => {
       <div className="feature">
         <div className="feature-item">
           <img src="/react-mapboxgl-zt/imgs/react.svg" alt="" />
-          <span>用于构建 Web 和原生交互界面的库</span>
+
+          <span>一个用于构建 Web 和原生交互界面的库</span>
         </div>
         <div className="feature-item">
           <img src="/react-mapboxgl-zt/imgs/map.svg" alt="" />
-          <span>用于提供地图数据和地图渲染</span>
+
+          <span>一个用于提供地图数据和地图渲染的库</span>
         </div>
 
         <div className="feature-item">
           <img src="/react-mapboxgl-zt/imgs/fast.svg" alt="" />
+
           <span>帮助你快速上手开发地图应用</span>
         </div>
       </div>
