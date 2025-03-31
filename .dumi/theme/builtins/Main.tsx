@@ -18,7 +18,6 @@ const Main: FC<Props> = (props) => {
     desc = '一个基于React和MapboxGl的地图组件库',
   } = props;
   const [color] = usePrefersColor();
-  console.log(color);
   return (
     <div className="main">
       <div className="content">
@@ -72,7 +71,7 @@ const Main: FC<Props> = (props) => {
         </div>
 
         <div className="feature-item">
-          <img src="/react-mapboxgl-zt/imgs/fast.svg" alt="" />
+          <img src="/react-mapboxgl-zt/imgs/logo.svg" alt="" />
 
           <span>帮助你快速上手开发地图应用</span>
         </div>

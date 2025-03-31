@@ -11,9 +11,8 @@
   .card-img {
     width: 100%;
     height: 12rem;
-    background-size: contain;
+    background-size: 100% 100%;
     background-repeat: no-repeat; /* 防止图片重复 */
-    // background-position: center;
     transition: transform 0.3s ease;
   }
 
